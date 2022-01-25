@@ -1,0 +1,23 @@
+
+xmonad.hs:22:30: warning: [-Wdeprecations]
+    In the use of ‘defaultConfig’
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+   |
+22 |      xmonad $ ewmh $ docks $ defaultConfig
+   |                              ^^^^^^^^^^^^^
+
+xmonad.hs:31:1: warning: [-Wtabs]
+    Tab character found here, and in two further locations.
+    Please use spaces instead.
+   |
+31 |                         , clickJustFocuses   = myClickJustFocuses
+   | ^^^^^^^^
+
+xmonad.hs:70:25: warning: [-Wdeprecations]
+    In the use of ‘spacingWithEdge’
+    (imported from XMonad.Layout.Spacing):
+    Deprecated: "Use spacingRaw instead."
+   |
+70 |     withSpaces layout = spacingWithEdge 10 $ layout
+   |                         ^^^^^^^^^^^^^^^

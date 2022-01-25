@@ -1,0 +1,13 @@
+# configure heads
+#xrandr --output DVI-D-1 --mode 1440x900 --pos 2560x472 --rotate normal --output DP-1 --off --output DP-2 --off --output HDMI-1 --off --output DP-3 --primary --mode 2560x1440 --pos 0x0 --rotate normal
+
+# swap caps lock and escape keys
+#setxkbmap -option caps:swapescape
+
+# set wallpaper
+#feh --bg-scale $HOME/Pictures/Wallpapers/solarized-wallpaper-golang.png &
+
+# launch xmonad
+#exec xmonad
+# launch i3
+exec i3

@@ -1,0 +1,162 @@
+{
+	"css.remoteStyleSheets": [
+		"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	],
+	"editor.acceptSuggestionOnEnter": "off",
+	"editor.cursorSmoothCaretAnimation": true,
+	"editor.cursorStyle": "line-thin",
+	"editor.detectIndentation": false,
+	"editor.fastScrollSensitivity": 10,
+	"editor.fontFamily": "Source Code Pro",
+	"editor.fontLigatures": true,
+	"editor.formatOnPaste": true,
+	"editor.hover.delay": 100,
+	"editor.insertSpaces": false,
+	"editor.minimap.enabled": false,
+	"editor.mouseWheelScrollSensitivity": 3,
+	"editor.mouseWheelZoom": true,
+	"editor.multiCursorModifier": "ctrlCmd",
+	"editor.linkedEditing": true,
+	"editor.renderLineHighlight": "all",
+	"editor.smoothScrolling": true,
+	"editor.suggestSelection": "first",
+	"editor.tabCompletion": "on",
+	"editor.tabSize": 2,
+	"editor.wordWrap": "wordWrapColumn",
+	"editor.wordWrapColumn": 100,
+	"editor.wrappingIndent": "indent",
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact"
+	},
+	"emmet.syntaxProfiles": {
+		"javascript": "jsx"
+	},
+	"eslint.alwaysShowStatus": true,
+	"eslint.codeActionsOnSave.mode": "problems",
+	"eslint.format.enable": true,
+	"eslint.packageManager": "yarn",
+	"eslint.run": "onSave",
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"html"
+	],
+	"explorer.compactFolders": false,
+	"explorer.openEditors.visible": 8,
+	"files.eol": "\n",
+	"files.exclude": {
+		"**/*.accdb": true,
+		"**/*.laccdb": true,
+		"**/*.pdf": true,
+		"**/*.ssmssln": true,
+		"**/*.ssmssqlproj": true,
+		"**/*.xlsx": true,
+		"**/.DS_Store": true,
+		"**/.git": true,
+		"**/.hg": true,
+		"**/.svn": true,
+		"**/CVS": true
+	},
+	"git.autofetch": true,
+	"gitProjectManager.baseProjectsFolders": [
+		"~/code"
+	],
+	"gitlens.currentLine.enabled": false,
+	"gitlens.defaultDateFormat": "YYYY.MM.DD hh:mm:ss A",
+	"gitlens.defaultDateShortFormat": "YYYY.MM.DD",
+	"gitlens.hovers.currentLine.over": "line",
+	"html.format.wrapLineLength": 100,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"keyboard.dispatch": "keyCode",
+	"kite.showWelcomeNotificationOnStartup": false,
+	"leetcode.defaultLanguage": "python3",
+	"leetcode.hint.commandShortcut": false,
+	"leetcode.hint.configWebviewMarkdown": false,
+	"leetcode.showDescription": "Both",
+	"leetcode.workspaceFolder": "/home/bradley/code/leetcode",
+	"liveSassCompile.settings.formats": [
+		{
+			"extensionName": ".min.css",
+			"format": "compressed",
+			"savePath": "/dist/css"
+		}
+	],
+	"liveSassCompile.settings.generateMap": false,
+	"markdown.preview.breaks": true,
+	"markdown.preview.fontFamily": "Source Code Pro",
+	"python.jediEnabled": false,
+	"search.showLineNumbers": true,
+	"search.smartCase": true,
+	"sync.gist": "00147ebbf174cfeb54dfed725097ba20",
+	"terminal.explorerKind": "external",
+	"terminal.external.windowsExec": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+	"terminal.integrated.env.windows": {
+		"CMDER/ROOT": "C:\\Apps\\cmder"
+	},
+	"terminal.integrated.fontFamily": "Source Code Pro",
+	"terminal.integrated.fontWeightBold": "normal",
+	"todo-tree.tree.showScanModeButton": false,
+	"vim.enableNeovim": true,
+	"vim.neovimPath": "/usr/bin/nvim",
+	"vim.normalModeKeyBindings": [
+		{
+			"after": [
+				"g",
+				"j"
+			],
+			"before": [
+				"j"
+			]
+		},
+		{
+			"after": [
+				"g",
+				"k"
+			],
+			"before": [
+				"k"
+			]
+		}
+	],
+	"vim.useCtrlKeys": false,
+	"vim.useSystemClipboard": true,
+	"vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+	"window.menuBarVisibility": "toggle",
+	"window.openFilesInNewWindow": "off",
+	"window.restoreWindows": "all",
+	"window.title": "${dirty}${appName}${separator}${activeFolderShort}${separator}${activeEditorShort}${dirty}",
+	"window.titleBarStyle": "custom",
+	"window.zoomLevel": 1,
+	"workbench.activityBar.visible": true,
+	"workbench.colorTheme": "Nord",
+	"workbench.editor.highlightModifiedTabs": true,
+	"workbench.editor.limit.perEditorGroup": true,
+	"workbench.editor.limit.value": 8,
+	"workbench.editor.scrollToSwitchTabs": true,
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.tips.enabled": false,
+	"workbench.tree.indent": 16,
+	"zenMode.hideStatusBar": false,
+	"zenMode.hideTabs": false,
+	"workbench.iconTheme": "material-icon-theme",
+	"prettier.disableLanguages": [
+		"javascript",
+		"typescript"
+	],
+	"[html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
+	"prettier.packageManager": "yarn",
+	"prettier.htmlWhitespaceSensitivity": "strict",
+	"python.languageServer": "None",
+	"gitlens.codeLens.enabled": false,
+	"projectManager.any.baseFolders": [
+		"~/code"
+	],
+	"projectManager.git.baseFolders": [
+		"~/code"
+	],
+	"security.workspace.trust.untrustedFiles": "open"
+}

@@ -1,0 +1,223 @@
+[
+	{
+		"key": "ctrl+o c",
+		"command": "workbench.action.files.newUntitledFile",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+n",
+		"command": "-workbench.action.files.newUntitledFile"
+	},
+	{
+		"key": "ctrl+o n",
+		"command": "workbench.action.nextEditor",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+pagedown",
+		"command": "-workbench.action.nextEditor"
+	},
+	{
+		"key": "ctrl+o p",
+		"command": "workbench.action.previousEditor",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+pageup",
+		"command": "-workbench.action.previousEditor"
+	},
+	{
+		"key": "ctrl+numpad1",
+		"command": "workbench.action.focusFirstEditorGroup"
+	},
+	{
+		"key": "ctrl+1",
+		"command": "-workbench.action.focusFirstEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad2",
+		"command": "workbench.action.focusSecondEditorGroup"
+	},
+	{
+		"key": "ctrl+2",
+		"command": "-workbench.action.focusSecondEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad8",
+		"command": "workbench.action.focusEighthEditorGroup"
+	},
+	{
+		"key": "ctrl+8",
+		"command": "-workbench.action.focusEighthEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad5",
+		"command": "workbench.action.focusFifthEditorGroup"
+	},
+	{
+		"key": "ctrl+5",
+		"command": "-workbench.action.focusFifthEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad4",
+		"command": "workbench.action.focusFourthEditorGroup"
+	},
+	{
+		"key": "ctrl+4",
+		"command": "-workbench.action.focusFourthEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad7",
+		"command": "workbench.action.focusSeventhEditorGroup"
+	},
+	{
+		"key": "ctrl+7",
+		"command": "-workbench.action.focusSeventhEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad6",
+		"command": "workbench.action.focusSixthEditorGroup"
+	},
+	{
+		"key": "ctrl+6",
+		"command": "-workbench.action.focusSixthEditorGroup"
+	},
+	{
+		"key": "ctrl+numpad3",
+		"command": "workbench.action.focusThirdEditorGroup"
+	},
+	{
+		"key": "ctrl+3",
+		"command": "-workbench.action.focusThirdEditorGroup"
+	},
+	{
+		"key": "ctrl+shift+alt+j",
+		"command": "workbench.action.focusNextGroup"
+	},
+	{
+		"key": "ctrl+shift+alt+k",
+		"command": "workbench.action.focusPreviousGroup"
+	},
+	{
+		"key": "ctrl+shift+i",
+		"command": "eslint.executeAutofix",
+		"when": "editorTextFocus && editorLangId == 'javascript'"
+	},
+	{
+		"key": "ctrl+shift+i",
+		"command": "eslint.executeAutofix",
+		"when": "editorTextFocus && editorLangId == 'typescript'"
+	},
+	{
+		"key": "ctrl+shift+i",
+		"command": "-editor.action.formatDocument",
+		"when": "editorTextFocus && editorLangId != 'javascript' j&& editorLangId == 'typescript'"
+	},
+	{
+		"key": "ctrl+l ctrl+t",
+		"command": "leetcode.testSolution"
+	},
+	{
+		"key": "ctrl+l ctrl+s",
+		"command": "leetcode.submitSolution"
+	},
+	// Toggle between terminal and editor focus
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.focusActiveEditorGroup",
+		"when": "sideBarFocus"
+	},
+	{
+		"key": "ctrl+shift+`",
+		"command": "workbench.action.terminal.focus",
+		"when": "sideBarFocus"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.terminal.focus",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+shift+`",
+		"command": "workbench.action.focusSideBar",
+		"when": "editorTextFocus"
+	},
+	{
+		"key": "ctrl+`",
+		"command": "workbench.action.focusSideBar",
+		"when": "terminalFocus"
+	},
+	{
+		"key": "ctrl+shift+`",
+		"command": "workbench.action.focusActiveEditorGroup",
+		"when": "terminalFocus"
+	},
+	{
+		"key": "alt+j",
+		"command": "selectNextSuggestion",
+		"when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+	},
+	{
+		"key": "alt+k",
+		"command": "selectPrevSuggestion",
+		"when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+	},
+	{
+		"key": "ctrl+o",
+		"command": "-workbench.action.files.openFile"
+	},
+	{
+		"key": "ctrl+shift+z",
+		"command": "redo",
+		"when": "textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+y",
+		"command": "-redo",
+		"when": "textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-workbench.action.reloadWindow",
+		"when": "isDevelopment"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-workbench.action.openRecent"
+	},
+	{
+		"key": "ctrl+r r",
+		"command": "-yarn-script.runScriptLast"
+	},
+	{
+		"key": "ctrl+r shift+r",
+		"command": "-yarn-script.runScript"
+	},
+	{
+		"key": "ctrl+r shift+x",
+		"command": "-yarn-script.terminate"
+	},
+	{
+		"key": "ctrl+r t",
+		"command": "-yarn-script.test"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "-extension.vim_ctrl+r",
+		"when": "editorTextFocus && vim.active && vim.use<C-r> && !inDebugRepl"
+	},
+	{
+		"key": "ctrl+shift+z",
+		"command": "-redo",
+		"when": "textInputFocus && !editorReadonly"
+	},
+	{
+		"key": "ctrl+r",
+		"command": "extension.vim_ctrl+r"
+	},
+	{
+		"key": "ctrl+shift+alt+i",
+		"command": "editor.action.formatDocument",
+		"when": "editorHasDocumentFormattingProvider && editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly && !inCompositeEditor"
+	}
+]
