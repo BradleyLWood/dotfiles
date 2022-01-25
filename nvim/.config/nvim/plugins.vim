@@ -41,7 +41,6 @@ call plug#begin('~/.vim/plugged')
 	
 	" Tools =====================================================
 	Plug 'ellisonleao/glow.nvim'
-	"Plug 'evanleck/vim-svelte', {'branch': 'main'}
 	Plug 'folke/which-key.nvim'
 	Plug 'kshenoy/vim-signature'
 	Plug 'kyazdani42/nvim-tree.lua'
@@ -59,7 +58,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'vimwiki/vimwiki'
-	Plug 'voldikss/vim-floaterm'
 	Plug 'windwp/nvim-autopairs'
 	
 call plug#end()
