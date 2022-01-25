@@ -47,8 +47,6 @@ map('n', '<Leader>bd', ':bdelete<CR>', opts)
 map('n', '<Leader>te', ':tabedit', opts)
 map('n', '<Leader>tj', ':tabnext<CR>', opts)
 map('n', '<Leader>tk', ':tabprev<CR>', opts)
---map('n', '<Tab>', ':tabnext<CR>', opts)
---map('n', '<S-Tab>', ':tabprev<CR>', opts)
 
 -- Windows
 map('n', '<Leader>sv', ':vsplit<CR><C-w>w', opts)

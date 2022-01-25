@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
 	
 	" Treesitter=================================================
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'nvim-treesitter/playground'
 	
 	" Tools =====================================================
