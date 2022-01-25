@@ -114,3 +114,6 @@ map('n', '<C-l>', ':lua require("harpoon.ui").nav_file(4)<CR>', { noremap = true
 map('n', '<Leader>nt', ':NvimTreeToggle<CR>', opts)		-- NvimTree
 map('n', '<Leader>nr', ':NvimTreeRefresh<CR>', opts)	-- NvimTree refresh
 map('n', '<Leader>nf', ':NvimTreeFindFile<CR>', opts)	-- NvimTree find current file
+
+-- TrueZen
+map('n', '<Leader>z', ':TZAtaraxis<CR>', opts)
