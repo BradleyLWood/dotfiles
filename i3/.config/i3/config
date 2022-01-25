@@ -207,7 +207,7 @@ set $mode_gaps Gaps: (1) default, (2) off, (i) change inner, (o) change outer
 set $mode_gaps_inner Inner Gaps: (r | + | - | 0) local, (Shift + r | + | - | 0) global
 set $mode_gaps_outer Outer Gaps: (r | + | - | 0) local, (Shift + r | + | - | 0) global
 
-bindsym $mod+Shift+g mode "$mode_gaps"
+bindsym $mod+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym 1      mode "default", gaps inner all set $inner_gap_default, gaps outer all set $outer_gap_default
