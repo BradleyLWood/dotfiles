@@ -73,6 +73,8 @@ map('n', '<Leader>k', ':cprev<CR>z.', opts)
 map('n', '<Leader>lj', ':lnext<CR>zz', opts)
 map('n', '<Leader>lk', ':lprev<CR>zz', opts)
 
+map('', '<C-p>', '<C-i>', opts)
+
 map('v', 'J', ':m \'>+1<CR>gv=gv', opts) -- Move line down
 map('v', 'K', ':m \'<-2<CR>gv=gv', opts) -- Move line up
 
