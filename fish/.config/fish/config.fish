@@ -79,3 +79,7 @@ set -gx PATH $DENO_INSTALL/bin $PATH
 set -gx GOPATH ~/go
 set -gx PATH $GOPATH/bin $PATH
 
+# Rust
+set -gx RUSTPATH ~/.cargo
+set -gx PATH $RUSTPATH/bin $PATH
+
