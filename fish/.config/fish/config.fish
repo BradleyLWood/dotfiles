@@ -7,9 +7,6 @@ fish_user_vi_key_bindings
 
 # Aliases
 
-# vim
-alias v nvim
-
 # Use ls
 #alias ls  "ls -hpG --group-directories-first --color"
 #alias la  "ls -A"
@@ -34,6 +31,10 @@ alias vconfig "tmux new-session -d -s nvim -c ~/.config/nvim/ \; switchc -t nvim
 
 # Ranger
 alias r "ranger"
+
+# vim
+abbr v nvim
+abbr vs "sudo nvim"
 
 # Pacman
 abbr -a p "sudo pacman"
