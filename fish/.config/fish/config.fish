@@ -29,6 +29,8 @@ alias tl "tmux list-sessions"
 # Create tmux session for nvim configuration
 alias vconfig "tmux new-session -d -s nvim -c ~/.config/nvim/ \; switchc -t nvim"
 
+alias vim nvim
+
 # Ranger
 alias r "ranger"
 

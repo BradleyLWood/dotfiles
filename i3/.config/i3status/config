@@ -15,7 +15,7 @@ general {
 }
 
 order += "volume master"
-order += "wireless wlo1"
+order += "wireless wlan0"
 order += "disk /"
 order += "tztime local"
 
@@ -25,7 +25,7 @@ volume master {
         device = "pulse:1"
 }
 
-wireless wlo1 {
+wireless wlan0 {
         format_up = "直%quality %essid"
         #format_up = "直%quality %essid %ip"
         format_down = "睊"

@@ -54,5 +54,4 @@ cmd [[set iskeyword+=-]]
 -- Vimscript I don't know how to convert to lua
 vim.api.nvim_exec([[
 	filetype plugin indent on
-	autocmd FileType html,css,jsx,tsx EmmetInstall
 ]], false)

@@ -100,7 +100,7 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'buffer' },
-		{ name = 'cmp_tabnine' },
+		--{ name = 'cmp_tabnine' },
 	})
 })
 
@@ -150,112 +150,74 @@ local on_attach = function(client, bufnr)
 
 end
 
--- Emmet configuration
-if not configs.ls_emmet then    
-	configs.ls_emmet = {
-		default_config = {
-			cmd = { 'ls_emmet', '--stdio' };
-			filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
-				'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'};
-			root_dir = function(fname)
-				return vim.loop.cwd()
-			end;
-			settings = {};
-		};
-	}
-end
-
 require'lspconfig'.html.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.cssls.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.jsonls.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.tsserver.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.svelte.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.gopls.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.pyright.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.sqlls.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
 require'lspconfig'.eslint.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
-require'lspconfig'.ls_emmet.setup{
+require'lspconfig'.emmet_ls.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	--on_attach = on_attach,
+	filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
+				'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss'},
 }
 
 require'lspconfig'.tailwindcss.setup{
 	capabilities = capabilities,
-	on_attach = on_attach
+	on_attach = on_attach,
 }
 
--- TODO not working
--- require'lspconfig'.hsl.setup({
--- 	capabilities = capabilities,
--- 	on_attach = on_attach,
--- 	settings = {
--- 		haskell = {
--- 			hlintOn = true,
--- 			formattingProvider = "fourmolu"
--- 		}
--- 	}
--- })
 
---local snippets_paths = function()
---	local plugins = { "friendly-snippets" }
---	local paths = {}
---	local path
---	local root_path = vim.env.HOME .. "/.vim/plugged/"
---	for _, plug in ipairs(plugins) do
---		path = root_path .. plug
---		if vim.fn.isdirectory(path) ~= 0 then
---			table.insert(paths, path)
---		end
---	end
---	return paths
---end
---
-local tabnine = require('cmp_tabnine.config')
-tabnine:setup({
-	max_lines = 1000;
-	max_num_results = 20;
-	sort = true;
-	run_on_every_keystroke = true;
-	snippet_placeholder = '..';
-	ignored_file_types = {
-		-- default is not to ignore
-		-- uncomment to ignore in lua:
-		-- lua = true
-	};
-})
+--local tabnine = require('cmp_tabnine.config')
+--tabnine:setup({
+--	max_lines = 1000;
+--	max_num_results = 20;
+--	sort = true;
+--	run_on_every_keystroke = true;
+--	snippet_placeholder = '..';
+--	ignored_file_types = {
+--		-- default is not to ignore
+--		-- uncomment to ignore in lua:
+--		-- lua = true
+--	};
+--})

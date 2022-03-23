@@ -19,7 +19,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'saadparwaiz1/cmp_luasnip'
 	Plug 'L3MON4D3/LuaSnip'
 	Plug 'rafamadriz/friendly-snippets'
-	Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
+	"Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
 	
 	" Git =======================================================
 	Plug 'lewis6991/gitsigns.nvim'
