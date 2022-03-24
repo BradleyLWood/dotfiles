@@ -6,6 +6,9 @@
 # Define $mod key
 set $mod Mod4
 
+# Define terminal appliation
+set $terminal kitty
+
 # Titlebar font
 #font pango:Fira Code 12
 font pango:Fira Code 0
@@ -48,7 +51,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xscreensaver --no-splash
 
 # Terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec $terminal
 
 # Rofi
 bindsym $mod+p exec rofi -show drun -modi
@@ -134,6 +137,9 @@ floating_modifier $mod
 
 # Kill focused window
 bindsym $mod+Shift+c kill
+
+# Ranger
+bindsym $mod+x exec $terminal -e 'ranger'
 
 
 
