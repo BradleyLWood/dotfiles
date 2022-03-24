@@ -54,6 +54,12 @@ bindsym $mod+Return exec kitty
 bindsym $mod+p exec rofi -show drun -modi
 bindsym $mod+Shift+p exec rofi -show window -modi
 
+# Screenshots
+# Screenshot of current app window saved to ~/Pictures/Screenshots
+bindsym --release $mod+z exec scrot -u -e 'mv $f ~/Pictures/Screenshots'
+# Screenshot of selection box saved to ~/Pictures/Screenshots
+bindsym --release $mod+Shift+z exec scrot -s -e 'mv $f ~/Pictures/Screenshots'
+
 
 
 
