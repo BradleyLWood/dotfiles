@@ -94,6 +94,11 @@ map('i', '?', '?<C-g>u', opts)
 -- TODO not working. Look into ttimeoutlen
 map('n', 'gV', '`[V`]', opts) -- Select recently pasted
 
+-- Git Fugative
+map('n','<Leader>gs', ':Git status', opts)
+map('n','<Leader>g;', ':diffget //3<CR>', opts)
+map('n','<Leader>ga', ':diffget //2<CR>', opts)
+
 -- Telescope
 map('n', '<Leader>ff',	':Telescope find_files<CR>', opts)
 map('n', '<Leader>fd',	':Telescope file_browser<CR>', opts)

@@ -86,6 +86,7 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
+
 		['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
 		['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
 		['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -100,6 +101,7 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'buffer' },
+        { name = 'copilot' },
 		--{ name = 'cmp_tabnine' },
 	})
 })
