@@ -27,6 +27,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-rhubarb'
 	Plug 'mattn/vim-gist'
 	Plug 'mattn/webapi-vim'
+
+    Plug 'github/copilot.vim'
+    Plug 'hrsh7th/cmp-copilot'
 	
 	" Telescope =================================================
 	Plug 'nvim-lua/popup.nvim'
@@ -45,7 +48,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'folke/which-key.nvim'
 	Plug 'kshenoy/vim-signature'
 	Plug 'kyazdani42/nvim-tree.lua'
-	Plug 'kyazdani42/nvim-web-devicons' " for file icons
+	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'lukas-reineke/indent-blankline.nvim'
 	Plug 'mattn/emmet-vim'
 	Plug 'mbbill/undotree'
