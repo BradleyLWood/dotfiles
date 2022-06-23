@@ -28,8 +28,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mattn/vim-gist'
 	Plug 'mattn/webapi-vim'
 
-    Plug 'github/copilot.vim'
-    Plug 'hrsh7th/cmp-copilot'
+"    Plug 'github/copilot.vim'
+"    Plug 'hrsh7th/cmp-copilot'
 	
 	" Telescope =================================================
 	Plug 'nvim-lua/popup.nvim'
@@ -39,9 +39,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvim-telescope/telescope-file-browser.nvim'
 	
 	" Treesitter=================================================
-	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
-	Plug 'nvim-treesitter/playground'
+"	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"    Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+"	Plug 'nvim-treesitter/playground'
 	
 	" Tools =====================================================
 	Plug 'ellisonleao/glow.nvim'

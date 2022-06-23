@@ -11,7 +11,7 @@ runtime ./themes/nord.vim
 lua require('lsp-config')
 lua require('luasnip-config')
 lua require('telescope-config')
-lua require('treesitter-config')
+"lua require('treesitter-config')
 lua require('nvim-tree-config')
 lua require('autopairs-config') 
 lua require('gitsigns-config')

@@ -8,18 +8,18 @@ fish_user_vi_key_bindings
 # Aliases
 
 # Use ls
-#alias ls  "ls -hpG --group-directories-first --color"
-#alias la  "ls -A"
-#alias ll  "ls -l"
-#alias lla "la -A"
-# Use exa
-alias ls  "exa --icons --group-directories-first"
-alias la  "ls -a"
+alias ls  "ls -hpG --group-directories-first --color"
+alias la  "ls -A"
 alias ll  "ls -l"
-alias lla "la -l"
+alias lla "la -A"
+# Use exa
+#alias ls  "exa --icons --group-directories-first"
+#alias la  "ls -a"
+#alias ll  "ls -l"
+#alias lla "la -l"
 
 # Attach tmux to a session if one exists, otherwise creates one
-alias t "tmux -u attach || tmux -u new"
+#alias t "tmux -u attach || tmux -u new"
 # Attaches tmux to a session (example: ta portal)
 alias ta "tmux attach -t"
 # Creates a new named session (example: tn portal)
@@ -70,7 +70,7 @@ set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/code/public_scripts $PATH
 set -gx PATH ~/code/private_scripts $PATH
-set -gx PATH ~/.yarn/bin $PATH
+#set -gx PATH ~/.yarn/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH /usr/local/bin $PATH
 
