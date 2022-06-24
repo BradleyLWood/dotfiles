@@ -11,7 +11,7 @@ fish_user_vi_key_bindings
 alias ls  "ls -hpG --group-directories-first --color"
 alias la  "ls -A"
 alias ll  "ls -l"
-alias lla "la -A"
+alias lla "la -l"
 # Use exa
 #alias ls  "exa --icons --group-directories-first"
 #alias la  "ls -a"

@@ -1,4 +1,4 @@
-call plug#begin('~/.vim/plugged')
+all plug#begin('~/.vim/plugged')
 	
 	" Color Schemes =============================================
 	Plug 'nvim-lualine/lualine.nvim'
