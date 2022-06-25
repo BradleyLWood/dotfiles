@@ -1,8 +1,0 @@
-configuration {
-	modi: [window,drun,combi];
-	terminal: "alacritty";
-	show-icons: true;
-	combi-modi: [window,drun,ssh];
-	columns: 3;
-	}
-	@theme "nord"
