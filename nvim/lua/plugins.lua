@@ -43,6 +43,11 @@ return require('packer').startup(function()
 
     use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
 
+    use {
+	    "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
     use 'folke/which-key.nvim'
     use 'kyazdani42/nvim-tree.lua'
     use 'kyazdani42/nvim-web-devicons'

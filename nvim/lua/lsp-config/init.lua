@@ -2,9 +2,17 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require('cmp')
+
+cmp.event:on(
+  'confirm_done',
+  cmp_autopairs.on_confirm_done()
+)
+
+-- Setup lspkind
 
 local lspkind = require('lspkind')
+
 local kind_icons = {
   Text = "",
   Method = "m",
@@ -32,6 +40,7 @@ local kind_icons = {
   Operator = "",
   TypeParameter = "",
 }
+
 lspkind.init({
     symbol_map = kind_icons
 })
