@@ -12,9 +12,9 @@ map('n', '<C-m><C-m>', ':set relativenumber!<CR>', { })
 -- Only add jumps greater than 5 to jump list
 -- Also handle wrapped lines better
 map('n', 'j', '(v:count > 5 ? "m\'" . v:count : "") . "gj"',
-	{ noremap = true, silent = true, expr = true })
+    { noremap = true, silent = true, expr = true })
 map('n', 'k', '(v:count > 5 ? "m\'" . v:count : "") . "gk"',
-	{ noremap = true, silent = true, expr = true })
+    { noremap = true, silent = true, expr = true })
 
 -- Preview Markdown Files
 map('n', '<Leader>md', ':InstantMarkdownPreview<CR>', opts)
@@ -73,7 +73,7 @@ map('n', '<Leader>k', ':cprev<CR>z.', opts)
 map('n', '<Leader>lj', ':lnext<CR>zz', opts)
 map('n', '<Leader>lk', ':lprev<CR>zz', opts)
 
-map('', '<C-p>', '<C-i>', opts)
+map('n', '<C-p>', '<C-i>', opts)
 
 map('v', 'J', ':m \'>+1<CR>gv=gv', opts) -- Move line down
 map('v', 'K', ':m \'<-2<CR>gv=gv', opts) -- Move line up
@@ -124,3 +124,6 @@ map('n', '<Leader>nf', ':NvimTreeFindFile<CR>', opts)	-- NvimTree find current f
 
 -- TrueZen
 map('n', '<Leader>z', ':TZAtaraxis<CR>', opts)
+
+-- Copilot
+map("i", "<C-p>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
