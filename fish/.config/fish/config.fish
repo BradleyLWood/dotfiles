@@ -5,6 +5,10 @@ set fish_greeting ""
 fish_vi_key_bindings
 fish_user_vi_key_bindings
 
+# nvm
+# Call it on initialization or listening to directory switching won't work
+load_nvm > /dev/stderr
+
 # Aliases
 
 # Use ls
@@ -40,6 +44,9 @@ abbr vs "sudo nvim"
 
 # Pacman
 abbr -a p "sudo pacman"
+
+# Postgres user
+abbr -a pgu "sudo -u postgres"
 
 # Git abbreviations
 abbr -a gd   "git difftool"
@@ -86,3 +93,8 @@ set -gx PATH $GOPATH/bin $PATH
 set -gx RUSTPATH ~/.cargo
 set -gx PATH $RUSTPATH/bin $PATH
 
+# Flutter
+set -gx PATH ~/code/flutter/bin $PATH
+
+# Project path for pj plugin
+set -gx PROJECT_PATHS ~/code

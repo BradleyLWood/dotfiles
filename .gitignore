@@ -1,2 +1,9 @@
+fish/.config/fish/functions/__bass.py
+fish/.config/fish/functions/__z*
+fish/.config/fish/functions/_fzf*
+fish/.config/fish/functions/bass.fish
+fish/.config/fish/functions/fisher.fish
+fish/.config/fish/functions/fzf_configure_bindings.fish
+fish/.config/fish/functions/pj.fish
+nvim/.config/nvim/lua-language-server/
 tmux/.config/tmux/plugins/
-nvim/.config/nvim/lua-language-server
