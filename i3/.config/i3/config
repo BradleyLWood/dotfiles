@@ -27,9 +27,9 @@ focus_follows_mouse no
 bindsym Control+Mod1+End mode "$mode_system"
 set $mode_system System  (l) logout, (r) reboot, (s) shutdown
 mode "$mode_system" {
-        bindsym l exec "i3-nagbar -t warning -m 'Do you really want to exit i3?' -B 'Yes, exit i3' 'i3-msg exit'"
-        bindsym r exec "i3-nagbar -t warning -m 'Do you really want to restart?' -B 'Yes, reboot' 'systemctl reboot'"
-        bindsym s exec "i3-nagbar -t warning -m 'Do you really want to shutdown?' -B 'Yes, restart' 'systemctl shutdown'"
+        bindsym l exec i3-msg exit
+        bindsym r exec systemctl reboot
+        bindsym s exec systemctl shutdown
 
         bindsym Return mode      "default"
         bindsym Escape mode      "default"
@@ -205,13 +205,13 @@ workspace 3 output DVI-D-0
 # Default border variables
 set $default_border 2
 set $inner_gap_default 30
-set $outer_gap_default 60
+set $outer_gap_default 0
 
 # Set border defaults
 default_border pixel $default_border
 default_floating_border pixel $default_border
 for_window [class="^.*"] border pixel $default_border
-#hide_edge_borders smart
+hide_edge_borders smart
 
 # Set gap defaults
 gaps inner $inner_gap_default
@@ -220,8 +220,8 @@ smart_gaps inverse_outer
 
 # Gaps mode
 set $mode_gaps Gaps: (1) default, (2) off, (i) change inner, (o) change outer
-set $mode_gaps_inner Inner Gaps: (r | + | - | 0) local, (Shift + r | + | - | 0) global
-set $mode_gaps_outer Outer Gaps: (r | + | - | 0) local, (Shift + r | + | - | 0) global
+set $mode_gaps_inner Inner Gaps: (r | + | - | 0) local, (⇧ + r | + | - | 0) global, (o) switch to outer
+set $mode_gaps_outer Outer Gaps: (r | + | - | 0) local, (⇧ + r | + | - | 0) global, (i) switch to inner
 
 bindsym $mod+g mode "$mode_gaps"
 
@@ -248,6 +248,8 @@ mode "$mode_gaps_inner" {
         bindsym minus gaps inner current minus 5
         # Set no inner gaps for current window
         bindsym 0     gaps inner current set 1
+        # Switch to outer mode
+        bindsym o      mode "$mode_gaps_outer"
 
         # Set inner gaps to default for all windows
         bindsym Shift+r     gaps inner all set $inner_gap_default
@@ -272,8 +274,13 @@ mode "$mode_gaps_outer" {
         bindsym minus gaps outer current minus 5
         # Set no outer gaps for current window
         bindsym 0     gaps outer current set 1
+        # Switch to inner mode
+        bindsym i      mode "$mode_gaps_inner"
 
         # Set outer gaps to default for all windows
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym i      mode "$mode_gaps_inner"
         bindsym Shift+r     gaps outer all set $outer_gap_default
         # Increase outer gaps for all windows
         bindsym Shift+plus  gaps outer all plus 5
