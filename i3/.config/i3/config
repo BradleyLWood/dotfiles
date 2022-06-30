@@ -213,13 +213,21 @@ default_floating_border pixel $default_border
 for_window [class="^.*"] border pixel $default_border
 hide_edge_borders smart
 
+# Toggle gaps
+bindsym $mod+o exec --no-startup-id "if [ `i3-msg -t get_tree | grep -Po \
+    '.*\\"gaps\\":{\\"inner\\":\K(-|)[0-9]+(?=.*\\"focused\\":true)'` -eq 0 ]; then \
+        i3-msg gaps inner current set 0; \
+    else \
+        i3-msg gaps inner current set $gap_width; \
+    fi"
+
 # Set gap defaults
 gaps inner $inner_gap_default
 gaps outer $outer_gap_default
 smart_gaps inverse_outer
 
 # Gaps mode
-set $mode_gaps Gaps: (1) default, (2) off, (i) change inner, (o) change outer
+set $mode_gaps Gaps: (y) on, (n) off, (i) change inner, (o) change outer
 set $mode_gaps_inner Inner Gaps: (r | + | - | 0) local, (⇧ + r | + | - | 0) global, (o) switch to outer
 set $mode_gaps_outer Outer Gaps: (r | + | - | 0) local, (⇧ + r | + | - | 0) global, (i) switch to inner
 
@@ -227,9 +235,9 @@ bindsym $mod+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
         # Set gaps to default
-        bindsym 1      mode "default", gaps inner all set $inner_gap_default, gaps outer all set $outer_gap_default
+        bindsym y      mode "default", gaps inner current set $inner_gap_default, gaps outer all set $outer_gap_default
         # Set no gaps
-        bindsym 2      mode "default", gaps inner all set 1, gaps outer all set 1
+        bindsym n      mode "default", gaps inner current set 1, gaps outer all set 1
         # Modify gaps modes
         bindsym i      mode "$mode_gaps_inner"
         bindsym o      mode "$mode_gaps_outer"
