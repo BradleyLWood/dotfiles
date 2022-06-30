@@ -8,6 +8,6 @@ xbindkeys &
 
 # set wallpaper
 #feh --bg-scale $HOME/Pictures/Wallpapers/nordunderwater.png &
-feh --bg-scale $HOME/Pictures/Wallpapers/nordarch.png &
+feh --bg-scale $HOME/Pictures/Wallpapers/nordarch-lighter.png &
 
 $HOME/bin/pulse-volume-watcher.py | xob & > /dev/null
