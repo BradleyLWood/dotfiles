@@ -37,6 +37,9 @@ map('x', '<Leader>p', '"_dP', opts) -- Don't put pasted over content in the past
 map('n', '+', '<C-a', opts) -- Increment number
 map('n', '-', '<C-x', opts) -- Decrement number
 
+-- Expand diagnostic message
+map('n','<Leader>ge', ':lua vim.diagnostic.open_float()<CR>', opts)
+
 -- Buffers
 map('n', '<Leader>bj', ':bnext<CR>', opts)
 map('n', '<Leader>bk', ':bprevious<CR>', opts)
@@ -94,10 +97,10 @@ map('i', '?', '?<C-g>u', opts)
 -- TODO not working. Look into ttimeoutlen
 map('n', 'gV', '`[V`]', opts) -- Select recently pasted
 
--- Git Fugative
-map('n','<Leader>gs', ':Git status', opts)
-map('n','<Leader>g;', ':diffget //3<CR>', opts)
-map('n','<Leader>ga', ':diffget //2<CR>', opts)
+-- Neogit
+map('n','<Leader>gs', ':Neogit kind=vplit<CR>', opts)
+--map('n','<Leader>g;', ':diffget //3<CR>', opts)
+--map('n','<Leader>ga', ':diffget //2<CR>', opts)
 
 -- Telescope
 map('n', '<Leader>ff',	':Telescope find_files<CR>', opts)
@@ -106,6 +109,9 @@ map('n', '<Leader>fr',	':Telescope oldfiles<CR>', opts)
 map('n', '<Leader>fg',	':Telescope live_grep<CR>', opts)
 map('n', '<Leader>fb',	':Telescope buffers<CR>', opts)
 map('n', '<Leader>fh',	':Telescope help_tags<CR>', opts)
+map('n', '<Leader>fl',	':Telescope loclist<CR>', opts)
+map('n', '<Leader>fq',	':Telescope quickfix<CR>', opts)
+map('n', '<Leader>fe',	':Telescope diagnostics<CR>', opts)
 map('n', '<Leader>vrc',	':lua require("telescope-config").search_vimrc()<CR>', opts)
 
 -- Harpoon
