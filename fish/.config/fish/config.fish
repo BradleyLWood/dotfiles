@@ -38,6 +38,9 @@ alias vim nvim
 # Ranger
 alias r "ranger"
 
+# Z
+alias j z
+
 # vim
 abbr v nvim
 abbr vs "sudo nvim"
@@ -98,3 +101,6 @@ set -gx PATH ~/code/flutter/bin $PATH
 
 # Project path for pj plugin
 set -gx PROJECT_PATHS ~/code
+
+# Use bat as pager for man pages
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
