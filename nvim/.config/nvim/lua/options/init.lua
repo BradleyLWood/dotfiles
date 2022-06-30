@@ -1,8 +1,5 @@
 local opt  = vim.opt     -- global
 local g  = vim.g     -- global for let options
-local wo = vim.wo    -- window local
-local bo = vim.bo    -- buffer local
-local fn = vim.fn    -- access vim functions
 local cmd = vim.cmd  -- vim commands
 local api = vim.api
 
@@ -56,6 +53,6 @@ g.copilot_no_tab_map = true
 cmd [[set iskeyword+=-]]
 
 -- Vimscript I don't know how to convert to lua
-vim.api.nvim_exec([[
+api.nvim_exec([[
     filetype plugin indent on
 ]], false)

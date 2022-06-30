@@ -187,7 +187,13 @@ require('lspconfig')['jsonls'].setup{
 
 require('lspconfig')['tsserver'].setup{
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = function(client, bufnr)
+        -- disable formatting so null-ls will
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+
+        on_attach(client, bufnr)
+    end,
     flags = lsp_flags,
 }
 

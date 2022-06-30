@@ -1,24 +1,8 @@
-local null_ls = require("null-ls")
 local prettier = require("prettier")
 
-null_ls.setup({
-  on_attach = function(client, bufnr)
-    if client.resolved_capabilities.document_formatting then
-      --vim.cmd("nnoremap <buffer> <leader>gf :lua vim.lsp.buf.formatting()<CR>")
-      vim.api.nvim_set_keymap('n', '<leader>gf', ':lua vim.lsp.buf.formatting()<CR>', { noremap = true })
-
-      -- format on save
-      vim.cmd("autocmd BufWritePost <buffer> lua vim.lsp.buf.formatting_sync()")
-    end
-
-    if client.resolved_capabilities.document_range_formatting then
-      vim.cmd("xnoremap <silent><buffer> gf :lua vim.lsp.buf.range_formatting({})<CR>")
-    end
-  end,
-})
-
 prettier.setup({
-  bin = 'prettier', -- or `prettierd`
+  --bin = 'prettier',
+  bin = 'prettierd',
   filetypes = {
     "css",
     "graphql",
@@ -45,7 +29,7 @@ prettier.setup({
   prose_wrap = "preserve",
   quote_props = "as-needed",
   semi = true,
-  single_quote = false,
+  single_quote = true,
   tab_width = 4,
   trailing_comma = "es5",
   use_tabs = false,
