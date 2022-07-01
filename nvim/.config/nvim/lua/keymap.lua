@@ -23,7 +23,7 @@ map('n', '<Leader>ms', ':InstantMarkdownStop<CR>', opts)
 map('n', 'Q', '<Nop>', opts) -- Disable Q ex mode
 map('n', 'gf', '<Nop>', opts) -- Disable go to file
 
-map('n', '<Leader>u', ':UndotreeShow<CR>', opts) -- UndotreeShow
+map('n', '<Leader>u', ':UndotreeToggle<CR>', opts) -- UndotreeShow
 
 map('', '<Leader><Space>', ':let @/=""<CR>', opts) -- Clear search highlights
 
@@ -36,9 +36,6 @@ map('x', '<Leader>p', '"_dP', opts) -- Don't put pasted over content in the past
 
 map('n', '+', '<C-a', opts) -- Increment number
 map('n', '-', '<C-x', opts) -- Decrement number
-
--- Expand diagnostic message
-map('n','<Leader>ge', ':lua vim.diagnostic.open_float()<CR>', opts)
 
 -- Buffers
 map('n', '<Leader>bj', ':bnext<CR>', opts)
@@ -99,8 +96,8 @@ map('n', 'gV', '`[V`]', opts) -- Select recently pasted
 
 -- Neogit
 map('n','<Leader>gs', ':Neogit kind=vplit<CR>', opts)
---map('n','<Leader>g;', ':diffget //3<CR>', opts)
---map('n','<Leader>ga', ':diffget //2<CR>', opts)
+map('n','<Leader>g;', ':diffget //3<CR>', opts)
+map('n','<Leader>ga', ':diffget //2<CR>', opts)
 
 -- Telescope
 map('n', '<Leader>ff',	':Telescope find_files<CR>', opts)

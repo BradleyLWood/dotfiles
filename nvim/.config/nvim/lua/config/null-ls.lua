@@ -9,7 +9,7 @@ null_ls.setup({
     --null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.diagnostics.fish,
     --null_ls.builtins.formatting.fish_indent,
-    --null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.stylua,
   },
 })
 

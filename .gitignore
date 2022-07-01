@@ -5,6 +5,5 @@ fish/.config/fish/functions/bass.fish
 fish/.config/fish/functions/fisher.fish
 fish/.config/fish/functions/fzf_configure_bindings.fish
 fish/.config/fish/functions/pj.fish
-nvim/.config/nvim/lua-language-server/
 nvim/.config/nvim/plugin/
 tmux/.config/tmux/plugins/
