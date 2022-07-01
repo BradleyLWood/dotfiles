@@ -1,3 +1,1 @@
-local neogit = require('neogit')
-
-neogit.setup {}
+require('neogit').setup()
