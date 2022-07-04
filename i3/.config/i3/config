@@ -386,24 +386,28 @@ client.background       $nord0
 # Toggle
 bindsym $mod+b bar mode toggle
 
-bar {
-        status_command i3status
-        position bottom
-        tray_padding 1
-        tray_output primary
-        font pango:Fira Code 16 
-        separator_symbol " • "
+# Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-        colors {
-                separator   $nord3
-                background  $black
-                statusline  $nord7
-                #                  BORDER BG     FG
-                focused_workspace  $black $nord7 $black
-                active_workspace   $black $black $nord7 
-                inactive_workspace $black $black $nord3
-                urgent_workspace   $black $black $nord11
-                binding_mode       $black $nord7 $nord0
-        }
-}
+# i3Status
+#bar {
+#        status_command i3status
+#        position bottom
+#        tray_padding 1
+#        tray_output primary
+#        font pango:Fira Code 16 
+#        separator_symbol " • "
+#
+#        colors {
+#                separator   $nord3
+#                background  $black
+#                statusline  $nord7
+#                #                  BORDER BG     FG
+#                focused_workspace  $black $nord7 $black
+#                active_workspace   $black $black $nord7 
+#                inactive_workspace $black $black $nord3
+#                urgent_workspace   $black $black $nord11
+#                binding_mode       $black $nord7 $nord0
+#        }
+#}
 
