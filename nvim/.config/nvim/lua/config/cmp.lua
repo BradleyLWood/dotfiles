@@ -9,6 +9,9 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local nvim_lsp = require('lspconfig')
+local configs = require'lspconfig.configs'
+
 cmp.setup({
     formatting = {
         format = lspkind.cmp_format {

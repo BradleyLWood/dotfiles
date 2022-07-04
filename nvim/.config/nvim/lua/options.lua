@@ -46,6 +46,11 @@ g.vimwiki_list = {{                                 -- vimwiki settings
 g.instant_markdown_autostart = 0                    -- Turns off auto preview
 g.instant_markdown_browser = "brave"                -- Uses surf for preview
 
+-- Markdown code fencing
+vim.g.markdown_fenced_languages = {
+    "ts=typescript"
+}
+
 -- Disable copilot tab completion
 g.copilot_no_tab_map = true
 

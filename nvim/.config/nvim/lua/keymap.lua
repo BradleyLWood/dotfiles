@@ -109,7 +109,7 @@ map('n', '<Leader>fh',	':Telescope help_tags<CR>', opts)
 map('n', '<Leader>fl',	':Telescope loclist<CR>', opts)
 map('n', '<Leader>fq',	':Telescope quickfix<CR>', opts)
 map('n', '<Leader>fe',	':Telescope diagnostics<CR>', opts)
-map('n', '<Leader>vrc',	':lua require("telescope-config").search_vimrc()<CR>', opts)
+map('n', '<Leader>vrc',	':lua require("config.telescope").search_vimrc()<CR>', opts)
 
 -- Harpoon
 map('n', '<Leader>a', ':lua require("harpoon.mark").add_file()<CR>', { noremap = true })
@@ -125,8 +125,16 @@ map('n', '<Leader>nt', ':NvimTreeToggle<CR>', opts)		-- NvimTree
 map('n', '<Leader>nr', ':NvimTreeRefresh<CR>', opts)	-- NvimTree refresh
 map('n', '<Leader>nf', ':NvimTreeFindFile<CR>', opts)	-- NvimTree find current file
 
--- TrueZen
-map('n', '<Leader>z', ':TZAtaraxis<CR>', opts)
+-- dap
+map('n', '<F5>', '<Cmd>lua require("dap").continue()<CR>', opts)
+map('n', '<F10>', '<Cmd>lua require("dap").step_over()<CR>', opts)
+map('n', '<F11>', '<Cmd>lua require("dap").step_into()<CR>', opts)
+map('n', '<F12>', '<Cmd>lua require("dap").step_out()<CR>', opts)
+map('n', '<Leader>bp', '<Cmd>lua require("dap").toggle_breakpoint()<CR>', opts)
+map('n', '<Leader>Bp', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', opts)
+map('n', '<Leader>lp', '<Cmd>lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', opts)
+map('n', '<Leader>dr', '<Cmd>lua require("dap").repl.open()<CR>', opts)
+map('n', '<Leader>dl', '<Cmd>lua require("dap").run_last()<CR>', opts)
 
 -- Copilot
 map("i", "<C-p>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
