@@ -1,6 +1,6 @@
 configuration {
 	modi: [window,drun,combi];
-	terminal: "alacritty";
+	terminal: "/usr/bin/kitty";
 	show-icons: true;
 	combi-modi: [window,drun,ssh];
 	columns: 3;
