@@ -112,13 +112,13 @@ map('n', '<Leader>fe',	':Telescope diagnostics<CR>', opts)
 map('n', '<Leader>vrc',	':lua require("config.telescope").search_vimrc()<CR>', opts)
 
 -- Harpoon
-map('n', '<Leader>a', ':lua require("harpoon.mark").add_file()<CR>', { noremap = true })
-map('n', '<Leader>hl', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', { noremap = true })
-map('n', '<Leader>hc', ':lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>', { noremap = true })
-map('n', '<C-h>', ':lua require("harpoon.ui").nav_file(1)<CR>', { noremap = true })
-map('n', '<C-j>', ':lua require("harpoon.ui").nav_file(2)<CR>', { noremap = true })
-map('n', '<C-k>', ':lua require("harpoon.ui").nav_file(3)<CR>', { noremap = true })
-map('n', '<C-l>', ':lua require("harpoon.ui").nav_file(4)<CR>', { noremap = true })
+map('n', '<Leader>a', ':lua require("harpoon.mark").add_file()<CR>', opts)
+map('n', '<Leader>hl', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', opts)
+map('n', '<Leader>hc', ':lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>', opts)
+map('n', '<C-h>', ':lua require("harpoon.ui").nav_file(1)<CR>', opts)
+map('n', '<C-j>', ':lua require("harpoon.ui").nav_file(2)<CR>', opts)
+map('n', '<C-k>', ':lua require("harpoon.ui").nav_file(3)<CR>', opts)
+map('n', '<C-l>', ':lua require("harpoon.ui").nav_file(4)<CR>', opts)
 
 -- NvimTree
 map('n', '<Leader>nt', ':NvimTreeToggle<CR>', opts)		-- NvimTree
