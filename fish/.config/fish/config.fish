@@ -23,17 +23,15 @@ alias ll  "ls -l"
 alias lla "la -l"
 
 # Attach tmux to a session if one exists, otherwise creates one
-alias t "tmux -u attach || tmux -u new"
+#abbr t "tmux -u attach || tmux -u new"
 # Attaches tmux to a session (example: ta portal)
-alias ta "tmux attach -t"
+#abbr ta "tmux attach -t"
 # Creates a new named session (example: tn portal)
-alias tn "tmux new -s"
+#abbr tn "tmux new -s"
 # List all sessions
-alias tl "tmux list-sessions"
+#abbr tl "tmux list-sessions"
 # Create tmux session for nvim configuration
-alias vconfig "tmux new-session -d -s nvim -c ~/.config/nvim/ \; switchc -t nvim"
-
-alias vim nvim
+#abbr vconfig "tmux new-session -d -s nvim -c ~/.config/nvim/ \; switchc -t nvim"
 
 # Ranger
 alias r "ranger"
@@ -44,6 +42,7 @@ alias j z
 # vim
 abbr v nvim
 abbr vs "sudo nvim"
+abbr vim nvim
 
 # Pacman
 abbr -a p "sudo pacman"
@@ -104,3 +103,10 @@ set -gx PROJECT_PATHS ~/code
 
 # Use bat as pager for man pages
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
+# Bun
+set -Ux BUN_INSTALL "/home/bradley/.bun"
+set -px --path PATH "/home/bradley/.bun/bin"
+
+# Initialize starship
+starship init fish | source

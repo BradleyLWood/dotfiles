@@ -1,8 +1,14 @@
 local nvim_lsp = require('lspconfig')
 local navic = require("nvim-navic")
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+--local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--capabilities.textDocument.completion.completionItem.snippetSupport = true
+local lsp_defaults = nvim_lsp.util.default_config
+lsp_defaults.capabilities = vim.tbl_deep_extend(
+    'force',
+    lsp_defaults.capabilities,
+    require('cmp_nvim_lsp').default_capabilities()
+)
 
 require('lspsaga').setup()
 
@@ -41,7 +47,7 @@ lspkind.init({
 local on_attach = function(client, bufnr)
     require("aerial").on_attach(client, bufnr)
 
-    require("lsp_signature").on_attach({
+   require("lsp_signature").on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         handler_opts = {
             border = "rounded"
@@ -71,8 +77,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', 'K', '<CMD>Lspsaga hover_doc<CR>', bufopts)
+    --vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<leader>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<leader>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<leader>wl', function()
@@ -93,22 +99,19 @@ local lsp_flags = {
 }
 
 nvim_lsp.html.setup {
-    capabilities = capabilities,
-    on_attach = function(client, bufnr)
-        navic.attach(client, bufnr)
-        on_attach(client, bufnr)
-    end,
+    --capabilities = capabilities,
+    on_attach = on_attach,
     flags = lsp_flags,
 }
 
 nvim_lsp.cssls.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
 }
 
 nvim_lsp.jsonls.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
@@ -120,7 +123,7 @@ nvim_lsp.tsserver.setup {
     -- Avoid conflict with Deno projects
     root_dir = nvim_lsp.util.root_pattern("package.json"),
 
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
 
@@ -134,7 +137,7 @@ nvim_lsp.tsserver.setup {
 }
 
 nvim_lsp.svelte.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
@@ -146,7 +149,7 @@ nvim_lsp.denols.setup {
     -- Avoid conflict with Node projects
     root_dir = nvim_lsp.util.root_pattern("deno.json"),
 
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
@@ -155,7 +158,7 @@ nvim_lsp.denols.setup {
 }
 
 nvim_lsp.gopls.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
@@ -164,7 +167,7 @@ nvim_lsp.gopls.setup {
 }
 
 nvim_lsp.pyright.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
@@ -173,7 +176,7 @@ nvim_lsp.pyright.setup {
 }
 
 nvim_lsp.sqlls.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
@@ -182,13 +185,13 @@ nvim_lsp.sqlls.setup {
 }
 
 nvim_lsp.eslint.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
 }
 
 nvim_lsp.emmet_ls.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = on_attach,
     filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'haml',
         'xml', 'xsl', 'pug', 'slim', 'sass', 'stylus', 'less', 'sss' },
@@ -196,21 +199,21 @@ nvim_lsp.emmet_ls.setup {
 }
 
 nvim_lsp.tailwindcss.setup {
-    capabilities = capabilities,
+    --capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
 }
 
 USER = vim.fn.expand('$USER')
-local sumneko_root_path = "/home/" .. USER .. "/.local/share/nvim/lua-language-server"
-local sumneko_binary = "/home/" .. USER .. "/.local/share/nvim/lua-language-server/bin/lua-language-server"
+local lua_ls_root_path = "/home/" .. USER .. "/.local/share/nvim/lua-language-server"
+local lua_ls_binary = "/home/" .. USER .. "/.local/share/nvim/lua-language-server/bin/lua-language-server"
 
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
     on_attach = function(client, bufnr)
         navic.attach(client, bufnr)
         on_attach(client, bufnr)
     end,
-    cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+    cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
     settings = {
         Lua = {
             runtime = {

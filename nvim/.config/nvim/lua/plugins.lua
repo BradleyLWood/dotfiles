@@ -44,6 +44,8 @@ return require('packer').startup(function()
     use { 'nvim-treesitter/playground' }
     --use 'nvim-treesitter/nvim-treesitter-textobjects'
 
+ 	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
+
     use { 'nvim-lua/plenary.nvim' }
     use { 'nvim-lua/popup.nvim' }
     use { 'nvim-telescope/telescope.nvim' }
@@ -76,10 +78,11 @@ return require('packer').startup(function()
     --use { 'onsails/diaglist.nvim' }
     use { 'simrat39/symbols-outline.nvim' }
 
-    use {
-        'stevearc/aerial.nvim',
-        config = function() require('aerial').setup() end
-    }
+    -- Broken
+--    use {
+--        'stevearc/aerial.nvim',
+--        config = function() require('aerial').setup() end
+--    }
 
     -- Status Line
     use {
@@ -90,4 +93,6 @@ return require('packer').startup(function()
         "SmiteshP/nvim-navic",
         requires = "neovim/nvim-lspconfig"
     }
+
+    use { 'vimwiki/vimwiki' }
 end)
