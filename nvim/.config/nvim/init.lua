@@ -17,6 +17,7 @@ require('config.gitsigns')
 require('config.rest')
 require('config.which-key')
 require('config.prettier')
+require('config.lualine')
 
 -- Load Theme ================================================
 --require('themes.dracula')
