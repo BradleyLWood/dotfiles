@@ -7,6 +7,8 @@ vim.wo.relativenumber = true
 
 vim.wo.wrap = false
 
+vim.opt.cursorline = true
+
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 

@@ -53,7 +53,7 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 -- Quick-fix list navigation
 vim.keymap.set('n', '<leader><C-k>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<leader><C-j>', '<cmd>cprev<CR>zz')
--- Local list navigation
+-- Location list navigation
 vim.keymap.set('n', '<leader>k', '<cmd>lnext<CR>zz')
 vim.keymap.set('n', '<leader>j', '<cmd>lprev<CR>zz')
 
@@ -113,17 +113,21 @@ local resize = function(vertical, margin)
 end
 
 -- tmux like directional window resizes
-vim.keymap.set("n", "<leader><Up>", "<cmd>lua require'utils'.resize(false, -5)<CR>",
-    { silent = true, desc = "horizontal split increase" })
-vim.keymap.set("n", "<leader><Down>", "<cmd>lua require'utils'.resize(false,  5)<CR>",
-    { silent = true, desc = "horizontal split decrease" })
-vim.keymap.set("n", "<leader><Left>", "<cmd>lua require'utils'.resize(true,  -5)<CR>",
-    { silent = true, desc = "vertical split decrease" })
-vim.keymap.set("n", "<leader><Right>", "<cmd>lua require'utils'.resize(true,   5)<CR>",
-    { silent = true, desc = "vertical split increase" })
+vim.keymap.set('n', '<leader><Up>', "<cmd>lua require'utils'.resize(false, -5)<CR>",
+    { silent = true, desc = 'horizontal split increase' })
+vim.keymap.set('n', '<leader><Down>', "<cmd>lua require'utils'.resize(false,  5)<CR>",
+    { silent = true, desc = 'horizontal split decrease' })
+vim.keymap.set('n', '<leader><Left>', "<cmd>lua require'utils'.resize(true,  -5)<CR>",
+    { silent = true, desc = 'vertical split decrease' })
+vim.keymap.set('n', '<leader><Right>', "<cmd>lua require'utils'.resize(true,   5)<CR>",
+    { silent = true, desc = 'vertical split increase' })
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+-- LeetCode
+vim.keymap.set('n', '<leader>ll', '<cmd>LeetCodeList<CR>',
+    { silent = true, desc = 'LeetCode List' })
+vim.keymap.set('n', '<leader>lt', '<cmd>LeetCodeTest<CR>',
+    { silent = true, desc = 'LeetCode Test' })
+vim.keymap.set('n', '<leader>ls', '<cmd>LeetCodeSubmit<CR>',
+    { silent = true, desc = 'LeetCode Submit' })
+vim.keymap.set('n', '<leader>li', '<cmd>LeetCodeSignIn<CR>',
+    { silent = true, desc = 'LeetCode Sign In' })

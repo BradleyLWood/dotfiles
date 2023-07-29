@@ -1,9 +1,11 @@
 return {
     'tpope/vim-fugitive',
     'tpope/vim-rhubarb',
+    'tpope/vim-surround',
     'ThePrimeagen/harpoon',
     'mattn/emmet-vim',
     'mbbill/undotree',
+    'ianding1/leetcode.vim',
 
     {
         -- LSP Configuration & Plugins
@@ -21,6 +23,10 @@ return {
             'folke/neodev.nvim',
         },
     },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+    },
 
     {
         -- Autocompletion
@@ -35,6 +41,17 @@ return {
 
             -- Adds a number of user-friendly snippets
             'rafamadriz/friendly-snippets',
+        },
+    },
+
+    {
+        'nvimdev/lspsaga.nvim',
+        config = function()
+            require('lspsaga').setup({})
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons'
         },
     },
 
@@ -64,11 +81,71 @@ return {
     },
 
     {
-        -- Theme inspired by Atom
+        'epwalsh/obsidian.nvim',
+        lazy = true,
+        event = { 'BufReadPre path/to/my-vault/**.md' },
+        -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand':
+        -- event = { "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/**.md" },
+        dependencies = {
+            -- Required.
+            'nvim-lua/plenary.nvim',
+            -- Optional, for completion.
+            'hrsh7th/nvim-cmp',
+            -- Optional, for search and quick-switch functionality.
+            'nvim-telescope/telescope.nvim',
+
+            -- Optional, an alternative to telescope for search and quick-switch functionality.
+            -- 'ibhagwan/fzf-lua'
+
+            -- Optional, another alternative to telescope for search and quick-switch functionality.
+            -- 'junegunn/fzf',
+            -- 'junegunn/fzf.vim'
+
+            -- Optional, alternative to nvim-treesitter for syntax highlighting.
+            --'godlygeek/tabular',
+            --'preservim/vim-markdown',
+        },
+        opts = {
+            dir = '~/Dropbox/Obsidian Notes/Vault/', -- no need to call 'vim.fn.expand' here
+
+            -- see below for full list of options 👇
+        },
+        config = function(_, opts)
+            require('obsidian').setup(opts)
+
+            -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
+            -- see also: 'follow_url_func' config option below.
+            vim.keymap.set('n', 'gf', function()
+                if require('obsidian').util.cursor_on_markdown_link() then
+                    return '<cmd>ObsidianFollowLink<CR>'
+                else
+                    return 'gf'
+                end
+            end, { noremap = false, expr = true })
+        end,
+    },
+
+    {
         'navarasu/onedark.nvim',
-        priority = 1000,
+        priority = 2000,
         config = function()
             vim.cmd.colorscheme 'onedark'
+        end,
+    },
+
+    {
+        'shaunsingh/nord.nvim',
+        priority = 1000,
+        config = function()
+            vim.g.nord_contrast = true
+            vim.g.nord_borders = true
+            vim.g.nord_disable_background = false
+            vim.g.nord_italic = true
+
+            vim.cmd('hi Visual guibg=#616E88')
+
+            -- Load the colorscheme
+            require('nord').set()
         end,
     },
 
@@ -78,8 +155,9 @@ return {
         -- See `:help lualine.txt`
         opts = {
             options = {
-                icons_enabled = false,
-                theme = 'onedark',
+                icons_enabled = true,
+                --theme = 'onedark',
+                theme = 'nord',
                 component_separators = '|',
                 section_separators = '',
             },
@@ -131,13 +209,16 @@ return {
     {
         'nvim-treesitter/playground'
     },
+    {
+        'nvim-treesitter/nvim-treesitter-context'
+    },
 
     {
-        "windwp/nvim-autopairs",
+        'windwp/nvim-autopairs',
         -- Optional dependency
         dependencies = { 'hrsh7th/nvim-cmp' },
         config = function()
-            require("nvim-autopairs").setup {}
+            require('nvim-autopairs').setup {}
             -- If you want to automatically add `(` after selecting a function or method
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
             local cmp = require('cmp')
@@ -166,31 +247,31 @@ return {
                 --
                 -- default: {}
                 symbol_map = {
-                    Text = "󰉿",
-                    Method = "󰆧",
-                    Function = "󰊕",
-                    Constructor = "",
-                    Field = "󰜢",
-                    Variable = "󰀫",
-                    Class = "󰠱",
-                    Interface = "",
-                    Module = "",
-                    Property = "󰜢",
-                    Unit = "󰑭",
-                    Value = "󰎠",
-                    Enum = "",
-                    Keyword = "󰌋",
-                    Snippet = "",
-                    Color = "󰏘",
-                    File = "󰈙",
-                    Reference = "󰈇",
-                    Folder = "󰉋",
-                    EnumMember = "",
-                    Constant = "󰏿",
-                    Struct = "󰙅",
-                    Event = "",
-                    Operator = "󰆕",
-                    TypeParameter = "",
+                    Text = '󰉿',
+                    Method = '󰆧',
+                    Function = '󰊕',
+                    Constructor = '',
+                    Field = '󰜢',
+                    Variable = '󰀫',
+                    Class = '󰠱',
+                    Interface = '',
+                    Module = '',
+                    Property = '󰜢',
+                    Unit = '󰑭',
+                    Value = '󰎠',
+                    Enum = '',
+                    Keyword = '󰌋',
+                    Snippet = '',
+                    Color = '󰏘',
+                    File = '󰈙',
+                    Reference = '󰈇',
+                    Folder = '󰉋',
+                    EnumMember = '',
+                    Constant = '󰏿',
+                    Struct = '󰙅',
+                    Event = '',
+                    Operator = '󰆕',
+                    TypeParameter = '',
                 },
             })
         end,
