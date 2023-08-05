@@ -8,7 +8,7 @@ vim.keymap.set('v', 'K', ':m \'<-2<CR>gv=gv')
 vim.keymap.set('n', 'J', 'mzJ`z')
 -- Keep cursor centered for half page jump
 vim.keymap.set('n','<C-d>', '<C-d>zz')
-vim.keymap.set('n','<C-u>', '<C-d>zz')
+vim.keymap.set('n','<C-u>', '<C-u>zz')
 -- Keep cursor centered for searching
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
@@ -23,7 +23,7 @@ vim.keymap.set('n', 'j', '(v:count > 5 ? "m\'" . v:count : "") . "gj"',
 vim.keymap.set('n', 'k', '(v:count > 5 ? "m\'" . v:count : "") . "gk"',
     { noremap = true, silent = true, expr = true })
 
--- Yank to system clipboard
+-- Yank to system clipboard 
 vim.keymap.set('n', '<leader>y', '"+y')
 vim.keymap.set('v', '<leader>y', '"+y')
 vim.keymap.set('n', '<leader>Y', '"+Y')

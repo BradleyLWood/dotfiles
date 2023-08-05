@@ -6,6 +6,7 @@ return {
     'mattn/emmet-vim',
     'mbbill/undotree',
     'ianding1/leetcode.vim',
+    'onsails/lspkind.nvim',
 
     {
         -- LSP Configuration & Plugins
@@ -45,10 +46,17 @@ return {
     },
 
     {
-        'nvimdev/lspsaga.nvim',
+        "roobert/tailwindcss-colorizer-cmp.nvim",
+        -- optionally, override the default options:
         config = function()
-            require('lspsaga').setup({})
-        end,
+            require("tailwindcss-colorizer-cmp").setup({
+                color_square_width = 2,
+            })
+        end
+    },
+
+    {
+        'nvimdev/lspsaga.nvim',
         dependencies = {
             'nvim-treesitter/nvim-treesitter',
             'nvim-tree/nvim-web-devicons'
@@ -78,6 +86,18 @@ return {
                     { buffer = bufnr, desc = '[P]review [H]unk' })
             end,
         },
+    },
+
+    {
+        "jcdickinson/codeium.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "hrsh7th/nvim-cmp",
+        },
+        config = function()
+            require("codeium").setup({
+            })
+        end
     },
 
     {
@@ -229,51 +249,4 @@ return {
         end,
     },
 
-    {
-        'onsails/lspkind.nvim',
-        config = function()
-            require('lspkind').init({
-                -- defines how annotations are shown
-                -- default: symbol
-                -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
-                mode = 'symbol_text',
-
-                -- default symbol map
-                -- can be either 'default' (requires nerd-fonts font) or
-                -- 'codicons' for codicon preset (requires vscode-codicons font)
-                preset = 'default',
-
-                -- override preset symbols
-                --
-                -- default: {}
-                symbol_map = {
-                    Text = '󰉿',
-                    Method = '󰆧',
-                    Function = '󰊕',
-                    Constructor = '',
-                    Field = '󰜢',
-                    Variable = '󰀫',
-                    Class = '󰠱',
-                    Interface = '',
-                    Module = '',
-                    Property = '󰜢',
-                    Unit = '󰑭',
-                    Value = '󰎠',
-                    Enum = '',
-                    Keyword = '󰌋',
-                    Snippet = '',
-                    Color = '󰏘',
-                    File = '󰈙',
-                    Reference = '󰈇',
-                    Folder = '󰉋',
-                    EnumMember = '',
-                    Constant = '󰏿',
-                    Struct = '󰙅',
-                    Event = '',
-                    Operator = '󰆕',
-                    TypeParameter = '',
-                },
-            })
-        end,
-    }
 }
