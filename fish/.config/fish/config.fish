@@ -77,8 +77,6 @@ set -gx EDITOR nvim
 # Path
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
-set -gx PATH ~/code/public_scripts $PATH
-set -gx PATH ~/code/private_scripts $PATH
 set -gx PATH ~/.yarn/bin $PATH
 set -gx PATH ~/.local/bin $PATH
 set -gx PATH /usr/local/bin $PATH
@@ -101,19 +99,21 @@ set -gx PATH ~/code/flutter/bin $PATH
 # Project path for pj plugin
 set -gx PROJECT_PATHS ~/code
 
-# Use bat as pager for man pages
-set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
-
 # Bun
 set -Ux BUN_INSTALL "/home/bradley/.bun"
 set -px --path PATH "/home/bradley/.bun/bin"
-
-# Initialize starship
-starship init fish | source
 
 # pnpm
 set -gx PNPM_HOME "/home/bradley/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
   set -gx PATH "$PNPM_HOME" $PATH
 end
-# pnpm end
+
+set -gx DPRINT_INSTALL "/home/bradley/.dprint/bin"
+set -gx PATH $DPRINT_INSTALL $PATH
+
+# Use bat as pager for man pages
+set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
+
+# Initialize starship
+starship init fish | source
