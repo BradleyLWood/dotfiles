@@ -96,6 +96,11 @@ require('neodev').setup()
 
 require('lsp_signature').setup()
 
+require('lspsaga').setup({
+        ui = {
+        code_action = ''
+    }
+})
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
