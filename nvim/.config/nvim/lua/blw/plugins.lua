@@ -7,6 +7,7 @@ return {
     'mbbill/undotree',
     'ianding1/leetcode.vim',
     'onsails/lspkind.nvim',
+    'nvim-lualine/lualine.nvim',
 
     {
         -- LSP Configuration & Plugins
@@ -167,21 +168,6 @@ return {
             -- Load the colorscheme
             require('nord').set()
         end,
-    },
-
-    {
-        -- Set lualine as statusline
-        'nvim-lualine/lualine.nvim',
-        -- See `:help lualine.txt`
-        opts = {
-            options = {
-                icons_enabled = true,
-                --theme = 'onedark',
-                theme = 'nord',
-                component_separators = '|',
-                section_separators = '',
-            },
-        },
     },
 
     {
