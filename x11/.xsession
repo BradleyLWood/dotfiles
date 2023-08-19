@@ -11,3 +11,4 @@
 # launch xmonad
 #xmonad
 #i3
+startlxde

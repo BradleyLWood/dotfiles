@@ -4,12 +4,5 @@
 # swap caps lock and escape keys
 setxkbmap -option caps:swapescape
 
-#xbindkeys &
-
-dropbox &
-
-# set wallpaper
-feh --bg-scale $HOME/Pictures/Wallpapers/nordunderwater.png &
-#feh --bg-scale $HOME/Pictures/Wallpapers/nordarch-lighter.png &
-
-$HOME/bin/pulse-volume-watcher.py | xob & > /dev/null
+# FIXME: This stopped working
+#$HOME/bin/pulse-volume-watcher.py | xob & > /dev/null

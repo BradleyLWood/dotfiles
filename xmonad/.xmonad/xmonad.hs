@@ -18,7 +18,6 @@ import XMonad.Hooks.EwmhDesktops
 
 main :: IO ()
 main = do
-     xmproc <- spawnPipe "xmobar /home/bradley/.xmonad/xmobarrc"
      xmonad $ ewmh $ docks $ defaultConfig
             { modMask            = mod4Mask
             , layoutHook         = myLayout
@@ -29,7 +28,6 @@ main = do
             , focusedBorderColor = myFocusedBorderColor
             , focusFollowsMouse  = myFocusFollowsMouse
 			, clickJustFocuses   = myClickJustFocuses
-            , logHook            = dynamicLogWithPP $ myXmobarPP xmproc
             }
           `additionalKeysP`
             [ ("M-S-z", spawn "xscreensaver-command -lock")
@@ -41,14 +39,14 @@ main = do
 
 --------------------------------------------------------------------------------
 
-myTerminal = "alacritty"
+myTerminal = "kitty"
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = False
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 myBorderWidth = 2
-myNormalBorderColor = "#434C5E"
-myFocusedBorderColor = "#B48EAD"
+myFocusedBorderColor = "#CA72E4"
+myNormalBorderColor = "#343E4F"
 
 myManageHook :: ManageHook
 myManageHook = composeAll
@@ -68,28 +66,4 @@ myLayout = avoidStruts $ noBorders Full ||| withSpaces tiled ||| tiled ||| withS
     ratio   = 1/2
     delta   = 3/100
     withSpaces layout = spacingWithEdge 10 $ layout
-
---------------------------------------------------------------------------------
-
-myXmobarPP xmproc = def
-    { ppSep             = white " | "
-    , ppTitle           = green . shorten 40
-    , ppTitleSanitize   = xmobarStrip
-    , ppCurrent         = wrap "<" ">"
-    , ppVisible         = white
-    , ppHidden          = lowWhite
-    , ppUrgent          = red . wrap "!" "!"
-    , ppOutput          = hPutStrLn xmproc
-    }
-  where
-    ppWindow :: String -> String
-    ppWindow = xmobarRaw . (\w -> if null w then "untitled" else w) . shorten 30
-    --red, blue, green, white, lowWhite, yellow, magenta :: String -> String
-    red      = xmobarColor "#BF616A" ""
-    green    = xmobarColor "#A3BE8C" ""
-    blue     = xmobarColor "#81A1C1" ""
-    white    = xmobarColor "#E5E9F0" ""
-    lowWhite = xmobarColor "#586266" ""
-    yellow   = xmobarColor "#EBCB8B" ""
-    magenta  = xmobarColor "#B48EAD" ""
 
