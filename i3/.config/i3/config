@@ -50,6 +50,15 @@ exec --no-startup-id nm-applet
 # XScreensaver
 exec --no-startup-id xscreensaver --no-splash
 
+# Wallpaper
+exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpapers/nordarch-lighter.png
+
+# Dropbox
+exec --no-startup-id dropbox
+
+# Piper for mouse dpi
+exec --no-startup-id piper
+
 # Terminal
 bindsym $mod+Return exec $terminal
 
@@ -214,6 +223,7 @@ for_window [class="^.*"] border pixel $default_border
 hide_edge_borders smart
 
 # Toggle gaps
+# TODO fix this only disabling gaps
 bindsym $mod+o exec --no-startup-id "if [ `i3-msg -t get_tree | grep -Po \
     '.*\\"gaps\\":{\\"inner\\":\K(-|)[0-9]+(?=.*\\"focused\\":true)'` -eq 0 ]; then \
         i3-msg gaps inner current set 0; \
@@ -323,6 +333,8 @@ bindsym $mod+Shift+q restart
 # Resize                                                                       #
 ################################################################################
 
+bindsym $mod+r mode "resize"
+
 # Resize window (you can also use the mouse for that)
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
@@ -339,7 +351,6 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
 
 
 
@@ -387,27 +398,8 @@ client.background       $nord0
 bindsym $mod+b bar mode toggle
 
 # Polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-# i3Status
-#bar {
-#        status_command i3status
-#        position bottom
-#        tray_padding 1
-#        tray_output primary
-#        font pango:Fira Code 16 
-#        separator_symbol " • "
-#
-#        colors {
-#                separator   $nord3
-#                background  $black
-#                statusline  $nord7
-#                #                  BORDER BG     FG
-#                focused_workspace  $black $nord7 $black
-#                active_workspace   $black $black $nord7 
-#                inactive_workspace $black $black $nord3
-#                urgent_workspace   $black $black $nord11
-#                binding_mode       $black $nord7 $nord0
-#        }
-#}
+# EWW
+
 
