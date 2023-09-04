@@ -17,10 +17,14 @@ load_nvm > /dev/stderr
 #alias ll  "ls -l"
 #alias lla "la -A"
 # Use exa
-alias ls  "exa --icons --group-directories-first"
+alias ls  "exa -H --icons --group-directories-first"
 alias la  "ls -a"
+alias lat  "ls -aT"
+alias lt  "ls -T"
 alias ll  "ls -l"
+alias llt  "ls -lT"
 alias lla "la -l"
+alias llat "la -lT"
 
 # Attach tmux to a session if one exists, otherwise creates one
 #abbr t "tmux -u attach || tmux -u new"
@@ -38,6 +42,7 @@ alias r "ranger"
 
 # Z
 alias j z
+alias jj "z -"
 
 # vim
 abbr v nvim
