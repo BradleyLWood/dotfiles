@@ -1,16 +1,13 @@
 $ ghc --make xmonad.hs -i -ilib -fforce-recomp -main-is main -dynamic -v0 -outputdir /home/bradley/.xmonad/build-x86_64-linux -o /home/bradley/.xmonad/xmonad-x86_64-linux
 
-xmonad.hs:21:30: warning: [-Wdeprecations]
-    In the use of ‘defaultConfig’
-    (imported from XMonad, but defined in XMonad.Config):
-    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
-   |
-21 |      xmonad $ ewmh $ docks $ defaultConfig
-   |                              ^^^^^^^^^^^^^
-
-xmonad.hs:30:1: warning: [-Wtabs]
+xmonad.hs:29:1: warning: [-Wtabs]
     Tab character found here, and in two further locations.
     Please use spaces instead.
    |
-30 |                         , clickJustFocuses   = myClickJustFocuses
+29 |                         , clickJustFocuses   = myClickJustFocuses
    | ^^^^^^^^
+
+xmonad.hs:44:17: error: parse error on input ‘|’
+   |
+44 |                 | (key, sc) <- zip [xK_w, xK_e, xK_r] [2,1,3]
+   |                 ^
