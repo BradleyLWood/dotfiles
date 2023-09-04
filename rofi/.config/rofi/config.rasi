@@ -1,8 +1,8 @@
 configuration {
-	modi: [window,drun,combi];
+	modi: "window,drun,combi";
 	terminal: "/usr/bin/kitty";
-	show-icons: true;
-	combi-modi: [window,drun,ssh];
+	show-icons: false;
+	combi-modi: "window,drun";
 	columns: 3;
-	}
-	@theme "nord"
+}
+@theme "onedark"
