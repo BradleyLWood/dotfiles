@@ -112,7 +112,7 @@ local resize = function(vertical, margin)
     vim.cmd(cmd)
 end
 
--- tmux like directional window resizes
+-- Tmux like directional window resizes
 vim.keymap.set('n', '<leader><Up>', "<cmd>lua require'utils'.resize(false, -5)<CR>",
     { silent = true, desc = 'horizontal split increase' })
 vim.keymap.set('n', '<leader><Down>', "<cmd>lua require'utils'.resize(false,  5)<CR>",
@@ -131,3 +131,9 @@ vim.keymap.set('n', '<leader>ls', '<cmd>LeetCodeSubmit<CR>',
     { silent = true, desc = 'LeetCode Submit' })
 vim.keymap.set('n', '<leader>li', '<cmd>LeetCodeSignIn<CR>',
     { silent = true, desc = 'LeetCode Sign In' })
+
+-- Command pallet autocomplete behavior
+vim.keymap.set("c", "<cr>", function()
+  if vim.fn.pumvisible() == 1 then return '<c-y>' end
+  return '<cr>'
+  end, { expr = true })

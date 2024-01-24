@@ -146,25 +146,19 @@ return {
         end,
     },
 
-    {
-        'navarasu/onedark.nvim',
-        priority = 1000,
-    },
-
-    {
-        'shaunsingh/nord.nvim',
-        priority = 2000,
-    },
+    -- Color Schemes
+    { 'catppuccin/nvim',        name = 'catppuccin',    priority = 1000 },
+    { 'Mofiqul/dracula.nvim',   name = 'dracula',       priority = 2000 },
+    { 'navarasu/onedark.nvim',  name = 'onedark',       priority = 3000 },
+    { 'shaunsingh/nord.nvim',   name = 'nord',          priority = 4000 },
 
     {
         -- Add indentation guides even on blank lines
         'lukas-reineke/indent-blankline.nvim',
         -- Enable `lukas-reineke/indent-blankline.nvim`
         -- See `:help indent_blankline.txt`
-        opts = {
-            char = '┊',
-            show_trailing_blankline_indent = false,
-        },
+        main = "ibl",
+        opts = {},
     },
 
     -- "gc" to comment visual regions/lines
