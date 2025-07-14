@@ -1,0 +1,405 @@
+################################################################################
+# i3 Configuration                                                             # 
+# Please see https://i3wm.org/docs/userguide.html for a complete reference!    #
+################################################################################
+
+# Define $mod key
+set $mod Mod4
+
+# Define terminal appliation
+set $terminal kitty
+
+# Titlebar font
+#font pango:Fira Code 12
+font pango:Fira Code 0
+
+# Focus follows mouse
+focus_follows_mouse no
+
+
+
+
+
+################################################################################
+# Reboot/Restart/Lock                                                          #
+################################################################################
+
+bindsym Control+Mod1+End mode "$mode_system"
+set $mode_system System  (l) logout, (r) reboot, (s) shutdown
+mode "$mode_system" {
+        bindsym l exec i3-msg exit
+        bindsym r exec systemctl reboot
+        bindsym s exec systemctl shutdown
+
+        bindsym Return mode      "default"
+        bindsym Escape mode      "default"
+        bindsym Control+Mod1+End "default"
+}
+
+
+
+
+
+################################################################################
+# Processes                                                                    # 
+################################################################################
+
+# Network Manager
+exec --no-startup-id nm-applet
+
+# XScreensaver
+exec --no-startup-id xscreensaver --no-splash
+
+# Wallpaper
+exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpapers/nordarch-lighter.png
+
+# Dropbox
+exec --no-startup-id dropbox
+
+# Piper for mouse dpi
+exec --no-startup-id piper
+
+# Terminal
+bindsym $mod+Return exec $terminal
+
+# Rofi
+bindsym $mod+p exec rofi -show drun -modi
+bindsym $mod+Shift+p exec rofi -show window -modi
+
+# Screenshots
+# Screenshot of current app window saved to ~/Pictures/Screenshots
+bindsym --release $mod+z exec scrot -u -e 'mv $f ~/Pictures/Screenshots'
+# Screenshot of selection box saved to ~/Pictures/Screenshots
+bindsym --release $mod+Shift+z exec scrot -s -e 'mv $f ~/Pictures/Screenshots'
+
+
+
+
+
+################################################################################
+# Media keys                                                                   #
+################################################################################
+
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+
+
+
+
+################################################################################
+# Containters/Windows                                                          #
+################################################################################
+
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split in horizontal orientation
+bindsym $mod+Mod1+h split h
+
+# Split in vertical orientation
+bindsym $mod+Mod1+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+e layout tabbed
+bindsym $mod+w layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Focus the child container
+bindsym $mod+d focus child
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Kill focused window
+bindsym $mod+Shift+c kill
+
+# Ranger
+bindsym $mod+x exec $terminal -e 'ranger'
+
+
+
+
+
+################################################################################
+# Workspaces                                                                   #
+################################################################################
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Moving workspaces between screens 
+bindsym $mod+Control+h move workspace to output right
+bindsym $mod+Control+l move workspace to output left
+
+# Initial workspace setup
+workspace_layout stacking
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DVI-D-0
+
+
+
+
+
+################################################################################
+# Borders and Gaps                                                             # 
+################################################################################
+
+# Default border variables
+set $default_border 2
+set $inner_gap_default 30
+set $outer_gap_default 0
+
+# Set border defaults
+default_border pixel $default_border
+default_floating_border pixel $default_border
+for_window [class="^.*"] border pixel $default_border
+hide_edge_borders smart
+
+# Toggle gaps
+# TODO fix this only disabling gaps
+bindsym $mod+o exec --no-startup-id "if [ `i3-msg -t get_tree | grep -Po \
+    '.*\\"gaps\\":{\\"inner\\":\K(-|)[0-9]+(?=.*\\"focused\\":true)'` -eq 0 ]; then \
+        i3-msg gaps inner current set 0; \
+    else \
+        i3-msg gaps inner current set $gap_width; \
+    fi"
+
+# Set gap defaults
+gaps inner $inner_gap_default
+gaps outer $outer_gap_default
+smart_gaps inverse_outer
+
+# Gaps mode
+set $mode_gaps Gaps: (y) on, (n) off, (i) change inner, (o) change outer
+set $mode_gaps_inner Inner Gaps: (r | + | - | 0) local, (⇧ + r | + | - | 0) global, (o) switch to outer
+set $mode_gaps_outer Outer Gaps: (r | + | - | 0) local, (⇧ + r | + | - | 0) global, (i) switch to inner
+
+bindsym $mod+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        # Set gaps to default
+        bindsym y      mode "default", gaps inner current set $inner_gap_default, gaps outer all set $outer_gap_default
+        # Set no gaps
+        bindsym n      mode "default", gaps inner current set 1, gaps outer all set 1
+        # Modify gaps modes
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym o      mode "$mode_gaps_outer"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+g mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        # Set inner gaps to default for current window
+        bindsym r     gaps inner current set $inner_gap_default
+        # Increase inner gaps for current window
+        bindsym plus  gaps inner current plus 5
+        # Decrease inner gaps for current window
+        bindsym minus gaps inner current minus 5
+        # Set no inner gaps for current window
+        bindsym 0     gaps inner current set 1
+        # Switch to outer mode
+        bindsym o      mode "$mode_gaps_outer"
+
+        # Set inner gaps to default for all windows
+        bindsym Shift+r     gaps inner all set $inner_gap_default
+        # Increase inner gaps for all windows
+        bindsym Shift+plus  gaps inner all plus 5
+        # Decrease inner gaps for all windows
+        bindsym Shift+minus gaps inner all minus 5
+        # Set no inner gaps for all windows
+        bindsym Shift+0     gaps inner all set 1
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+g mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        # Set outer gaps to default for current window
+        bindsym r     gaps outer current set $outer_gap_default
+        # Increase outer gaps for current window
+        bindsym plus  gaps outer current plus 5
+        # Decrease outer gaps for current window
+        bindsym minus gaps outer current minus 5
+        # Set no outer gaps for current window
+        bindsym 0     gaps outer current set 1
+        # Switch to inner mode
+        bindsym i      mode "$mode_gaps_inner"
+
+        # Set outer gaps to default for all windows
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Shift+r     gaps outer all set $outer_gap_default
+        # Increase outer gaps for all windows
+        bindsym Shift+plus  gaps outer all plus 5
+        # Decrease outer gaps for all windows
+        bindsym Shift+minus gaps outer all minus 5
+        # Set no outer gaps for all windows
+        bindsym Shift+0     gaps outer all set 1 
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+g mode "default"
+}
+
+
+
+
+
+################################################################################
+# Reload and Restart                                                           #
+################################################################################
+
+# Reload the configuration file
+bindsym $mod+q reload
+# Restart i3 inplace
+bindsym $mod+Shift+q restart
+
+
+
+
+
+################################################################################
+# Resize                                                                       #
+################################################################################
+
+bindsym $mod+r mode "resize"
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+
+
+
+
+
+################################################################################
+# Colors                                                                       #
+################################################################################
+
+set $black  #1f222d
+set $nord0  #2E3440
+set $nord1  #3B4252
+set $nord2  #434C5E
+set $nord3  #4C566A
+set $nord4  #D8DEE9
+set $nord5  #E5E9F0
+set $nord6  #ECEFF4
+set $nord7  #8FBCBB
+set $nord8  #88C0D0
+set $nord9  #81A1C1
+set $nord10 #5E81AC
+set $nord11 #BF616A
+set $nord12 #D08770
+set $nord13 #EBCB8B
+set $nord14 #A3BE8C
+set $nord15 #B48EAD
+
+# CLASS                 BORDER  BG      FG      INDICATOR
+client.focused          $nord7  $nord7  $nord0  $nord11
+client.focused_inactive $nord3  $nord3  $nord4  $nord1
+client.unfocused        $nord3  $nord3  $nord4  $nord1
+client.urgent           $nord11 $nord11 $nord4  $nord11
+client.placeholder      $nord3  $nord3  $nord4  $nord1
+client.background       $nord0
+
+
+
+
+
+################################################################################
+# Bar                                                                          #
+################################################################################
+
+# Toggle
+bindsym $mod+b bar mode toggle
+
+# Polybar
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# EWW
+
+

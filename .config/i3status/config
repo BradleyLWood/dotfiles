@@ -1,0 +1,46 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+        color_good = "#a3be8c"
+        color_bad = "#BF616A"
+        color_degraded = "#4c566a"
+}
+
+order += "volume master"
+order += "wireless wlan0"
+order += "disk /"
+order += "tztime local"
+
+volume master {
+        format = "墳 %volume"
+        format_muted = "婢 (%volume)"
+        device = "pulse:1"
+}
+
+wireless wlan0 {
+        format_up = "直%quality %essid"
+        #format_up = "直%quality %essid %ip"
+        format_down = "睊"
+}
+
+disk "/" {
+        format = " %avail"
+        prefix_type = custom
+        low_threshold = 20
+        threshold_type = percentage_avail
+}
+
+tztime local {
+        # man strftime
+        format = "%Y.%m.%d %I:%M:%S %p "
+}
+
+#墳奄奔婢
