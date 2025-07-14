@@ -1,0 +1,8 @@
+configuration {
+	modi: "drun,combi";
+	terminal: "/usr/bin/ghostty";
+	show-icons: false;
+	combi-modi: "drun";
+	columns: 3;
+}
+@theme "onedark"
