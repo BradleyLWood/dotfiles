@@ -51,6 +51,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.wo.wrap = false
+
 vim.opt.swapfile = false
 vim.opt.backup = false
 
@@ -75,13 +77,16 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.opt.virtualedit = 'block'
 
 -- Don't move cursor when appending line below
-vim.keymap.set('n', 'J', 'mzJ`z')
+--vim.keymap.set('n', 'J', 'mzJ`z')
 -- Keep cursor centered for half page jump
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
 -- Keep cursor centered for searching
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
+-- Move selected lines up and down with <Shift>jk
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 vim.keymap.set('n', '<C-n><C-n>', ':set number!<CR>', {})
 vim.keymap.set('n', '<C-m><C-m>', ':set relativenumber!<CR>', {})
@@ -94,6 +99,7 @@ vim.keymap.set('n', 'k', '(v:count > 5 ? "m\'" . v:count : "") . "gk"', { norema
 -- Q - worst place in the universe
 vim.keymap.set('n', 'Q', '<nop>')
 
+-- Execute tmux-sessionizer
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 
 -- Diagnostic keymaps
@@ -124,6 +130,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Windows
+-- Easier to use <leader>w then <C-w>
 vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close other windows' })
 vim.keymap.set('n', '<leader>wn', '<C-w>n', { desc = 'New window' })
@@ -134,14 +141,14 @@ vim.keymap.set('n', '<leader>ws', ':split<CR><C-w>w', { desc = 'Split' })
 vim.keymap.set('n', '<leader>wvs', ':vsplit<CR><C-w>w', { desc = 'Vertifcal split' })
 
 vim.keymap.set('n', '<leader>wh', '<C-w>h', { desc = 'Switch to left window' })
-vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Switch to right window' })
 vim.keymap.set('n', '<leader>wj', '<C-w>j', { desc = 'Switch to down window' })
 vim.keymap.set('n', '<leader>wk', '<C-w>k', { desc = 'Switch to up window' })
+vim.keymap.set('n', '<leader>wl', '<C-w>l', { desc = 'Switch to right window' })
 
 -- Buffers
 vim.keymap.set('n', '<leader>bj', ':bnext<CR>', { desc = 'Next' })
 vim.keymap.set('n', '<leader>bk', ':bprevious<CR>', { desc = 'Previous' })
---vim.keymap.set('n', '<leader>bl', ':buffers<CR>', { desc = 'List buffer' })
+vim.keymap.set('n', '<leader>bl', ':buffers<CR>', { desc = 'List buffer' })
 vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Close' })
 
 -- expand or minimize current buffer in a more natural direction (tmux-like)
@@ -150,6 +157,7 @@ vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Close' })
 -- can get confusing as left might actually be right, etc
 -- the below can be mapped to arrows and will work similar to the tmux binds
 -- map to: "<cmd>lua require'utils'.resize(false, -5)<CR>"
+
 local resize = function(vertical, margin)
   local cur_win = vim.api.nvim_get_current_win()
   -- go (possibly) right
@@ -173,10 +181,10 @@ local resize = function(vertical, margin)
 end
 
 -- Tmux like directional window resizes
-vim.keymap.set('n', '<leader><Up>', "<cmd>lua require'utils'.resize(false, -5)<CR>", { silent = true, desc = 'horizontal split increase' })
-vim.keymap.set('n', '<leader><Down>', "<cmd>lua require'utils'.resize(false,  5)<CR>", { silent = true, desc = 'horizontal split decrease' })
-vim.keymap.set('n', '<leader><Left>', "<cmd>lua require'utils'.resize(true,  -5)<CR>", { silent = true, desc = 'vertical split decrease' })
-vim.keymap.set('n', '<leader><Right>', "<cmd>lua require'utils'.resize(true,   5)<CR>", { silent = true, desc = 'vertical split increase' })
+--vim.keymap.set('n', '<leader>rh', "<cmd>lua resize(false, -5)<CR>", { silent = true, desc = 'horizontal split increase' })
+--vim.keymap.set('n', '<leader>rl', "<cmd>lua resize(false,  5)<CR>", { silent = true, desc = 'horizontal split decrease' })
+--vim.keymap.set('n', '<leader>rj', "<cmd>lua resize(true,  -5)<CR>", { silent = true, desc = 'vertical split decrease' })
+--vim.keymap.set('n', '<leader>rk', "<cmd>lua resize(true,   5)<CR>", { silent = true, desc = 'vertical split increase' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
