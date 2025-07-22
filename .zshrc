@@ -6,7 +6,33 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 
+setopt GLOB_DOTS
+
+export EDITOR=nvim
+export VISUAL="$EDITOR"
+
+# Path
+export PATH=~/bin:~/.local/bin:~/.yarn/bin:$PATH
+
+# Deno
+export DENO_INSTALL=~/.deno 
+export PATH=$DENO_INSTALL/bin:$PATH
+
+# Go
+export GOPATH=~/go
+export PATH=$GOPATH/bin:$PATH
+
+# Rust
+export RUSTPATH=~/.cargo
+export PATH=$RUSTPATH/bin:$PATH
+
+# Project path for pj plugin
+export PROJECT_PATHS=~/code
+
+# Bindings
 bindkey -v
+bindkey -s '^F' '~/.local/bin/tmux-sessionizer^M'
+bindkey '^L' 'autosuggest-accept'
 
 # Completion
 zstyle :compinstall filename '/home/bradley/.zshrc'
@@ -24,9 +50,9 @@ alias llt="ls -lT"
 alias lla="la -l"
 alias llat="la -lT"
 
-alias r "ranger"
+alias r="ranger"
 
-alias cd z
+alias cd=z
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
@@ -67,6 +93,9 @@ zinit light-mode for \
 
 # Abbrebiations
 zinit light olets/zsh-abbr
+
+# Initialize zoxide
+eval "$(zoxide init zsh)"
 
 # Initialize starship
 eval "$(starship init zsh)"
