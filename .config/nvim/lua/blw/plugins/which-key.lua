@@ -8,15 +8,15 @@ return {
 
       -- Document existing key chains
       wk.add {
-        { '<leader>b', group = '[B]uffer' },
-        { '<leader>c', group = '[C]ode' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>W', group = '[W]orkspace' },
-        { '<leader>w', group = '[W]indow' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk' },
-        { '<leader>gh', group = '[G]it [H]unk', mode = 'v' },
+        { '<leader>b', group = 'Buffer' },
+        { '<leader>c', group = 'Code' },
+        { '<leader>r', group = 'Rename' },
+        { '<leader>s', group = 'Search' },
+        { '<leader>W', group = 'Workspace' },
+        { '<leader>w', group = 'Window' },
+        { '<leader>t', group = 'Toggle' },
+        { '<leader>h', group = 'Git Hunk' },
+        { '<leader>gh', group = 'Git Hunk', mode = 'v' },
       }
     end,
   },

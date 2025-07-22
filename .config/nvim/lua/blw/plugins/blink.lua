@@ -2,7 +2,7 @@ return {
     'sghen/blink.cmp',
     -- Optional dependency
     dependencies = { 'rafamadriz/friendly-snippets' },
-    version = '1.*/',
+    version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.comp.Config
     opts = {
@@ -14,7 +14,7 @@ return {
         sources = {
             default = { 'lsp', 'path', 'snippets', 'buffer' },
         },
-        fuzzy = { implementation = "prefer_rust_with_warning" }
+        fuzzy = { implementation = 'prefer_rust_with_warning' },
     },
-    opts_extend = { "sources.default" }
+    opts_extend = { 'sources.default' }
 }
