@@ -2,6 +2,64 @@
 
 add_newline = true
 
+format = """$directory
+$character"""
+
+right_format = """ 
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status"""
+
+
 [character]
 success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
@@ -15,4 +73,3 @@ format = '[$symbol$branch(:$remote_branch)]($style) '
 
 [package]
 disabled = true
-
