@@ -1,20 +1,63 @@
 return {
     'sghen/blink.cmp',
-    -- Optional dependency
     dependencies = { 'rafamadriz/friendly-snippets' },
     version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.comp.Config
     opts = {
-        keymap = { preset = 'default' },
+        keymap = {
+            preset = 'default',
+            ['<M-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        },
+
+        1.for
         appearance = {
-            nerd_font_variant = 'mono'
+            nerd_font_variant = 'normal',
         },
-        completion = { documentation = { auto_show = false } },
+
+        completion = {
+            menu = {
+                auto_show = true,
+                border = 'single',
+                winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None',
+                draw = {
+                    columns = {
+                        { 'label', 'label_description', 'source_name', gap = 1 },
+                        { 'kind_icon', 'kind' },
+                    },
+                },
+            },
+            documentation = {
+                --auto_show = true,
+                --auto_show_delay_ms = 500,
+                window = {
+                    border = 'single',
+                },
+            },
+        },
+
+        signature = {
+            enabled = true,
+            window = {
+                border = 'single',
+            },
+        },
+
         sources = {
-            default = { 'lsp', 'path', 'snippets', 'buffer' },
+            --default = { 'lsp', 'path', 'snippets', 'buffer' },
+            default = { 'lsp', 'path', 'snippets' },
         },
-        fuzzy = { implementation = 'prefer_rust_with_warning' },
+
+        fuzzy = {
+            implementation = 'prefer_rust_with_warning',
+            sorts = {
+                'exact',
+                'score',
+                'sort_text',
+            },
+        },
+
+        signature = { enabled = true },
     },
-    opts_extend = { 'sources.default' }
+    opts_extend = { 'sources.default' },
 }

@@ -100,7 +100,7 @@ vim.keymap.set('n', 'k', '(v:count > 5 ? "m\'" . v:count : "") . "gk"', { norema
 vim.keymap.set('n', 'Q', '<nop>')
 
 -- Execute tmux-sessionizer
-vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+vim.keymap.set('n', '<M-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
