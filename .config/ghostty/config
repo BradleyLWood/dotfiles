@@ -3,8 +3,9 @@ font-family = FiraCode Nerd Font
 font-size = 16
 
 # Theme
-theme = tokyonight
+theme = catppuccin-mocha
 
 # Resize overlay
 resize-overlay = never
 # resize-overlay-duration = 4s 200ms
+window-padding-balance = true
