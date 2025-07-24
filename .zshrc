@@ -11,6 +11,11 @@ setopt GLOB_DOTS
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
+# Android Dev
+export JAVA_HOME=/opt/android-studio/jbr
+export ANDROID_HOME="$HOME/Android/Sdk"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
+
 # Path
 export PATH=~/bin:~/.local/bin:~/.yarn/bin:$PATH
 
@@ -31,7 +36,7 @@ export PROJECT_PATHS=~/code
 
 # Bindings
 bindkey -v
-bindkey -s '^F' '~/.local/bin/tmux-sessionizer^M'
+bindkey -s '^[f' '~/.local/bin/tmux-sessionizer^M'
 bindkey '^L' 'autosuggest-accept'
 
 # Completion
@@ -55,6 +60,13 @@ alias r="ranger"
 alias cd=z
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+compdef config=git
+_config() {
+  local -x GIT_DIR=$HOME/.dotfiles
+  local -x GIT_WORK_TREE=$HOME
+  _git
+}
+compdef _config config
 
 # Cargo
 . "$HOME/.cargo/env"
