@@ -10,7 +10,6 @@ return {
             ['<M-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
         },
 
-        1.for
         appearance = {
             nerd_font_variant = 'normal',
         },
