@@ -14,6 +14,7 @@ export VISUAL="$EDITOR"
 # Android Dev
 export JAVA_HOME=/opt/android-studio/jbr
 export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_AVD_HOME="$HOME/.android/avd"
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 
 # Path
@@ -33,6 +34,9 @@ export PATH=$RUSTPATH/bin:$PATH
 
 # Project path for pj plugin
 export PROJECT_PATHS=~/code
+
+# Flutter
+export PATH="$HOME/code/flutter/bin:$PATH"
 
 # Bindings
 bindkey -v
@@ -93,18 +97,19 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
+# Plugins
+
 zinit light-mode for \
     zdharma-continuum/zinit-annex-as-monitor \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
-### End of Zinit's installer chunk
-
 # Abbrebiations
 zinit light olets/zsh-abbr
+
+# FZF Completion
+zinit light Aloxaf/fzf-tab
 
 # Initialize zoxide
 eval "$(zoxide init zsh)"
