@@ -42,6 +42,13 @@ return {
             },
         },
 
+        cmdline = {
+            keymap = { preset = 'inherit' },
+            completion = {
+                menu = {},
+            },
+        },
+
         sources = {
             --default = { 'lsp', 'path', 'snippets', 'buffer' },
             default = { 'lsp', 'path', 'snippets' },
@@ -55,8 +62,6 @@ return {
                 'sort_text',
             },
         },
-
-        signature = { enabled = true },
     },
     opts_extend = { 'sources.default' },
 }
