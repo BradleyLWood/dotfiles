@@ -47,6 +47,7 @@ vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
+vim.opt.colorcolumn = '100'
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
@@ -107,9 +108,15 @@ vim.keymap.set('n', '<M-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>le', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- QuickFix List
+-- Location list
+vim.keymap.set('n', '<leader>ll', ':lopen<cr>', { noremap = true, silent = true, desc = 'Open LocList' })
+vim.keymap.set('n', '<leader>ld', ':lclose<cr>', { noremap = true, silent = true, desc = 'Close LocList' })
+vim.keymap.set('n', '<leader>ln', ':lnext<cr>', { noremap = true, silent = true, desc = 'Next LocList item' })
+vim.keymap.set('n', '<leader>lp', ':lprev<cr>', { noremap = true, silent = true, desc = 'Prev LocList item' })
+
+-- Quickfix list
 vim.keymap.set('n', '<leader>ql', ':copen<cr>', { noremap = true, silent = true, desc = 'Open QFL' })
 vim.keymap.set('n', '<leader>qd', ':cclose<cr>', { noremap = true, silent = true, desc = 'Close QFL' })
 vim.keymap.set('n', '<leader>qn', ':cnext<cr>', { noremap = true, silent = true, desc = 'Next QFL item' })
@@ -129,16 +136,16 @@ vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
 vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
--- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+-- Conflict with harpoon
+--vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
+--vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
+--vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
+--vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- Windows
 -- Easier to use <leader>w then <C-w>
 vim.keymap.set('n', '<leader>wq', '<C-w>q', { desc = 'Close window' })
+vim.keymap.set('n', '<leader>wd', '<C-w>q', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Close other windows' })
 vim.keymap.set('n', '<leader>wn', '<C-w>n', { desc = 'New window' })
 
@@ -157,6 +164,7 @@ vim.keymap.set('n', '<leader>bj', ':bnext<CR>', { desc = 'Next' })
 vim.keymap.set('n', '<leader>bk', ':bprevious<CR>', { desc = 'Previous' })
 vim.keymap.set('n', '<leader>bl', ':buffers<CR>', { desc = 'List buffer' })
 vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Close' })
+vim.keymap.set('n', '<leader>bq', ':bdelete<CR>', { desc = 'Close' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -165,7 +173,7 @@ vim.keymap.set('n', '<leader>bd', ':bdelete<CR>', { desc = 'Close' })
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
