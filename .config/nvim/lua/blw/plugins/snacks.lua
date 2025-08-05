@@ -22,9 +22,9 @@ return {
         --{ '<leader>sB', function() Snacks.picker.grep_buffers() end, desc = 'Grep Open Buffers' },
         { '<leader>sg', function() Snacks.picker.grep() end, desc = 'Grep' },
         { '<leader>s/', function() Snacks.picker.search_history() end, desc = 'Search History' },
-        { '<leader>:', function() Snacks.picker.command_history() end, desc = 'Command History' },
+        { '<leader>:',  function() Snacks.picker.command_history() end, desc = 'Command History' },
         { '<leader>sC', function() Snacks.picker.commands() end, desc = 'Commands' },
-        { '<leader>n', function() Snacks.picker.notifications() end, desc = 'Notification History' },
+        { '<leader>n',  function() Snacks.picker.notifications() end, desc = 'Notification History' },
         { '<leader>sc', function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end, desc = 'Config' },
         { '<leader>sr', function() Snacks.picker.recent() end, desc = 'Recent' },
         { '<leader>sw', function() Snacks.picker.grep_word() end, desc = 'Visual selection or word', mode = { 'n', 'x' } },
@@ -33,11 +33,11 @@ return {
         { '<leader>sD', function() Snacks.picker.diagnostics() end, desc = 'Diagnostics' },
         { '<leader>ss', function() Snacks.picker.lsp_symbols() end, desc = 'LSP Symbols' },
         { '<leader>sS', function() Snacks.picker.lsp_workspace_symbols() end, desc = 'LSP Workspace Symbols' },
-        { 'gd', function() Snacks.picker.lsp_definitions() end, desc = 'Goto Definition' },
-        { 'gD', function() Snacks.picker.lsp_declarations() end, desc = 'Goto Declaration' },
-        { 'gr', function() Snacks.picker.lsp_references() end, nowait = true, desc = 'References' },
-        { 'gI', function() Snacks.picker.lsp_implementations() end, desc = 'Goto Implementation' },
-        { 'gt', function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto Type Definition' },
+        { 'gd',         function() Snacks.picker.lsp_definitions() end, desc = 'Goto Definition' },
+        { 'gD',         function() Snacks.picker.lsp_declarations() end, desc = 'Goto Declaration' },
+        { 'gr',         function() Snacks.picker.lsp_references() end, nowait = true, desc = 'References' },
+        { 'gI',         function() Snacks.picker.lsp_implementations() end, desc = 'Goto Implementation' },
+        { 'gt',         function() Snacks.picker.lsp_type_definitions() end, desc = 'Goto Type Definition' },
 
         { '<leader>s"', function() Snacks.picker.registers() end, desc = 'Registers' },
         { '<leader>sj', function() Snacks.picker.jumps() end, desc = 'Jumps' },
@@ -60,9 +60,9 @@ return {
 
         { '<leader>si', function() Snacks.picker.icons() end, desc = 'Icons' },
 
-        { '<leader>z', function() Snacks.zen() end, desc = 'Toggle Zen Mode' },
-        { '<leader>Z', function() Snacks.zen.zoom() end, desc = 'Toggle Zoom' },
+        { '<leader>z',  function() Snacks.zen() end, desc = 'Toggle Zen Mode' },
+        { '<leader>Z',  function() Snacks.zen.zoom() end, desc = 'Toggle Zoom' },
 
-        { '<leader>.', function() Snacks.scratch() end, desc = 'Scratch Buffer' },
+        { '<leader>.',  function() Snacks.scratch() end, desc = 'Scratch Buffer' },
     }
 }
