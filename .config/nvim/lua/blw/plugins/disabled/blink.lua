@@ -1,6 +1,16 @@
 return {
     'sghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+        'rafamadriz/friendly-snippets',
+        'saghen/blink.compat', -- Compatibility layer for nvim-cmp sources
+        {
+            'supermaven-inc/supermaven-nvim',
+            opts = {
+                --disable_inline_completion = true, -- Disable inline completion for use with blink.cmp
+                disable_keymaps = true, -- Disable default keymaps for manual control
+            },
+        },
+    },
     version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.comp.Config
@@ -50,8 +60,15 @@ return {
         },
 
         sources = {
-            --default = { 'lsp', 'path', 'snippets', 'buffer' },
-            default = { 'lsp', 'path', 'snippets' },
+            default = { 'lsp', 'path', 'snippets', 'supermaven' },
+            providers = {
+                supermaven = {
+                    name = 'supermaven',
+                    module = 'blink.compat.source',
+                    enabled = true,
+                    opts = {},
+                },
+            },
         },
 
         fuzzy = {
