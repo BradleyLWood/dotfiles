@@ -1,16 +1,48 @@
+local root_files = {
+    '.luarc.json',
+    '.luarc.jsonc',
+    '.luacheckrc',
+    '.stylua.toml',
+    'stylua.toml',
+    'selene.toml',
+    'selene.yml',
+    '.git',
+}
+
 return {
     {
         'neovim/nvim-lspconfig',
         dependencies = {
-            { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+            'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
             'WhoIsSethDaniel/mason-tool-installer.nvim',
-            'saghen/blink.cmp',
-            -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-            { 'j-hui/fidget.nvim', opts = {} },
-            { 'folke/neodev.nvim', opts = {} },
+            'hrsh7th/nvim-cmp',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'L3MON4D3/LuaSnip',
+            'rafamadriz/friendly-snippets',
+            'saadparwaiz1/cmp_luasnip',
+            'j-hui/fidget.nvim',
+            'folke/neodev.nvim',
         },
+
         config = function()
+            local cmp = require('cmp')
+
+            local capabilities = vim.tbl_deep_extend(
+                'force',
+                vim.lsp.protocol.make_client_capabilities(),
+                require('cmp_nvim_lsp').default_capabilities()
+            )
+
+            require('mason').setup({})
+
+            local luasnip = require('luasnip')
+            luasnip.config.setup({})
+            require('luasnip.loaders.from_vscode').lazy_load()
+
             vim.api.nvim_create_autocmd('LspAttach', {
                 group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
                 callback = function(event)
@@ -18,28 +50,13 @@ return {
                         vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
                     end
 
-                    -- Rename the variable under your cursor.
-                    --  Most Language Servers support renaming across files, etc.
                     map('<leader>rn', vim.lsp.buf.rename, 'Rename')
-
-                    -- Execute a code action, usually your cursor needs to be on top of an error
-                    -- or a suggestion from your LSP for this to activate.
                     map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
-
-                    -- Opens a popup that displays documentation about the word under your cursor
-                    --  See `:help K` for why this keymap.
                     map('K', vim.lsp.buf.hover, 'Hover Documentation')
 
-                    -- The following two autocommands are used to highlight references of the
-                    -- word under your cursor when your cursor rests there for a little while.
-                    --    See `:help CursorHold` for information about when this is executed
-                    --
-                    -- When you move your cursor, the highlights will be cleared (the second autocommand).
-                    --
                     local client = vim.lsp.get_client_by_id(event.data.client_id)
                     if client and client.server_capabilities.documentHighlightProvider then
-                        local highlight_augroup =
-                            vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+                        local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
                         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
                             buffer = event.buf,
                             group = highlight_augroup,
@@ -63,11 +80,7 @@ return {
                 end,
             })
 
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
-
             local servers = {
-                -- See `:help lspconfig-all` for a list of all the pre-configured LSPs
                 clangd = {},
                 -- TODO: Fix go
                 --gopls = {},
@@ -82,13 +95,8 @@ return {
                 tailwindcss = {},
                 ts_ls = {},
                 lua_ls = {
-                    -- cmd = {...},
-                    -- filetypes = { ...},
-                    -- capabilities = {},
                     settings = {
                         Lua = {
-                            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                            -- diagnostics = { disable = { 'missing-fields' } },
                             diagnostics = { globals = { 'vim' } },
                             completion = {
                                 callSnippet = 'Replace',
@@ -98,33 +106,87 @@ return {
                 },
             }
 
-            -- Ensure the servers and tools above are installed
-            --  To check the current status of installed tools and/or manually install
-            --  other tools, you can run
-            --    :Mason
-            --
-            --  You can press `g?` for help in this menu.
-            require('mason').setup()
-
-            -- You can add other tools here that you want Mason to install
-            -- for you, so that they are available from within Neovim.
             local ensure_installed = vim.tbl_keys(servers or {})
             vim.list_extend(ensure_installed, {
                 'stylua', -- Used to format Lua code
             })
-            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
+            require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
             require('mason-lspconfig').setup({
                 handlers = {
                     function(server_name)
                         local server = servers[server_name] or {}
-                        -- This handles overriding only values explicitly passed
-                        -- by the server configuration above. Useful when disabling
-                        -- certain features of an LSP (for example, turning off formatting for tsserver)
                         server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
                         require('lspconfig')[server_name].setup(server)
                     end,
                 },
+            })
+
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end,
+                },
+                completion = { completeopt = 'menu,menuone,noinsert' },
+
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-n>'] = cmp.mapping.select_next_item(),
+                    ['<C-p>'] = cmp.mapping.select_prev_item(),
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                    ['<M-Space>'] = cmp.mapping.complete({}),
+                    -- TODO: fix so doesn't conflict with harpoon
+                    --['<C-l>'] = cmp.mapping(function()
+                    --    if luasnip.expand_or_locally_jumpable() then
+                    --        luasnip.expand_or_jump()
+                    --    end
+                    --end, { 'i', 's' }),
+                    --['<C-h>'] = cmp.mapping(function()
+                    --    if luasnip.locally_jumpable(-1) then
+                    --        luasnip.jump(-1)
+                    --    end
+                    --end, { 'i', 's' }),
+                }),
+
+                sources = {
+                    { name = 'nvim_lsp' },
+                    { name = 'luasnip' },
+                    { name = 'path' },
+                },
+
+                window = {
+                    completion = {
+                        border = 'single',
+                    },
+                    documentation = {
+                        border = 'single',
+                    },
+                },
+            })
+
+            -- `/` cmdline setup.
+            cmp.setup.cmdline('/', {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = 'buffer' },
+                },
+            })
+
+            -- `:` cmdline setup.
+            cmp.setup.cmdline(':', {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = 'path' },
+                }, {
+                    {
+                        name = 'cmdline',
+                        option = {
+                            ignore_cmds = { 'Man', '!' },
+                        },
+                    },
+                }),
             })
         end,
     },
