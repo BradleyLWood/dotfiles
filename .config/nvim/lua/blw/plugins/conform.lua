@@ -18,6 +18,7 @@ return {
             clojure = { 'cljfmt' },
             rust = { 'rustfmt', lsp_format = 'fallback' },
             ocaml = { 'ocamlformat' },
+            haskell = { 'ormolu' },
             javascript = { 'prettierd', 'prettier', stop_after_first = true },
         },
         formatters = {

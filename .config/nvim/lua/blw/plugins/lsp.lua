@@ -85,6 +85,7 @@ return {
                 -- TODO: Fix go
                 --gopls = {},
                 ocamllsp = {},
+                hls = {},
                 pyright = {},
                 rust_analyzer = {},
                 ansiblels = {},
