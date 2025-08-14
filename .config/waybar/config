@@ -7,6 +7,15 @@
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "all-outputs": false,
+        "active-only": false,
+        "show-special": true,
+        "persistent-only": false, // Ensure this is false or omitted
+    },
+
     "network": {
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ifname} ",
@@ -14,6 +23,7 @@
         "max-length": 50,
         "on-click": "ghostty -e 'nmtui'"
     },
+
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -21,16 +31,19 @@
             "deactivated": ""
         },
     },
+
     "tray": {
         "icon-size": 15,
         "spacing": 10
     },
+    
     "clock": {
         // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         // "format-alt": "{:%Y-%m-%d}"
         "format": "{:%I:%M %p}",
 		"on-click": "gnome-calendar"
     },
+
     "pulseaudio": {
         "format": "{volume}% {icon} ",
         "format-bluetooth": "{volume}% {icon} {format_source}",
@@ -44,10 +57,12 @@
         },
         "on-click": "pavucontrol"
     },
+
 	"custom/power": {
 		"format": " ",
 		"on-click": "wlogout"
 	},
+    
     "custom/scratchpad-indicator": {
         "format-text": "{}hi",
         "return-type": "json",
