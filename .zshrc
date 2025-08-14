@@ -32,6 +32,13 @@ export PATH=$GOPATH/bin:$PATH
 export RUSTPATH=~/.cargo
 export PATH=$RUSTPATH/bin:$PATH
 
+# Haskell ghcup
+export HASKELLPATH=~/.ghcup
+export PATH=$HASKELLPATH/bin:$PATH
+
+# Zig Preview
+export PATH=~/sources/zig-x86_64-linux-0.15.0-dev.1254+c9ce1debe/:$PATH
+
 # Project path for pj plugin
 export PROJECT_PATHS=~/code
 
@@ -111,8 +118,19 @@ zinit light olets/zsh-abbr
 # FZF Completion
 zinit light Aloxaf/fzf-tab
 
+# Initialize opam for ocaml
+eval $(opam env)
+
 # Initialize zoxide
 eval "$(zoxide init zsh)"
 
 # Initialize starship
 eval "$(starship init zsh)"
+
+# Initialize thefuck
+eval $(thefuck --alias)
+
+# Run 'reset' when a new tmux window/pane is created
+if [ -n "$TMUX" ]; then
+    reset
+fi
