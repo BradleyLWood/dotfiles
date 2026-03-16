@@ -55,6 +55,7 @@ vim.opt.colorcolumn = '100'
 vim.opt.scrolloff = 10
 
 vim.wo.wrap = false
+vim.wo.linebreak = true
 
 vim.opt.swapfile = false
 vim.opt.backup = false
