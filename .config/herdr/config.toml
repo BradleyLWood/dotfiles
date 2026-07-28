@@ -147,7 +147,7 @@ sidebar_collapsed_mode = "hidden"
 
 # Optional modifier that forwards right-click hold/drag gestures to pane apps instead of opening Herdr's pane menu.
 # Empty/off disables this. Shift is intentionally unsupported because terminals commonly reserve Shift+mouse.
-# right_click_passthrough_modifier = ""
+right_click_passthrough_modifier = "ctrl"
 
 # Force a full redraw when the outer terminal regains focus.
 # Set false to reduce visible flashing when switching back to Herdr.
@@ -158,7 +158,7 @@ sidebar_collapsed_mode = "hidden"
 # mouse_scroll_lines = 3
 
 # Ask for confirmation before closing a workspace
-# confirm_close = true
+confirm_close = true
 
 # Ask for a tab name before creating a new tab.
 # Set false to create tabs immediately with generated names.
