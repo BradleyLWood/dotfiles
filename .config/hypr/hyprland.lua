@@ -2,17 +2,10 @@
 ---- MONITORS ----
 ------------------
 hl.monitor({
-	output = "DP-1",
-	mode = "2560x1440",
+	output = "eDP-1",
+	mode = "3840x2160",
 	position = "0x0",
-	scale = 1,
-})
-
-hl.monitor({
-	output = "DVI-D-1",
-	mode = "1440x900",
-	position = "2560x300",
-	scale = 1,
+	scale = 2,
 })
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
@@ -208,6 +201,7 @@ hl.config({
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
 		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
+        on_focus_under_fullscreen = 1,
 	},
 })
 
@@ -228,7 +222,10 @@ hl.config({
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
 		touchpad = {
-			natural_scroll = false,
+			natural_scroll = true,
+            scroll_factor = 0.2,
+            tap_to_click = false,
+            disable_while_typing = true,
 		},
 	},
 })
@@ -268,10 +265,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 
--- Move focus with mainMod + HJKL keys
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-
--- FIX these aren't working in fullscreen
+-- Smart focus will do a cycle_next if fullscreen and a focus direction if not
 local function smart_focus(direction)
 	local win = hl.get_active_window()
 	if win and win.fullscreen then
@@ -281,14 +275,23 @@ local function smart_focus(direction)
 	end
 end
 
+-- Move focus with mainMod + HJKL keys
+hl.bind(mainMod .. " + H", function()
+	smart_focus("left")
+    --hl.dsp.focus({ direction = "left" })
+end)
 hl.bind(mainMod .. " + J", function()
 	smart_focus("up")
+    --hl.dsp.focus({ direction = "up" })
 end)
 hl.bind(mainMod .. " + K", function()
 	smart_focus("down")
+    --hl.dsp.focus({ direction = "down" })
 end)
-
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + L", function()
+	smart_focus("right")
+    --hl.dsp.focus({ direction = "right" })
+end)
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "up" }))
@@ -395,20 +398,12 @@ hl.window_rule({
 	float = true,
 })
 
--- Assign workspaces 1-7 to DP-1
-for i = 1, 7 do
+-- Assign workspaces 1-7 to eDP-1
+for i = 1, 10 do
 	hl.workspace_rule({
 		workspace = tostring(i),
-		monitor = "DP-1",
+		monitor = "eDP-1",
 		default = (i == 1),
 	})
 end
 
--- Assign workspaces 6-10 to DVI-D-1
-for i = 8, 10 do
-	hl.workspace_rule({
-		workspace = tostring(i),
-		monitor = "DVI-D-1",
-		default = (i == 6),
-	})
-end
