@@ -187,8 +187,8 @@ hl.config({
 hl.config({
 	master = {
 		new_status = "slave",
-        new_on_top = true,
-        mfact = 0.60,
+		new_on_top = true,
+		mfact = 0.60,
 	},
 })
 
@@ -207,7 +207,7 @@ hl.config({
 	misc = {
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
-        exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
+		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
 	},
 })
 
@@ -256,7 +256,9 @@ hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
 local closeWindowBind = hl.bind(mainMod .. " + X", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+hl.bind(
+	mainMod .. " + M",
+	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
@@ -268,8 +270,24 @@ hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen
 
 -- Move focus with mainMod + HJKL keys
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "down" }))
+
+-- FIX these aren't working in fullscreen
+local function smart_focus(direction)
+	local win = hl.get_active_window()
+	if win and win.fullscreen then
+		hl.dispatch(hl.dsp.window.cycle_next())
+	else
+		hl.dispatch(hl.dsp.focus({ direction = direction }))
+	end
+end
+
+hl.bind(mainMod .. " + J", function()
+	smart_focus("up")
+end)
+hl.bind(mainMod .. " + K", function()
+	smart_focus("down")
+end)
+
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
@@ -378,19 +396,19 @@ hl.window_rule({
 })
 
 -- Assign workspaces 1-7 to DP-1
-for i=1,7 do
-    hl.workspace_rule({
-        workspace = tostring(i),
-        monitor = "DP-1",
-        default = (i == 1)
-    })
+for i = 1, 7 do
+	hl.workspace_rule({
+		workspace = tostring(i),
+		monitor = "DP-1",
+		default = (i == 1),
+	})
 end
 
 -- Assign workspaces 6-10 to DVI-D-1
-for i=8,10 do
-    hl.workspace_rule({
-        workspace = tostring(i),
-        monitor = "DVI-D-1",
-        default = (i == 6)
-    })
+for i = 8, 10 do
+	hl.workspace_rule({
+		workspace = tostring(i),
+		monitor = "DVI-D-1",
+		default = (i == 6),
+	})
 end
