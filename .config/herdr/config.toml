@@ -31,18 +31,18 @@ prefix = "ctrl+space"
 
 # Prefix-mode actions
 # help = "prefix+?"
-# settings = "prefix+s"
+settings = "prefix+shift+s"
 detach = "prefix+d"
 # reload_config = "prefix+shift+r"
 # open_notification_target = "prefix+o"
 # workspace_picker = "prefix+w"
-# goto = "prefix+g"
+goto = "alt+f"
 # new_workspace = "prefix+shift+n"
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
 # remove_worktree = ""  # optional, unset by default; opens confirmation
 # rename_workspace = "prefix+shift+w"
-# close_workspace = "prefix+shift+d"
+close_workspace = "prefix+ctrl+shift+x"
 previous_workspace = "prefix+ctrl+p" # optional, unset by default
 next_workspace = "prefix+ctrl+n"     # optional, unset by default
 # previous_agent = ""     # optional, unset by default
@@ -55,7 +55,7 @@ next_workspace = "prefix+ctrl+n"     # optional, unset by default
 # next_tab = "prefix+n"
 # switch_tab = "prefix+1..9"
 # switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
-close_tab = "prefix+x"
+close_tab = "prefix+ctrl+x"
 # rename_pane = "prefix+shift+p"
 # edit_scrollback = "prefix+e"
 # focus_pane_left = "prefix+h"
@@ -67,19 +67,19 @@ close_tab = "prefix+x"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
 # split_vertical = "prefix+v"
 # split_horizontal = "prefix+minus"
-# close_pane = "prefix+x"
+close_pane = "prefix+x"
 zoom = "prefix+f"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
-# toggle_sidebar = "prefix+b"
+toggle_sidebar = "prefix+s"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
-navigate_workspace_up = "ctrl+p"
-navigate_workspace_down = "ctrl+n"
-navigate_pane_left = "ctrl+l"      # left arrow always focuses the pane to the left
-navigate_pane_down = "ctrl+k"
-navigate_pane_up = "ctrl+j"
-navigate_pane_right = "ctrl+h"     # right arrow always focuses the pane to the right
+navigate_workspace_up = "p"
+navigate_workspace_down = "n"
+navigate_pane_left = "l"      # left arrow always focuses the pane to the left
+navigate_pane_down = "k"
+navigate_pane_up = "j"
+navigate_pane_right = "h"     # right arrow always focuses the pane to the right
 
 # Custom commands use the same binding syntax.
 # type = "shell" runs detached in the background.
