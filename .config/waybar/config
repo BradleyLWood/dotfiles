@@ -1,7 +1,7 @@
 {
     "modules-left": ["hyprland/workspaces", "hyperland/mode"],
     "modules-center": ["clock", "idle_inhibitor"],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "battery", "custom/power"],
 
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -44,15 +44,15 @@
     },
 
     "pulseaudio": {
-        "format": "{volume}% {icon} ",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "0% {icon} ",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format-muted": "{icon} 0%",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
         "format-icons": {
-            "headphone": "",
-            "default": ["", "", ""]
+            "headphone": " ",
+            "default": ["  ", "  ", "  "]
         },
         "on-click": "pavucontrol"
     },
@@ -70,5 +70,24 @@
         "exec-if": "exit 0",
         "on-click": "hyprlandmsg 'scratchpad show'",
         "on-click-right": "hyprlandmsg 'move scratchpad'"
+    },
+    
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "   {icon} {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": {
+            "charging": [
+                "󰢟 ", "󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 "
+            ],
+            "default": [
+                "󰂎 ", "󰁺 ", "󰁻 ", "󰁼 ", "󰁽 ", "󰁾 ", "󰁿 ", "󰂀 ", "󰂁 ", "󰂂 ", "󰁹 "
+            ]
+        }
     }
 }
