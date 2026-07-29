@@ -1,4 +1,151 @@
-opening Herdr's pane menu.
+# herdr configuration
+onboarding = false
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[theme.custom]
+accent = "green"
+surface0 = "#24273a"
+surface1 = "blue"
+overlay0 = "white"
+overlay1 = "red"
+text = "green"
+subtext0 = "white"
+
+[terminal]
+
+[update]
+
+[keys]
+# Prefix key to enter prefix mode (default: "ctrl+b")
+# Examples: "ctrl+b", "f12", "esc", "-"
+# Action bindings use explicit syntax: "prefix+n" requires the prefix;
+# "ctrl+alt+n" is a direct terminal-mode shortcut.
+# Accepted key syntax: plain keys, ctrl/shift/alt/cmd/super modifiers, and special keys like enter/tab/esc/left/right/up/down.
+# Named punctuation such as minus, comma, ampersand, plus, and backtick is also accepted.
+# Most reliable direct bindings are ctrl+letter, function keys, and explicit modified chords.
+# alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
+prefix = "ctrl+space"
+
+# Prefix-mode actions
+# help = "prefix+?"
+settings = "prefix+shift+s"
+detach = "prefix+d"
+# reload_config = "prefix+shift+r"
+# open_notification_target = "prefix+o"
+# workspace_picker = "prefix+w"
+goto = "alt+f"
+# new_workspace = "prefix+shift+n"
+# new_worktree = "prefix+shift+g"
+# open_worktree = ""    # optional, unset by default
+# remove_worktree = ""  # optional, unset by default; opens confirmation
+# rename_workspace = "prefix+shift+w"
+close_workspace = "prefix+ctrl+shift+x"
+previous_workspace = "prefix+ctrl+p" # optional, unset by default
+next_workspace = "prefix+ctrl+n"     # optional, unset by default
+# previous_agent = ""     # optional, unset by default
+# next_agent = ""         # optional, unset by default
+# focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
+# remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
+# new_tab = "prefix+c"
+# rename_tab = "prefix+shift+t"
+# previous_tab = "prefix+p"
+# next_tab = "prefix+n"
+# switch_tab = "prefix+1..9"
+# switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
+close_tab = "prefix+ctrl+x"
+# rename_pane = "prefix+shift+p"
+# edit_scrollback = "prefix+e"
+# focus_pane_left = "prefix+h"
+# focus_pane_down = "prefix+j"
+# focus_pane_up = "prefix+k"
+# focus_pane_right = "prefix+l"
+# cycle_pane_next = "prefix+tab"
+# cycle_pane_previous = "prefix+shift+tab"
+# last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
+# split_vertical = "prefix+v"
+# split_horizontal = "prefix+minus"
+close_pane = "prefix+x"
+zoom = "prefix+f"       # legacy alias: fullscreen
+# resize_mode = "prefix+r"
+toggle_sidebar = "prefix+s"
+
+# Navigate-mode movement. These local shortcuts win while navigate mode is open.
+# They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
+navigate_workspace_up = "p"
+navigate_workspace_down = "n"
+navigate_pane_left = "l"      # left arrow always focuses the pane to the left
+navigate_pane_down = "k"
+navigate_pane_up = "j"
+navigate_pane_right = "h"     # right arrow always focuses the pane to the right
+
+# Custom commands use the same binding syntax.
+# type = "shell" runs detached in the background.
+# type = "pane" opens a temporary pane and closes it when the command exits.
+# type = "popup" opens a session-modal terminal without changing the tab layout.
+# Popup width and height accept terminal cells or percentages such as "80%".
+# On Windows, command strings run through cmd.exe /d /c.
+[[keys.command]]
+key = "prefix+ctrl+g"
+type = "popup"
+command = "lazygit"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+ctrl+c"
+type = "popup"
+command = "lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+width = "80%"
+height = "80%"
+
+# Legacy indexed shortcut config is still parsed for compatibility.
+# Prefer switch_tab, switch_workspace, and focus_agent for new configs.
+# [keys.indexed]
+# tabs = ""       # e.g. "ctrl" makes ctrl+1..9 switch tabs directly
+# workspaces = "" # e.g. "ctrl+shift" makes ctrl+shift+1..9 switch workspaces directly
+# agents = ""     # e.g. "alt" makes alt+1..9 focus agent rows directly
+
+# [worktrees]
+# directory = "~/.herdr/worktrees"
+
+[ui]
+# Sidebar width (auto-scaled based on workspace names, this sets the default)
+# sidebar_width = 26
+
+# Minimum sidebar width when expanded (columns)
+# sidebar_min_width = 18
+
+# Maximum sidebar width when expanded (columns)
+# sidebar_max_width = 36
+
+# Start with the sidebar collapsed. Changes take effect on the next launch.
+sidebar_start_collapsed = true
+
+# Collapsed sidebar presentation: "compact" keeps the narrow status rail, "hidden" uses zero width.
+sidebar_collapsed_mode = "hidden"
+
+# Terminal width at or below which Herdr uses the mobile single-column layout.
+# Increase this for foldables, tablets, or wide phone terminals.
+# mobile_width_threshold = 64
+
+# Capture mouse input for Herdr's mouse UI.
+# Set false to let the terminal handle normal clicks, such as Cmd-clicking URLs.
+# Pane apps like lazygit and btop can still receive mouse when they request it.
+# mouse_capture = true
+
+# Automatically copy text selected by mouse drag.
+# Set false to keep drag selection visible without copying; double-click still copies a word.
+# copy_on_select = true
+
+# Host cursor policy: "auto", "native", or "drawn".
+# "auto" draws Herdr's own cursor on native Windows builds and WSL to avoid ConPTY cursor flicker, and uses the native terminal cursor elsewhere.
+# "native" always uses the outer terminal cursor. "drawn" always draws Herdr's cursor as terminal cell content.
+# host_cursor = "auto"
+
+# Optional modifier that forwards right-click hold/drag gestures to pane apps instead of opening Herdr's pane menu.
 # Empty/off disables this. Shift is intentionally unsupported because terminals commonly reserve Shift+mouse.
 right_click_passthrough_modifier = "ctrl"
 
@@ -136,151 +283,4 @@ pane_history = true
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
-nt = ""     # optional, unset by default
-# next_agent = ""         # optional, unset by default
-# focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
-# remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
-# new_tab = "prefix+c"
-# rename_tab = "prefix+shift+t"
-# previous_tab = "prefix+p"
-# next_tab = "prefix+n"
-# switch_tab = "prefix+1..9"
-# switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
-close_tab = "prefix+ctrl+x"
-# rename_pane = "prefix+shift+p"
-# edit_scrollback = "prefix+e"
-# focus_pane_left = "prefix+h"
-# focus_pane_down = "prefix+j"
-# focus_pane_up = "prefix+k"
-# focus_pane_right = "prefix+l"
-# cycle_pane_next = "prefix+tab"
-# cycle_pane_previous = "prefix+shift+tab"
-# last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
-# split_vertical = "prefix+v"
-# split_horizontal = "prefix+minus"
-close_pane = "prefix+x"
-zoom = "prefix+f"       # legacy alias: fullscreen
-# resize_mode = "prefix+r"
-toggle_sidebar = "prefix+s"
 
-# Navigate-mode movement. These local shortcuts win while navigate mode is open.
-# They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
-navigate_workspace_up = "p"
-navigate_workspace_down = "n"
-navigate_pane_left = "l"      # left arrow always focuses the pane to the left
-navigate_pane_down = "k"
-navigate_pane_up = "j"
-navigate_pane_right = "h"     # right arrow always focuses the pane to the right
-
-# Custom commands use the same binding syntax.
-# type = "shell" runs detached in the background.
-# type = "pane" opens a temporary pane and closes it when the command exits.
-# type = "popup" opens a session-modal terminal without changing the tab layout.
-# Popup width and height accept terminal cells or percentages such as "80%".
-# On Windows, command strings run through cmd.exe /d /c.
-[[keys.command]]
-key = "prefix+ctrl+g"
-type = "popup"
-command = "lazygit"
-width = "80%"
-height = "80%"
-
-[[keys.command]]
-key = "prefix+ctrl+c"
-type = "popup"
-command = "lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-width = "80%"
-height = "80%"
-
-# Legacy indexed shortcut config is still parsed for compatibility.
-# Prefer switch_tab, switch_workspace, and focus_agent for new configs.
-# [keys.indexed]
-# tabs = ""       # e.g. "ctrl" makes ctrl+1..9 switch tabs directly
-# workspaces = "" # e.g. "ctrl+shift" makes ctrl+shift+1..9 switch workspaces directly
-# agents = ""     # e.g. "alt" makes alt+1..9 focus agent rows directly
-
-# [worktrees]
-# directory = "~/.herdr/worktrees"
-
-[ui]
-# Sidebar width (auto-scaled based on workspace names, this sets the default)
-# sidebar_width = 26
-
-# Minimum sidebar width when expanded (columns)
-# sidebar_min_width = 18
-
-# Maximum sidebar width when expanded (columns)
-# sidebar_max_width = 36
-
-# Start with the sidebar collapsed. Changes take effect on the next launch.
-sidebar_start_collapsed = true
-
-# Collapsed sidebar presentation: "compact" keeps the narrow status rail, "hidden" uses zero width.
-sidebar_collapsed_mode = "hidden"
-
-# Terminal width at or below which Herdr uses the mobile single-column layout.
-# Increase this for foldables, tablets, or wide phone terminals.
-# mobile_width_threshold = 64
-
-# Capture mouse input for Herdr's mouse UI.
-# Set false to let the terminal handle normal clicks, such as Cmd-clicking URLs.
-# Pane apps like lazygit and btop can still receive mouse when they request it.
-# mouse_capture = true
-
-# Automatically copy text selected by mouse drag.
-# Set false to keep drag selection visible without copying; double-click still copies a word.
-# copy_on_select = true
-
-# Host cursor policy: "auto", "native", or "drawn".
-# "auto" draws Herdr's own cursor on native Windows builds and WSL to avoid ConPTY cursor flicker, and uses the native terminal cursor elsewhere.
-# "native" always uses the outer terminal cursor. "drawn" always draws Herdr's cursor as terminal cell content.
-# host_cursor = "auto"
-
-# Optional modifier that forwards right-click hold/drag gestures to pane apps instead of # herdr configuration
-onboarding = false
-
-[theme]
-name = "catppuccin"
-auto_switch = false
-
-[theme.custom]
-accent = "green"
-surface0 = "#24273a"
-surface1 = "blue"
-overlay0 = "white"
-overlay1 = "red"
-text = "green"
-subtext0 = "white"
-
-[terminal]
-
-[update]
-
-[keys]
-# Prefix key to enter prefix mode (default: "ctrl+b")
-# Examples: "ctrl+b", "f12", "esc", "-"
-# Action bindings use explicit syntax: "prefix+n" requires the prefix;
-# "ctrl+alt+n" is a direct terminal-mode shortcut.
-# Accepted key syntax: plain keys, ctrl/shift/alt/cmd/super modifiers, and special keys like enter/tab/esc/left/right/up/down.
-# Named punctuation such as minus, comma, ampersand, plus, and backtick is also accepted.
-# Most reliable direct bindings are ctrl+letter, function keys, and explicit modified chords.
-# alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
-prefix = "ctrl+space"
-
-# Prefix-mode actions
-# help = "prefix+?"
-settings = "prefix+shift+s"
-detach = "prefix+d"
-# reload_config = "prefix+shift+r"
-# open_notification_target = "prefix+o"
-# workspace_picker = "prefix+w"
-goto = "alt+f"
-# new_workspace = "prefix+shift+n"
-# new_worktree = "prefix+shift+g"
-# open_worktree = ""    # optional, unset by default
-# remove_worktree = ""  # optional, unset by default; opens confirmation
-# rename_workspace = "prefix+shift+w"
-close_workspace = "prefix+ctrl+shift+x"
-previous_workspace = "prefix+ctrl+p" # optional, unset by default
-next_workspace = "prefix+ctrl+n"     # optional, unset by default
-# previous_age
