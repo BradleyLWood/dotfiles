@@ -76,6 +76,9 @@ eval "$(zoxide init zsh --cmd cd)"
 # Initialize starship
 eval "$(starship init zsh)"
 
+# Initialize fzf completion
+source <(fzf --zsh)
+
 # Run 'reset' when a new tmux window/pane is created
 if [ -n "$TMUX" ]; then
     reset

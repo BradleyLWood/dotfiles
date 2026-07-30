@@ -189,6 +189,7 @@ hide_tab_bar_when_single_tab = true
 # Custom values reported through pane metadata use a $name token.
 # A token occurrence may be styled with { token = "workspace", fg = "#89b4fa", bold = true, dim = false }.
 # Omitted style fields preserve the contextual default.
+agent_panel_sort = "spaces"
 [ui.sidebar.agents]
 # Blank rows between agent entries. Set to 1 to restore the previous spacing.
 row_gap = 1
@@ -256,7 +257,7 @@ enabled = false
 # allow_nested = false
 # Experimental local Kitty graphics rendering for attached clients.
 # Requires a Kitty graphics-compatible outer terminal.
-# kitty_graphics = false
+kitty_graphics = true
 # Save recent pane screen history across full server restarts.
 pane_history = true
 # While prefix mode is active, temporarily switch the macOS host input

@@ -1,7 +1,15 @@
 {
+    "layer": "top",
+    "position": "top",
+    "exclusive": true,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+
     "modules-left": ["hyprland/workspaces", "hyperland/mode"],
     "modules-center": ["clock", "idle_inhibitor"],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio", "battery", "custom/power"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "network", "pulseaudio", "battery", "custom/power"],
 
     "hyprland/mode": {
         "format": "<span style=\"italic\">{}</span>"
@@ -14,11 +22,25 @@
         "show-special": true,
         "persistent-only": false, // Ensure this is false or omitted
     },
+    "custom/logo": {
+        "format": ""
+    },
+    "mpris": {
+        "format": "{status_icon} {title} - {artist}",
+        "title-len": 50,
+        "artist-len": 20,
+        "status-icons": {
+            "playing": "",
+            "paused": ""
+        }
+    },
 
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname} ",
-        "format-disconnected": "", 
+        //"format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "   {signalStrength}%",
+        //"format-ethernet": "{ifname} ",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "  ", 
         "max-length": 50,
         "on-click": "ghostty -e 'nmtui'"
     },

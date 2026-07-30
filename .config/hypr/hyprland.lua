@@ -8,22 +8,13 @@ hl.monitor({
 	scale = 2,
 })
 
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
---hl.monitor({
---    output   = "",
---    mode     = "preferred",
---    position = "auto",
---    scale    = "auto",
---})
-
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
 
 -- Set programs that you use
 local terminal = "ghostty"
---local terminal    = "kitty"
-local fileManager = "dolphin"
+local fileManager = "ghostty --title=yazi-floating -e yazi"
 local menu = "wofi --show drun"
 
 -------------------
@@ -112,7 +103,7 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 3,
+			size = 5,
 			passes = 1,
 			vibrancy = 0.1696,
 		},
@@ -151,24 +142,6 @@ hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "al
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
-
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
 	dwindle = {
@@ -201,7 +174,7 @@ hl.config({
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
 		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
-        on_focus_under_fullscreen = 1,
+		on_focus_under_fullscreen = 1,
 	},
 })
 
@@ -223,9 +196,9 @@ hl.config({
 
 		touchpad = {
 			natural_scroll = true,
-            scroll_factor = 0.2,
-            tap_to_click = false,
-            disable_while_typing = true,
+			scroll_factor = 0.2,
+			tap_to_click = false,
+			disable_while_typing = true,
 		},
 	},
 })
@@ -278,19 +251,19 @@ end
 -- Move focus with mainMod + HJKL keys
 hl.bind(mainMod .. " + H", function()
 	smart_focus("left")
-    --hl.dsp.focus({ direction = "left" })
+	--hl.dsp.focus({ direction = "left" })
 end)
 hl.bind(mainMod .. " + J", function()
 	smart_focus("up")
-    --hl.dsp.focus({ direction = "up" })
+	--hl.dsp.focus({ direction = "up" })
 end)
 hl.bind(mainMod .. " + K", function()
 	smart_focus("down")
-    --hl.dsp.focus({ direction = "down" })
+	--hl.dsp.focus({ direction = "down" })
 end)
 hl.bind(mainMod .. " + L", function()
 	smart_focus("right")
-    --hl.dsp.focus({ direction = "right" })
+	--hl.dsp.focus({ direction = "right" })
 end)
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
@@ -398,6 +371,18 @@ hl.window_rule({
 	float = true,
 })
 
+-- Force the Ghostty Yazi instance to float and center
+hl.window_rule({
+	name = "yazi",
+	match = {
+		class = "^(com.mitchellh.ghostty)$",
+		title = "^(yazi-floating)$",
+	},
+	float = true,
+	center = true,
+	size = { "(monitor_w*0.8)", "(monitor_h*0.8)" },
+})
+
 -- Assign workspaces 1-7 to eDP-1
 for i = 1, 10 do
 	hl.workspace_rule({
@@ -406,4 +391,3 @@ for i = 1, 10 do
 		default = (i == 1),
 	})
 end
-
