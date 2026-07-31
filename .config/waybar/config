@@ -1,10 +1,18 @@
 {
+    "layer": "top",
+    "position": "top",
+    "exclusive": true,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+
     "modules-left": ["hyprland/workspaces", "hyperland/mode"],
     "modules-center": ["clock", "idle_inhibitor"],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "pulseaudio"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "network", "mpris", "pulseaudio", "custom/power"],
 
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
+    "custom/logo": {
+        "format": "  "
     },
 
     "hyprland/workspaces": {
@@ -15,10 +23,24 @@
         "persistent-only": false, // Ensure this is false or omitted
     },
 
+    "hyprland/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "mpris": {
+        "format": "{status_icon} {title} - {artist}",
+        "title-len": 50,
+        "artist-len": 20,
+        "status-icons": {
+            "playing": "",
+            "paused": ""
+        }
+    },
+
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname} ",
-        "format-disconnected": "", 
+        "format-wifi": "   {signalStrength}%",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "  ", 
         "max-length": 50,
         "on-click": "ghostty -e 'nmtui'"
     },
@@ -37,22 +59,20 @@
     },
     
     "clock": {
-        // "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        // "format-alt": "{:%Y-%m-%d}"
         "format": "{:%I:%M %p}",
 		"on-click": "gnome-calendar"
     },
 
     "pulseaudio": {
-        "format": "{volume}% {icon} ",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": "0% {icon} ",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        "format-muted": "{icon} 0%",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
         "format-icons": {
-            "headphone": "",
-            "default": ["", "", ""]
+            "headphone": " ",
+            "default": ["  ", "  ", "  "]
         },
         "on-click": "pavucontrol"
     },
@@ -70,5 +90,24 @@
         "exec-if": "exit 0",
         "on-click": "hyprlandmsg 'scratchpad show'",
         "on-click-right": "hyprlandmsg 'move scratchpad'"
+    },
+    
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{icon} {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": {
+            "charging": [
+                "󰢟 ", "󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 "
+            ],
+            "default": [
+                "󰂎 ", "󰁺 ", "󰁻 ", "󰁼 ", "󰁽 ", "󰁾 ", "󰁿 ", "󰂀 ", "󰂁 ", "󰂂 ", "󰁹 "
+            ]
+        }
     }
 }
