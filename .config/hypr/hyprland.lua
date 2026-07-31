@@ -15,14 +15,6 @@ hl.monitor({
 	scale = 1,
 })
 
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
---hl.monitor({
---    output   = "",
---    mode     = "preferred",
---    position = "auto",
---    scale    = "auto",
---})
-
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -30,7 +22,7 @@ hl.monitor({
 -- Set programs that you use
 local terminal = "ghostty"
 --local terminal    = "kitty"
-local fileManager = "dolphin"
+local fileManager = "ghostty --title=yazi-floating -e yazi"
 local menu = "wofi --show drun"
 
 -------------------
@@ -158,24 +150,6 @@ hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "al
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
-
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
 	dwindle = {
@@ -208,6 +182,10 @@ hl.config({
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
 		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
+		on_focus_under_fullscreen = 1,
+	},
+	debug = {
+		disable_logs = false,
 	},
 })
 
@@ -269,26 +247,34 @@ hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 
 -- Move focus with mainMod + HJKL keys
-hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 
--- FIX these aren't working in fullscreen
+-- Smart focus will do a cycle_next if fullscreen and a focus direction if not
 local function smart_focus(direction)
 	local win = hl.get_active_window()
-	if win and win.fullscreen then
-		hl.dispatch(hl.dsp.window.cycle_next())
-	else
+	if win and win.fullscreen < 1 then
 		hl.dispatch(hl.dsp.focus({ direction = direction }))
+	else
+		if direction == "down" then
+			hl.dispatch(hl.dsp.window.cycle_next({ next = true }))
+		elseif direction == "up" then
+			hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
+		end
 	end
 end
 
-hl.bind(mainMod .. " + J", function()
-	smart_focus("up")
+-- Move focus with mainMod + HJKL keys
+hl.bind(mainMod .. " + H", function()
+	smart_focus("left")
 end)
-hl.bind(mainMod .. " + K", function()
+hl.bind(mainMod .. " + J", function()
 	smart_focus("down")
 end)
-
-hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + K", function()
+	smart_focus("up")
+end)
+hl.bind(mainMod .. " + L", function()
+	smart_focus("right")
+end)
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "up" }))
@@ -302,10 +288,6 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
-
--- Example special workspace (scratchpad)
---hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
---hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -349,11 +331,6 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
--- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-
--- Example window rules that are useful
-
 local suppressMaximizeRule = hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
 	name = "suppress-maximize-events",
@@ -361,7 +338,6 @@ local suppressMaximizeRule = hl.window_rule({
 
 	suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
 	-- Fix some dragging issues with XWayland
@@ -378,14 +354,6 @@ hl.window_rule({
 	no_focus = true,
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
 -- Hyprland-run windowrule
 hl.window_rule({
 	name = "move-hyprland-run",
@@ -393,6 +361,18 @@ hl.window_rule({
 
 	move = "20 monitor_h-120",
 	float = true,
+})
+
+-- Force the Ghostty Yazi instance to float and center
+hl.window_rule({
+	name = "yazi",
+	match = {
+		class = "^(com.mitchellh.ghostty)$",
+		title = "^(yazi-floating)$",
+	},
+	float = true,
+	center = true,
+	size = { "(monitor_w*0.8)", "(monitor_h*0.8)" },
 })
 
 -- Assign workspaces 1-7 to DP-1
