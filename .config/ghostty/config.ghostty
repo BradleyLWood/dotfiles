@@ -1,13 +1,12 @@
 font-family = FiraCode Nerd Font
-font-size = 16
+font-size = 14
 
 theme = Catppuccin Mocha
 
 resize-overlay = never
 window-padding-balance = true
 
-#background-opacity = 0.85
+background-opacity = 0.8
 #background-blur = true
-#keybind = alt+u=toggle_background_opacity
 
 custom-shader = shaders/cursor_warp.glsl
