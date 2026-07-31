@@ -184,9 +184,6 @@ hl.config({
 		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
 		on_focus_under_fullscreen = 1,
 	},
-	debug = {
-		disable_logs = false,
-	},
 })
 
 ---------------
