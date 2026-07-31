@@ -73,8 +73,27 @@ compdef _config config
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
 
+# Initialize fzf shell completion
+eval "$(fzf --zsh)"
+
 # Initialize starship
 eval "$(starship init zsh)"
+
+# TODO get to work with herdr tabs
+function precmd() {
+    if command -v herdr >/dev/null 2>&1; then
+        # Parse the active workspace name
+        local ws=$(herdr workspace list 2>/dev/null | awk '/\*/ {print $2}')
+        if [[ -n "$ws" ]]; then
+            print -Pn "\e]0;Herdr: $ws\a"
+        fi
+        print -Pn "\e]1;%c\a"
+    fi
+}
+
+function preexec() {
+    print -Pn "\e]1;${1}\a"
+}
 
 # Run 'reset' when a new tmux window/pane is created
 if [ -n "$TMUX" ]; then
