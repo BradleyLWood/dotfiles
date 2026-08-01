@@ -241,29 +241,28 @@ hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen
 -- Smart focus will do a cycle_next if fullscreen and a focus direction if not
 local function smart_focus(direction)
 	local win = hl.get_active_window()
-	if win and win.fullscreen then
-		hl.dispatch(hl.dsp.window.cycle_next())
-	else
+	if win and win.fullscreen < 1 then
 		hl.dispatch(hl.dsp.focus({ direction = direction }))
+	else
+		if direction == "down" then
+			hl.dispatch(hl.dsp.window.cycle_next({ next = true }))
+		elseif direction == "up" then
+			hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
+		end
 	end
 end
-
 -- Move focus with mainMod + HJKL keys
 hl.bind(mainMod .. " + H", function()
 	smart_focus("left")
-	--hl.dsp.focus({ direction = "left" })
 end)
 hl.bind(mainMod .. " + J", function()
 	smart_focus("up")
-	--hl.dsp.focus({ direction = "up" })
 end)
 hl.bind(mainMod .. " + K", function()
 	smart_focus("down")
-	--hl.dsp.focus({ direction = "down" })
 end)
 hl.bind(mainMod .. " + L", function()
 	smart_focus("right")
-	--hl.dsp.focus({ direction = "right" })
 end)
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
