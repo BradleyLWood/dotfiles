@@ -8,6 +8,12 @@ hl.monitor({
 	scale = 2,
 })
 
+----------------
+---- Colors ----
+----------------
+
+local colors = require("themes.catppuccin-mocha")
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
@@ -73,15 +79,15 @@ hl.config({
 		border_size = 1,
 
 		col = {
-			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
-			inactive_border = "rgba(595959aa)",
+			active_border = colors.mauve,
+			inactive_border = colors.surface2,
 		},
 
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
 
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
-		allow_tearing = false,
+		allow_tearing = true,
 
 		layout = "master",
 	},
@@ -224,8 +230,8 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
-local closeWindowBind = hl.bind(mainMod .. " + X", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
+hl.bind(mainMod .. " + X", hl.dsp.window.close())
+
 hl.bind(
 	mainMod .. " + M",
 	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
@@ -256,10 +262,10 @@ hl.bind(mainMod .. " + H", function()
 	smart_focus("left")
 end)
 hl.bind(mainMod .. " + J", function()
-	smart_focus("up")
+	smart_focus("down")
 end)
 hl.bind(mainMod .. " + K", function()
-	smart_focus("down")
+	smart_focus("up")
 end)
 hl.bind(mainMod .. " + L", function()
 	smart_focus("right")
@@ -277,10 +283,6 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
-
--- Example special workspace (scratchpad)
---hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
---hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
@@ -324,22 +326,16 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
--- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
--- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
-
--- Example window rules that are useful
-
-local suppressMaximizeRule = hl.window_rule({
-	-- Ignore maximize requests from all apps. You'll probably like this.
+-- Ignore maximize requests from all apps. You'll probably like this.
+hl.window_rule({
 	name = "suppress-maximize-events",
 	match = { class = ".*" },
 
 	suppress_event = "maximize",
 })
--- suppressMaximizeRule:set_enabled(false)
 
+-- Fix some dragging issues with XWayland
 hl.window_rule({
-	-- Fix some dragging issues with XWayland
 	name = "fix-xwayland-drags",
 	match = {
 		class = "^$",
@@ -352,14 +348,6 @@ hl.window_rule({
 
 	no_focus = true,
 })
-
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
 
 -- Hyprland-run windowrule
 hl.window_rule({
@@ -382,7 +370,21 @@ hl.window_rule({
 	size = { "(monitor_w*0.8)", "(monitor_h*0.8)" },
 })
 
--- Assign workspaces 1-7 to eDP-1
+-- Float Bitwarden popup
+local bwWidth = 480
+hl.window_rule({
+	name = "bitwarden",
+	match = {
+		class = ".*nngceckbapebfimnlniiiahkandclblb.*",
+	},
+	float = true,
+	center = true,
+	immediate = true,
+	no_blur = true,
+	size = { bwWidth, "(monitor_h * 0.8)" },
+})
+
+-- Assign workspaces 1-10 to eDP-1
 for i = 1, 10 do
 	hl.workspace_rule({
 		workspace = tostring(i),
