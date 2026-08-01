@@ -8,6 +8,35 @@ window-padding-balance = true
 
 background-opacity = 0.8
 #background-blur = true
-#keybind = alt+u=toggle_background_opacity
+
+keybind = ctrl+space>s>v=new_split:right
+keybind = ctrl+space>s>h=new_split:down
+
+keybind = ctrl+space>h=goto_split:left
+keybind = ctrl+space>l=goto_split:right
+keybind = ctrl+space>j=goto_split:down
+keybind = ctrl+space>k=goto_split:up
+
+keybind = ctrl+space>z=toggle_split_zoom
+
+keybind = ctrl+space>shift+l=goto_split:left
+keybind = ctrl+space>shift+h=goto_split:right
+keybind = ctrl+space>shift+j=goto_split:down
+keybind = ctrl+space>shift+k=goto_split:up
+
+# Trigger to enter the modal "resize" key table
+keybind = ctrl+space>r=activate_key_table:resize
+# Map arrow or Vim keys to change pane dimensions inside the mode
+keybind = resize/left=resize_split:left,5
+keybind = resize/right=resize_split:right,5
+keybind = resize/up=resize_split:up,5
+keybind = resize/down=resize_split:down,5
+keybind = resize/h=resize_split:left,5
+keybind = resize/l=resize_split:right,5
+keybind = resize/k=resize_split:up,5
+keybind = resize/j=resize_split:down,5
+# Actions to exit the mode back to standard terminal input
+keybind = resize/escape=deactivate_key_table
+keybind = resize/enter=deactivate_key_table
 
 custom-shader = shaders/cursor_warp.glsl
