@@ -6,6 +6,9 @@ HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
 
+# I set my titles with a zoxide fzf script in kitty
+DISABLE_AUTO_TITLE="true"
+
 setopt GLOB_DOTS
 
 export EDITOR=nvim
