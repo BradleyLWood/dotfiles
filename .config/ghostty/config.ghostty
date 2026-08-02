@@ -7,13 +7,17 @@ theme = Catppuccin Mocha
 resize-overlay = never
 window-padding-balance = true
 
+window-show-tab-bar = never
+
 background-opacity = 0.8
 #background-blur = true
 
 custom-shader = shaders/cursor_warp.glsl
 
 # Tabs =============================================
-keybind = ctrl+space>t=new_tab
+keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>n=next_tab
+keybind = ctrl+space>p=previous_tab
 
 # Split panes ======================================
 keybind = ctrl+space>s>v=new_split:right
@@ -38,6 +42,7 @@ keybind = resize/h=resize_split:left,50
 keybind = resize/l=resize_split:right,50
 keybind = resize/k=resize_split:up,50
 keybind = resize/j=resize_split:down,50
+keybind = resize/==equalize_splits
 keybind = resize/escape=deactivate_key_table
 keybind = resize/enter=deactivate_key_table
 

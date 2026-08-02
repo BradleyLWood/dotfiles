@@ -19,8 +19,10 @@ local colors = require("themes.catppuccin-mocha")
 ---------------------
 
 -- Set programs that you use
-local terminal = "ghostty"
-local fileManager = "ghostty --title=yazi-floating -e yazi"
+--local terminal = "ghostty"
+--local fileManager = "ghostty --title=yazi-floating -e yazi"
+local terminal = "kitty"
+local fileManager = "kitty --title=yazi-floating -e yazi"
 local menu = "wofi --show drun"
 
 -------------------
@@ -188,6 +190,7 @@ hl.config({
 ---- INPUT ----
 ---------------
 
+local trackTap = false
 hl.config({
 	input = {
 		kb_layout = "us",
@@ -203,7 +206,7 @@ hl.config({
 		touchpad = {
 			natural_scroll = true,
 			scroll_factor = 0.2,
-			tap_to_click = false,
+			tap_to_click = trackTap,
 			disable_while_typing = true,
 		},
 	},
@@ -240,6 +243,22 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
+
+hl.bind(mainMod .. " + SHIFT + T", function()
+	trackTap = not trackTap
+	hl.config({
+		input = {
+			touchpad = {
+				tap_to_click = trackTap,
+			},
+		},
+	})
+	hl.notification.create({
+		text = "Tap-to-click: " .. (tapEnabled and "ON" or "OFF"),
+        color = colors.mauve,
+		timeout = 1500,
+	})
+end, { description = "Toggle touchpad tap-to-click" })
 
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
@@ -362,7 +381,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "yazi",
 	match = {
-		class = "^(com.mitchellh.ghostty)$",
+		class = "^(kitty|com.mitchellh.ghostty)$",
 		title = "^(yazi-floating)$",
 	},
 	float = true,
