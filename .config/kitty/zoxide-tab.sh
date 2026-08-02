@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-selected=$(zoxide query -l | fzf --reverse --height=40%)
+selected=$( (echo "$HOME"; zoxide query -l) | fzf --reverse --height=40%)
 if [[ -n "$selected" ]]; then
     real=$(realpath "$selected")
     label=$(basename "$real")
