@@ -201,28 +201,23 @@ hl.config({
 
 		follow_mouse = 2,
 
-		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
-		touchpad = {
-			natural_scroll = true,
-			scroll_factor = 0.2,
-			tap_to_click = trackTap,
-			disable_while_typing = true,
-		},
+		sensitivity = 0,
 	},
 })
 
+-- Touchpad
+hl.device({
+	name = "dll07be:01-06cb:7a13-touchpad",
+	sensitivity = 0.3,
+	natural_scroll = true,
+	scroll_factor = 0.3,
+	tap_to_click = trackTap,
+	disable_while_typing = true,
+})
 hl.gesture({
 	fingers = 3,
 	direction = "horizontal",
 	action = "workspace",
-})
-
--- Example per-device config
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-hl.device({
-	name = "epic-mouse-v1",
-	sensitivity = -0.5,
 })
 
 ---------------------
@@ -255,7 +250,7 @@ hl.bind(mainMod .. " + SHIFT + T", function()
 	})
 	hl.notification.create({
 		text = "Tap-to-click: " .. (tapEnabled and "ON" or "OFF"),
-        color = colors.mauve,
+		color = colors.mauve,
 		timeout = 1500,
 	})
 end, { description = "Toggle touchpad tap-to-click" })
