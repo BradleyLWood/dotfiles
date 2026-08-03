@@ -211,7 +211,7 @@ hl.device({
 	sensitivity = 0.3,
 	natural_scroll = true,
 	scroll_factor = 0.3,
-	tap_to_click = trackTap,
+	tap_to_click = false,
 	disable_while_typing = true,
 })
 hl.gesture({
@@ -241,15 +241,12 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
 hl.bind(mainMod .. " + SHIFT + T", function()
 	trackTap = not trackTap
-	hl.config({
-		input = {
-			touchpad = {
-				tap_to_click = trackTap,
-			},
-		},
+	hl.device({
+		name = "dll07be:01-06cb:7a13-touchpad",
+		tap_to_click = trackTap,
 	})
 	hl.notification.create({
-		text = "Tap-to-click: " .. (tapEnabled and "ON" or "OFF"),
+		text = "Tap-to-click: " .. (trackTap and "ON" or "OFF"),
 		color = colors.mauve,
 		timeout = 1500,
 	})
