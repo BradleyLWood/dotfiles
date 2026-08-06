@@ -18,7 +18,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 # Bindings
 bindkey -v
-bindkey -s '^[f' '~/.local/bin/tmux-sessionizer^M'
+#bindkey -s '^[f' '~/.local/bin/tmux-sessionizer^M'
 bindkey '^L' 'autosuggest-accept'
 
 # Cursor shape function
