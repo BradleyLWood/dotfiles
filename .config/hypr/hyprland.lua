@@ -23,7 +23,8 @@ local colors = require("themes.catppuccin-mocha")
 --local fileManager = "ghostty --title=yazi-floating -e yazi"
 local terminal = "kitty"
 local fileManager = "kitty --title=yazi-floating -e yazi"
-local menu = "wofi --show drun"
+--local menu = "wofi --show drun"
+local menu = "kitty --class otter-launcher -e otter-launcher"
 
 -------------------
 ---- AUTOSTART ----
@@ -369,7 +370,7 @@ hl.window_rule({
 	float = true,
 })
 
--- Force the Ghostty Yazi instance to float and center
+-- Force the Kitty/Ghostty Yazi instance to float and center
 hl.window_rule({
 	name = "yazi",
 	match = {
@@ -379,6 +380,16 @@ hl.window_rule({
 	float = true,
 	center = true,
 	size = { "(monitor_w*0.8)", "(monitor_h*0.8)" },
+})
+
+hl.window_rule({
+	name = "otter",
+	match = {
+		class = "^(otter-launcher)$",
+	},
+	float = true,
+	center = true,
+	size = { 600, 300 },
 })
 
 -- Float Bitwarden popup
