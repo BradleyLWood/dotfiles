@@ -40,6 +40,7 @@ hl.on("hyprland.start", function()
 	--hl.exec_cmd("nm-applet")
 	--hl.exec_cmd("waybar & hyprpaper")
 	--hl.exec_cmd("waybar")
+	hl.exec_cmd("wpaperd -d")
 end)
 
 -------------------------------
@@ -389,7 +390,7 @@ hl.window_rule({
 	},
 	float = true,
 	center = true,
-	size = { 600, 300 },
+	size = { 600, 400 },
 })
 
 -- Float Bitwarden popup
