@@ -13,7 +13,6 @@ window {
 }
 window#waybar {
     background-color: alpha(@base, 0.0);
-    border: 2px solid alpha(@crust, 0.3);
 }
 /*-----module groups----*/
 .modules-right {
