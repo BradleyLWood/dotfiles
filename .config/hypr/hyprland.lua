@@ -36,10 +36,6 @@ local menu = "kitty --class otter-launcher -e otter-launcher"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
-	--hl.exec_cmd(terminal)
-	--hl.exec_cmd("nm-applet")
-	--hl.exec_cmd("waybar & hyprpaper")
-	--hl.exec_cmd("waybar")
 	hl.exec_cmd("wpaperd -d")
 end)
 
@@ -229,6 +225,7 @@ hl.gesture({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("wlogout --buttons-per-row 5"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
 hl.bind(mainMod .. " + X", hl.dsp.window.close())
 
