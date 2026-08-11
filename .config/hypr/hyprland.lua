@@ -15,14 +15,23 @@ hl.monitor({
 	scale = 1,
 })
 
+
+----------------
+---- Colors ----
+----------------
+
+local colors = require("themes.catppuccin-mocha")
+
+
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
 
 -- Set programs that you use
-local terminal = "ghostty"
---local terminal    = "kitty"
-local fileManager = "ghostty --title=yazi-floating -e yazi"
+--local terminal = "ghostty"
+--local fileManager = "ghostty --title=yazi-floating -e yazi"
+local terminal = "kitty"
+local fileManager = "kitty --title=yazi-floating -e yazi"
 local menu = "wofi --show drun"
 
 -------------------
@@ -364,12 +373,26 @@ hl.window_rule({
 hl.window_rule({
 	name = "yazi",
 	match = {
-		class = "^(com.mitchellh.ghostty)$",
+		class = "^(kitty|com.mitchellh.ghostty)$",
 		title = "^(yazi-floating)$",
 	},
 	float = true,
 	center = true,
 	size = { "(monitor_w*0.8)", "(monitor_h*0.8)" },
+})
+
+-- Float Bitwarden popup
+local bwWidth = 480
+hl.window_rule({
+	name = "bitwarden",
+	match = {
+		class = ".*nngceckbapebfimnlniiiahkandclblb.*",
+	},
+	float = true,
+	center = true,
+	immediate = true,
+	no_blur = true,
+	size = { bwWidth, "(monitor_h * 0.8)" },
 })
 
 -- Assign workspaces 1-7 to DP-1
