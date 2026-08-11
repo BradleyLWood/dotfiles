@@ -31,12 +31,12 @@ prefix = "ctrl+space"
 
 # Prefix-mode actions
 # help = "prefix+?"
-settings = "prefix+shift+s"
+settings = ""
 detach = "prefix+d"
 # reload_config = "prefix+shift+r"
 # open_notification_target = "prefix+o"
 # workspace_picker = "prefix+w"
-goto = "alt+f"
+#goto = "alt+f"
 # new_workspace = "prefix+shift+n"
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
@@ -65,12 +65,12 @@ close_tab = "prefix+ctrl+x"
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
-# split_vertical = "prefix+v"
-# split_horizontal = "prefix+minus"
+split_vertical = "prefix+s"
+split_horizontal = "prefix+shift+s"
 close_pane = "prefix+x"
 zoom = "prefix+f"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
-toggle_sidebar = "prefix+s"
+toggle_sidebar = "prefix+a"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
@@ -98,6 +98,13 @@ height = "80%"
 key = "prefix+ctrl+c"
 type = "popup"
 command = "lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "alt+f"
+type = "popup"
+command = "$HOME/.config/herdr/zoxide-tab.sh"
 width = "80%"
 height = "80%"
 
