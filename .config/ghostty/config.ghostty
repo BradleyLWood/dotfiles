@@ -1,12 +1,46 @@
+# Appearance =======================================
 font-family = FiraCode Nerd Font
-font-size = 14
+font-size = 12
 
 theme = Catppuccin Mocha
 
 resize-overlay = never
 window-padding-balance = true
+window-show-tab-bar = never
 
 background-opacity = 0.8
 #background-blur = true
 
 custom-shader = shaders/cursor_warp.glsl
+
+# Tabs =============================================
+keybind = ctrl+space>c=new_tab
+keybind = ctrl+space>n=next_tab
+keybind = ctrl+space>p=previous_tab
+
+# Split panes ======================================
+keybind = ctrl+space>s>v=new_split:right
+keybind = ctrl+space>s>h=new_split:down
+
+keybind = ctrl+space>h=goto_split:left
+keybind = ctrl+space>l=goto_split:right
+keybind = ctrl+space>j=goto_split:down
+keybind = ctrl+space>k=goto_split:up
+
+keybind = ctrl+space>z=toggle_split_zoom
+keybind = ctrl+space>d=close_surface
+
+keybind = ctrl+space>shift+l=goto_split:left
+keybind = ctrl+space>shift+h=goto_split:right
+keybind = ctrl+space>shift+j=goto_split:down
+keybind = ctrl+space>shift+k=goto_split:up
+
+# Resize modal =====================================
+keybind = ctrl+space>r=activate_key_table:resize
+keybind = resize/h=resize_split:left,50
+keybind = resize/l=resize_split:right,50
+keybind = resize/k=resize_split:up,50
+keybind = resize/j=resize_split:down,50
+keybind = resize/escape=deactivate_key_table
+keybind = resize/enter=deactivate_key_table
+
