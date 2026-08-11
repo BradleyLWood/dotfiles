@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# TODO add special marked ones that already exist
 selected=$( (echo "$HOME"; zoxide query -l) | fzf --reverse --height=40%)
 if [[ -n "$selected" ]]; then
     real=$(realpath "$selected")
@@ -7,7 +8,7 @@ if [[ -n "$selected" ]]; then
     escaped=$(printf '%s' "$real" | sed -e 's/[.[\*^$()+?{|]/\\&/g')
 
     kitty @ focus-window --match "var:zoxide_tab_id=^${escaped}$" 2>/dev/null \
-        || kitty @ launch --type=tab --cwd="$real" \
+        || kitty @ launch --type=os-window --cwd="$real" \
                --var "zoxide_tab_id=${real}" \
                --tab-title "$label"
 fi
