@@ -18,6 +18,13 @@
 	renames = copies
 	interHunkContext = 10
 	wsErrorHighlight = all
+	tool = nvimdiff
+
+[difftool "nvimdiff"]
+	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+	prompt = false
 
 [init]
 	defaultBranch = main
@@ -109,3 +116,4 @@
     oldHighlight = red 52
     newNormal = green
     newHighlight = green 22
+
