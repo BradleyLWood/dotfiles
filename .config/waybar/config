@@ -1,0 +1,113 @@
+{
+    "layer": "top",
+    "position": "top",
+    "exclusive": true,
+    "margin-top": 10,
+    "margin-left": 10,
+    "margin-bottom": 0,
+    "margin-right": 10,
+
+    "modules-left": ["hyprland/workspaces", "hyperland/mode"],
+    "modules-center": ["clock", "idle_inhibitor"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "network", "mpris", "pulseaudio", "custom/power"],
+
+    "custom/logo": {
+        "format": "  "
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "all-outputs": false,
+        "active-only": false,
+        "show-special": true,
+        "persistent-only": false, // Ensure this is false or omitted
+    },
+
+    "hyprland/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "mpris": {
+        "format": "{status_icon} {title} - {artist}",
+        "title-len": 50,
+        "artist-len": 20,
+        "status-icons": {
+            "playing": "",
+            "paused": ""
+        }
+    },
+
+    "network": {
+        "format-wifi": "   {signalStrength}%",
+        "format-ethernet": "  {ifname}",
+        "format-disconnected": "  ", 
+        "max-length": 50,
+        "on-click": "ghostty -e 'nmtui'"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        },
+    },
+
+    "tray": {
+        "icon-size": 15,
+        "spacing": 10
+    },
+    
+    "clock": {
+        "format": "{:%I:%M %p}",
+		"on-click": "gnome-calendar"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": "{icon} 0%",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": " ",
+            "default": ["  ", "  ", "  "]
+        },
+        "on-click": "pavucontrol"
+    },
+
+	"custom/power": {
+		"format": " ",
+		"on-click": "wlogout"
+	},
+    
+    "custom/scratchpad-indicator": {
+        "format-text": "{}hi",
+        "return-type": "json",
+        "interval": 3,
+        "exec": "~/.local/bin/scratchpad-indicator 2> /dev/null",
+        "exec-if": "exit 0",
+        "on-click": "hyprlandmsg 'scratchpad show'",
+        "on-click-right": "hyprlandmsg 'move scratchpad'"
+    },
+    
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{icon} {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt": "{icon} {time}",
+        "format-icons": {
+            "charging": [
+                "󰢟 ", "󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 "
+            ],
+            "default": [
+                "󰂎 ", "󰁺 ", "󰁻 ", "󰁼 ", "󰁽 ", "󰁾 ", "󰁿 ", "󰂀 ", "󰂁 ", "󰂂 ", "󰁹 "
+            ]
+        }
+    }
+}
