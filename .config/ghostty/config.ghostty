@@ -1,12 +1,11 @@
 # Appearance =======================================
 font-family = FiraCode Nerd Font
-font-size = 16
+font-size = 12
 
 theme = Catppuccin Mocha
 
 resize-overlay = never
 window-padding-balance = true
-
 window-show-tab-bar = never
 
 background-opacity = 0.8
