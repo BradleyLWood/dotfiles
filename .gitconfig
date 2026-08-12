@@ -22,6 +22,7 @@
 
 [difftool "nvimdiff"]
 	cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+	prompt = false
 
 [difftool]
 	prompt = false
@@ -42,7 +43,6 @@
 [pager]
     branch = false
     tag = false
-
 
 [push]
     autoSetupRemote = true
@@ -72,7 +72,6 @@
     windowMemory = 1g
     packSizeLimit = 1g
 
-# Integrity
 [transfer]
     fsckObjects = true
 
