@@ -1,0 +1,19 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Bradley Wood"
+email = "52896759+BradleyLWood@users.noreplay.github.com"
+
+[ui]
+diff-editor = ["nvim", "-d", "$left", "$right", "$output"]
+default-command = "log"
+
+[aliases]
+st = ["status"]
+l = ["log"]
+d = ["diff"]
+la = ["log", "-r", "all()"]
+
+fetch = ["git", "fetch"]
+push = ["git", "push", "--allow-new"]
+track = ["bookmark", "track"]
