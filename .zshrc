@@ -3,52 +3,48 @@
 
 # History
 HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
+
+# I set my titles with a zoxide fzf script in kitty
+DISABLE_AUTO_TITLE="true"
 
 setopt GLOB_DOTS
 
 export EDITOR=nvim
 export VISUAL="$EDITOR"
 
-# Android Dev
-export JAVA_HOME=/opt/android-studio/jbr
-export ANDROID_HOME="$HOME/Android/Sdk"
-export ANDROID_AVD_HOME="$HOME/.android/avd"
-export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
-
-# Path
-export PATH=~/bin:~/.local/bin:~/.yarn/bin:$PATH
-
-# Deno
-export DENO_INSTALL=~/.deno 
-export PATH=$DENO_INSTALL/bin:$PATH
-
-# Go
-export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
-
-# Rust
-export RUSTPATH=~/.cargo
-export PATH=$RUSTPATH/bin:$PATH
-
-# Haskell ghcup
-export HASKELLPATH=~/.ghcup
-export PATH=$HASKELLPATH/bin:$PATH
-
-# Zig Preview
-export PATH=~/sources/zig-x86_64-linux-0.15.0-dev.1254+c9ce1debe/:$PATH
-
-# Project path for pj plugin
-export PROJECT_PATHS=~/code
-
-# Flutter
-export PATH="$HOME/code/flutter/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Bindings
 bindkey -v
-bindkey -s '^[f' '~/.local/bin/tmux-sessionizer^M'
+#bindkey -s '^[f' '~/.local/bin/tmux-sessionizer^M'
 bindkey '^L' 'autosuggest-accept'
+
+# Cursor shape function
+function zle-keymap-select () {
+  if [[ ${KEYMAP} == vicmd ]] ||
+    [[ $1 = 'block' ]]; then
+  echo -ne '\e[1 q'   # block cursor for normal mode
+elif [[ ${KEYMAP} == main ]] ||
+  [[ ${KEYMAP} == viins ]] ||
+  [[ ${KEYMAP} = '' ]] ||
+  [[ $1 = 'beam' ]]; then
+echo -ne '\e[5 q'   # blinking line cursor for insert mode
+  fi
+}
+zle -N zle-keymap-select
+
+# Reset to beam on new prompt / after certain widgets (fixes cursor staying block after enter)
+zle-line-init() {
+  zle -K viins
+  echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+
+# Also fix cursor after Ctrl-C or command finishes
+echo -ne '\e[5 q'
+preexec() { echo -ne '\e[5 q' ;}
 
 # Completion
 zstyle :compinstall filename '/home/bradley/.zshrc'
@@ -57,7 +53,7 @@ compinit
 zstyle ':completion:*' menu select
 
 # Aliases
-alias ls="exa -H --icons --group-directories-first"
+alias ls="eza -H --icons --group-directories-first"
 alias la="ls -a"
 alias lat="ls -aT"
 alias lt="ls -T"
@@ -68,9 +64,7 @@ alias llat="la -lT"
 
 alias r="ranger"
 
-alias cd=z
-
-alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias config="$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 compdef config=git
 _config() {
   local -x GIT_DIR=$HOME/.dotfiles
@@ -79,56 +73,14 @@ _config() {
 }
 compdef _config config
 
-# Cargo
-. "$HOME/.cargo/env"
-
-# NVM
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Syntax highlighting and autosuggestions
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
-
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Plugins
-
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-# Abbrebiations
-zinit light olets/zsh-abbr
-
-# FZF Completion
-zinit light Aloxaf/fzf-tab
-
-# Initialize opam for ocaml
-eval $(opam env)
-
 # Initialize zoxide
-eval "$(zoxide init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
 
 # Initialize starship
 eval "$(starship init zsh)"
 
-# Initialize thefuck
-eval $(thefuck --alias)
+# Initialize fzf completion
+source <(fzf --zsh)
 
 # Run 'reset' when a new tmux window/pane is created
 if [ -n "$TMUX" ]; then

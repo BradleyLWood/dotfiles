@@ -2,6 +2,7 @@
 ---- MONITORS ----
 ------------------
 hl.monitor({
+<<<<<<< HEAD
 	output = "DP-1",
 	mode = "2560x1440",
 	position = "0x0",
@@ -22,16 +23,38 @@ hl.monitor({
 --    position = "auto",
 --    scale    = "auto",
 --})
+=======
+	output = "eDP-1",
+	mode = "3840x2160",
+	position = "0x0",
+	scale = 2,
+})
+
+----------------
+---- Colors ----
+----------------
+
+local colors = require("themes.catppuccin-mocha")
+>>>>>>> nixos-taconix
 
 ---------------------
 ---- MY PROGRAMS ----
 ---------------------
 
 -- Set programs that you use
+<<<<<<< HEAD
 local terminal = "ghostty"
 --local terminal    = "kitty"
 local fileManager = "dolphin"
 local menu = "wofi --show drun"
+=======
+--local terminal = "ghostty"
+--local fileManager = "ghostty --title=yazi-floating -e yazi"
+local terminal = "kitty"
+local fileManager = "kitty --title=yazi-floating -e yazi"
+--local menu = "wofi --show drun"
+local menu = "kitty --class otter-launcher -e otter-launcher"
+>>>>>>> nixos-taconix
 
 -------------------
 ---- AUTOSTART ----
@@ -43,10 +66,14 @@ local menu = "wofi --show drun"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
+<<<<<<< HEAD
 	hl.exec_cmd(terminal)
 	--hl.exec_cmd("nm-applet")
 	--hl.exec_cmd("waybar & hyprpaper")
 	hl.exec_cmd("waybar")
+=======
+	hl.exec_cmd("wpaperd -d")
+>>>>>>> nixos-taconix
 end)
 
 -------------------------------
@@ -89,15 +116,24 @@ hl.config({
 		border_size = 1,
 
 		col = {
+<<<<<<< HEAD
 			active_border = { colors = { "rgba(33ccffee)", "rgba(00ff99ee)" }, angle = 45 },
 			inactive_border = "rgba(595959aa)",
+=======
+			active_border = colors.mauve,
+			inactive_border = colors.surface2,
+>>>>>>> nixos-taconix
 		},
 
 		-- Set to true to enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
 
 		-- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
+<<<<<<< HEAD
 		allow_tearing = false,
+=======
+		allow_tearing = true,
+>>>>>>> nixos-taconix
 
 		layout = "master",
 	},
@@ -119,7 +155,11 @@ hl.config({
 
 		blur = {
 			enabled = true,
+<<<<<<< HEAD
 			size = 3,
+=======
+			size = 5,
+>>>>>>> nixos-taconix
 			passes = 1,
 			vibrancy = 0.1696,
 		},
@@ -158,6 +198,7 @@ hl.animation({ leaf = "workspacesIn", enabled = true, speed = 1.21, bezier = "al
 hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "almostLinear", style = "fade" })
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
+<<<<<<< HEAD
 -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 -- "Smart gaps" / "No gaps when only"
 -- uncomment all if you wish to use that.
@@ -176,6 +217,8 @@ hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" 
 --     rounding    = 0,
 -- })
 
+=======
+>>>>>>> nixos-taconix
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
 	dwindle = {
@@ -187,8 +230,13 @@ hl.config({
 hl.config({
 	master = {
 		new_status = "slave",
+<<<<<<< HEAD
         new_on_top = true,
         mfact = 0.60,
+=======
+		new_on_top = true,
+		mfact = 0.60,
+>>>>>>> nixos-taconix
 	},
 })
 
@@ -207,7 +255,12 @@ hl.config({
 	misc = {
 		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
 		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
+<<<<<<< HEAD
         exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
+=======
+		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
+		on_focus_under_fullscreen = 1,
+>>>>>>> nixos-taconix
 	},
 })
 
@@ -215,6 +268,10 @@ hl.config({
 ---- INPUT ----
 ---------------
 
+<<<<<<< HEAD
+=======
+local trackTap = false
+>>>>>>> nixos-taconix
 hl.config({
 	input = {
 		kb_layout = "us",
@@ -225,6 +282,7 @@ hl.config({
 
 		follow_mouse = 2,
 
+<<<<<<< HEAD
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
 
 		touchpad = {
@@ -233,12 +291,28 @@ hl.config({
 	},
 })
 
+=======
+		sensitivity = 0,
+	},
+})
+
+-- Touchpad
+hl.device({
+	name = "dll07be:01-06cb:7a13-touchpad",
+	sensitivity = 0.3,
+	natural_scroll = true,
+	scroll_factor = 0.3,
+	tap_to_click = false,
+	disable_while_typing = true,
+})
+>>>>>>> nixos-taconix
 hl.gesture({
 	fingers = 3,
 	direction = "horizontal",
 	action = "workspace",
 })
 
+<<<<<<< HEAD
 -- Example per-device config
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
 hl.device({
@@ -246,6 +320,8 @@ hl.device({
 	sensitivity = -0.5,
 })
 
+=======
+>>>>>>> nixos-taconix
 ---------------------
 ---- KEYBINDINGS ----
 ---------------------
@@ -253,16 +329,27 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+<<<<<<< HEAD
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
 local closeWindowBind = hl.bind(mainMod .. " + X", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+=======
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("wlogout --buttons-per-row 5"))
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exit())
+hl.bind(mainMod .. " + X", hl.dsp.window.close())
+
+hl.bind(
+	mainMod .. " + M",
+	hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'")
+>>>>>>> nixos-taconix
 )
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
+<<<<<<< HEAD
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 
@@ -271,6 +358,50 @@ hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "down" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+=======
+hl.bind(mainMod .. " + SHIFT + T", function()
+	trackTap = not trackTap
+	hl.device({
+		name = "dll07be:01-06cb:7a13-touchpad",
+		tap_to_click = trackTap,
+	})
+	hl.notification.create({
+		text = "Tap-to-click: " .. (trackTap and "ON" or "OFF"),
+		color = colors.mauve,
+		timeout = 1500,
+	})
+end, { description = "Toggle touchpad tap-to-click" })
+
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+
+-- Smart focus will do a cycle_next if fullscreen and a focus direction if not
+local function smart_focus(direction)
+	local win = hl.get_active_window()
+	if win and win.fullscreen < 1 then
+		hl.dispatch(hl.dsp.focus({ direction = direction }))
+	else
+		if direction == "down" then
+			hl.dispatch(hl.dsp.window.cycle_next({ next = true }))
+		elseif direction == "up" then
+			hl.dispatch(hl.dsp.window.cycle_next({ next = false }))
+		end
+	end
+end
+-- Move focus with mainMod + HJKL keys
+hl.bind(mainMod .. " + H", function()
+	smart_focus("left")
+end)
+hl.bind(mainMod .. " + J", function()
+	smart_focus("down")
+end)
+hl.bind(mainMod .. " + K", function()
+	smart_focus("up")
+end)
+hl.bind(mainMod .. " + L", function()
+	smart_focus("right")
+end)
+>>>>>>> nixos-taconix
 
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "up" }))
@@ -285,10 +416,13 @@ for i = 1, 10 do
 	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
+<<<<<<< HEAD
 -- Example special workspace (scratchpad)
 --hl.bind(mainMod .. " + S", hl.dsp.workspace.toggle_special("magic"))
 --hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
 
+=======
+>>>>>>> nixos-taconix
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
@@ -331,6 +465,7 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
 
+<<<<<<< HEAD
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 -- and https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
 
@@ -338,15 +473,25 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 local suppressMaximizeRule = hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
+=======
+-- Ignore maximize requests from all apps. You'll probably like this.
+hl.window_rule({
+>>>>>>> nixos-taconix
 	name = "suppress-maximize-events",
 	match = { class = ".*" },
 
 	suppress_event = "maximize",
 })
+<<<<<<< HEAD
 -- suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
 	-- Fix some dragging issues with XWayland
+=======
+
+-- Fix some dragging issues with XWayland
+hl.window_rule({
+>>>>>>> nixos-taconix
 	name = "fix-xwayland-drags",
 	match = {
 		class = "^$",
@@ -360,6 +505,7 @@ hl.window_rule({
 	no_focus = true,
 })
 
+<<<<<<< HEAD
 -- Layer rules also return a handle.
 -- local overlayLayerRule = hl.layer_rule({
 --     name  = "no-anim-overlay",
@@ -368,6 +514,8 @@ hl.window_rule({
 -- })
 -- overlayLayerRule:set_enabled(false)
 
+=======
+>>>>>>> nixos-taconix
 -- Hyprland-run windowrule
 hl.window_rule({
 	name = "move-hyprland-run",
@@ -377,6 +525,7 @@ hl.window_rule({
 	float = true,
 })
 
+<<<<<<< HEAD
 -- Assign workspaces 1-7 to DP-1
 for i=1,7 do
     hl.workspace_rule({
@@ -393,4 +542,49 @@ for i=8,10 do
         monitor = "DVI-D-1",
         default = (i == 6)
     })
+=======
+-- Force the Kitty/Ghostty Yazi instance to float and center
+hl.window_rule({
+	name = "yazi",
+	match = {
+		class = "^(kitty|com.mitchellh.ghostty)$",
+		title = "^(yazi-floating)$",
+	},
+	float = true,
+	center = true,
+	size = { "(monitor_w*0.8)", "(monitor_h*0.8)" },
+})
+
+hl.window_rule({
+	name = "otter",
+	match = {
+		class = "^(otter-launcher)$",
+	},
+	float = true,
+	center = true,
+	size = { 600, 400 },
+})
+
+-- Float Bitwarden popup
+local bwWidth = 480
+hl.window_rule({
+	name = "bitwarden",
+	match = {
+		class = ".*nngceckbapebfimnlniiiahkandclblb.*",
+	},
+	float = true,
+	center = true,
+	immediate = true,
+	no_blur = true,
+	size = { bwWidth, "(monitor_h * 0.8)" },
+})
+
+-- Assign workspaces 1-10 to eDP-1
+for i = 1, 10 do
+	hl.workspace_rule({
+		workspace = tostring(i),
+		monitor = "eDP-1",
+		default = (i == 1),
+	})
+>>>>>>> nixos-taconix
 end
