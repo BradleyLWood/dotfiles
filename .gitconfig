@@ -1,0 +1,111 @@
+[user]
+	email = 52896759+BradleyLWood@users.noreply.github.com
+	name = Bradley Wood
+
+[alias]
+	st = status
+
+[commit]
+	verbose = true
+
+[blame]
+	coloring = highlightRecent
+	date = relative
+
+[diff]
+	algorithm = histogram
+	context = 3
+	renames = copies
+	interHunkContext = 10
+	wsErrorHighlight = all
+
+[init]
+	defaultBranch = main
+
+[log]
+	abbrevCommit = true
+	graphColors = blue,yellow,cyan,magenta,green,red
+
+[status]
+    branch = true
+    short = true
+    showStash = true
+    showUntrackedFiles = all
+
+[pager]
+    branch = false
+    tag = false
+
+
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+    useForceIfIncludes = true
+
+[pull]
+    rebase = true
+
+[rerere]
+    enabled = true
+
+[merge]
+    conflictStyle = zdiff3
+
+[submodule]
+    fetchJobs = 16
+
+[rebase]
+    autoStash = true
+    autoSquash = true
+    missingCommitsCheck = warn
+
+[pack]
+    threads = 0
+    windowMemory = 1g
+    packSizeLimit = 1g
+
+# Integrity
+[transfer]
+    fsckObjects = true
+
+[receive]
+    fsckObjects = true
+
+[fetch]
+    fsckObjects = true
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
+
+[color "blame"]
+    highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[color "diff"]
+    meta       = black bold
+    frag       = magenta
+    context    = white
+    whitespace = yellow reverse
+    old        = red
+
+[color "decorate"]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta
+
+[color "diff-highlight"]
+    oldNormal = red
+    oldHighlight = red 52
+    newNormal = green
+    newHighlight = green 22
