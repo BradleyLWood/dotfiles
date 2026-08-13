@@ -97,8 +97,8 @@ hl.config({
 		rounding_power = 2,
 
 		-- Change transparency of focused and unfocused windows
-		active_opacity = 0.8,
-		inactive_opacity = 0.8,
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
 
 		shadow = {
 			enabled = true,
@@ -228,6 +228,15 @@ hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("wlogout --buttons-per-row 5"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + X", hl.dsp.window.close())
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("wpaperctl next"))
+
+local opacity = true
+hl.bind(mainMod .. " + SHIFT + O", function()
+    opacity = not opacity
+    local val = opacity and 0.8 or 1.0
+    hl.dispatch(hl.dsp.window.set_prop({ prop = "opacity", value = val }))
+    hl.dispatch(hl.dsp.window.set_prop({ prop = "opacity_inactive", value = val }))
+end)
 
 hl.bind(
 	mainMod .. " + M",
@@ -399,7 +408,7 @@ hl.window_rule({
 	match = {
 		class = "^(wofi)$",
 	},
-	opacity = "0.75",
+	opacity = "0.8",
 	float = true,
 	center = true,
 })
