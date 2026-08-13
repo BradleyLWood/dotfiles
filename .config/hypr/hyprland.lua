@@ -224,12 +224,13 @@ hl.gesture({
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
-hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + SHIFT + RETURN", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd("kitty kitty-switcher.sh"))
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("kitty kitty-switcher.sh"))
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("wlogout --buttons-per-row 5"))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd("uwsm stop"))
 hl.bind(mainMod .. " + X", hl.dsp.window.close())
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("wpaperctl next"))
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("kitty kitty-switcher.sh"))
 
 local opacity = true
 hl.bind(mainMod .. " + SHIFT + O", function()
