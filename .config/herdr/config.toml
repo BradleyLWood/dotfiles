@@ -95,7 +95,7 @@ height = "80%"
 [[keys.command]]
 key = "alt+f"
 type = "popup"
-command = "$HOME/.config/herdr/zoxide-tab.sh"
+command = "herdr-stint.sh"
 width = "80%"
 height = "80%"
 
