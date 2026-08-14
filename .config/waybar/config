@@ -9,7 +9,7 @@
 
     "modules-left": ["hyprland/workspaces", "hyperland/mode"],
     "modules-center": ["clock", "idle_inhibitor"],
-    "modules-right": ["tray", "custom/scratchpad-indicator", "network", "mpris", "pulseaudio", "custom/power"],
+    "modules-right": ["tray", "custom/scratchpad-indicator", "network", "mpris", "pulseaudio", "battery", "custom/power"],
 
     "custom/logo": {
         "format": "  "
@@ -79,7 +79,8 @@
 
 	"custom/power": {
 		"format": " ",
-		"on-click": "wlogout"
+        "tooltip": false,
+		"on-click": "wlogout & disown"
 	},
     
     "custom/scratchpad-indicator": {
