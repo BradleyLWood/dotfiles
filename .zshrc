@@ -64,14 +64,36 @@ alias llat="la -lT"
 
 alias r="ranger"
 
-alias config="$(which git) --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-compdef config=git
-_config() {
-  local -x GIT_DIR=$HOME/.dotfiles
-  local -x GIT_WORK_TREE=$HOME
-  _git
+alias cd=z
+
+config() {
+    local dir=$HOME/.dotfiles/worktrees/main/
+    local passed_args=()
+
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -ex|--exclusive)
+                dir=$HOME/.dotfiles/worktrees/exclusive/
+                shift
+                ;;
+            *)
+                # Everything else is captured as a positional argument
+                passed_args+=("$1")
+                shift
+                ;;
+        esac
+    done
+
+    $(which git) --git-dir=$dir --work-tree=$HOME "${passed_args[@]}"
+
+    compdef config=git
+    _config() {
+      local -x GIT_DIR=$dir
+      local -x GIT_WORK_TREE=$HOME
+      _git
+    }
+    compdef _config config
 }
-compdef _config config
 
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
