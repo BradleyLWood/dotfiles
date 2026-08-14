@@ -62,10 +62,6 @@ alias llt="ls -lT"
 alias lla="la -l"
 alias llat="la -lT"
 
-alias r="ranger"
-
-alias cd=z
-
 config() {
     local dir=$HOME/.dotfiles/worktrees/main/
     local passed_args=()
