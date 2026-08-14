@@ -1,6 +1,0 @@
-show=drun
-prompt=
-width=400
-height=508
-key_down=Down,Ctrl-j,Ctrl-n
-key_up=Up,Ctrl-k,Ctrl-p
