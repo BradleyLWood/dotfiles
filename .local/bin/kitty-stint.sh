@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# ztk: zoxide + kitty + hyprland — open or focus a per-directory kitty window
-# usage: ztk <zoxide-query>
+# stint: zoxide + kitty + hyprland — open or focus a per-directory kitty window
+# usage: stint <zoxide-query>
 
 dir=$( (echo "$HOME"; zoxide query -l) | fzf --reverse --height=40%)
 if [[ -z "$dir" ]]; then
@@ -18,4 +18,3 @@ if [[ -n "$addr" ]]; then
 else
     kitty @ launch --type os-window --cwd "$dir" --os-window-class "$class"
 fi
-
