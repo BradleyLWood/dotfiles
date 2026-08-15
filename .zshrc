@@ -46,12 +46,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
-# Completion
-zstyle :compinstall filename '/home/bradley/.zshrc'
-autoload -Uz compinit
-compinit
-zstyle ':completion:*' menu select
-
 # Aliases
 alias ls="eza -H --icons --group-directories-first"
 alias la="ls -a"
@@ -61,6 +55,12 @@ alias ll="ls -l"
 alias llt="ls -lT"
 alias lla="la -l"
 alias llat="la -lT"
+
+# Completion
+zstyle :compinstall filename '/home/bradley/.zshrc'
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' menu select
 
 config() {
     local dir=$HOME/.dotfiles/worktrees/main/
@@ -82,14 +82,28 @@ config() {
 
     $(which git) --git-dir=$dir --work-tree=$HOME "${passed_args[@]}"
 
-    compdef config=git
-    _config() {
-      local -x GIT_DIR=$dir
-      local -x GIT_WORK_TREE=$HOME
-      _git
-    }
-    compdef _config config
 }
+compdef config=git
+_config() {
+    local -x GIT_DIR=$HOME/.dotfiles/worktrees/main
+    local -x GIT_WORK_TREE=$HOME
+
+    local -a words_orig
+    words_orig=("${words[@]}")
+
+    # Check if -ex is present as the first arg after the command name
+    if [[ ${words[2]} == "-ex" || ${words[2]} == "--exclusive"  ]]; then
+        GIT_DIR=$HOME/.dotfiles/worktrees/exclusive
+
+        # Remove it from the words array
+        words[2]=()
+        # Shift CURRENT back by one since we removed an element
+        (( CURRENT-- ))
+    fi
+
+    _git
+}
+compdef _config config
 
 # Initialize zoxide
 eval "$(zoxide init zsh --cmd cd)"
