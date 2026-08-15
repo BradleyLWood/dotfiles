@@ -89,13 +89,15 @@ height = "80%"
 key = "prefix+ctrl+c"
 type = "popup"
 command = "lazygit --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+description = "Lazygit"
 width = "80%"
 height = "80%"
 
 [[keys.command]]
 key = "alt+f"
 type = "popup"
-command = "$HOME/.config/herdr/zoxide-tab.sh"
+command = "herdr-stint.sh"
+description  ="Stint"
 width = "80%"
 height = "80%"
 
@@ -103,6 +105,7 @@ height = "80%"
 key = "prefix+y"
 type = "popup"
 command = "yazi"
+description = "Yazi"
 width = "80%"
 height = "80%"
 
@@ -163,4 +166,3 @@ pane_history = false
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
-
