@@ -68,7 +68,7 @@ config() {
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            -ex|--exclusive)
+            -x|--exclusive)
                 dir=$HOME/.dotfiles/worktrees/exclusive/
                 shift
                 ;;
@@ -92,7 +92,7 @@ _config() {
     words_orig=("${words[@]}")
 
     # Check if -ex is present as the first arg after the command name
-    if [[ ${words[2]} == "-ex" || ${words[2]} == "--exclusive"  ]]; then
+    if [[ ${words[2]} == "-x" || ${words[2]} == "--exclusive"  ]]; then
         GIT_DIR=$HOME/.dotfiles/worktrees/exclusive
 
         # Remove it from the words array
