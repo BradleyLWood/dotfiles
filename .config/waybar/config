@@ -2,12 +2,8 @@
     "layer": "top",
     "position": "top",
     "exclusive": true,
-    "margin-top": 10,
-    "margin-left": 10,
-    "margin-bottom": 0,
-    "margin-right": 10,
 
-    "modules-left": ["hyprland/workspaces", "hyperland/mode"],
+    "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock", "idle_inhibitor"],
     "modules-right": ["tray", "custom/scratchpad-indicator", "network", "mpris", "pulseaudio", "battery", "custom/power"],
 
