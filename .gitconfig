@@ -116,3 +116,5 @@
     newNormal = green
     newHighlight = green 22
 
+[safe]
+	directory = /home/bradley/code/nixos/

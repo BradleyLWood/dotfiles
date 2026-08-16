@@ -1,43 +1,69 @@
 @import "mocha.css";
 
 * {
-    border: none;
     font-family: Font Awesome, Roboto, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 12pt;
     color: @text;
-    border-radius: 20px;
+    border: none;
+    border-radius: 10px;
 }
 
 window {
 	/*font-weight: bold;*/
 }
+
 window#waybar {
     background-color: alpha(@base, 0.0);
 }
-/*-----module groups----*/
+
+window#waybar > box {
+    margin: 10px 30px 0px 30px;
+}
+
 .modules-right {
-    background-color: @base;
-    margin: 2px 10px 0 0;
+    background-color: alpha(@base, 0.7);
+    padding: 0 12px;
+    border: 1px solid;
+    border-color: @mauve;
 }
+
 .modules-center {
-    background-color: @base;
-    margin: 2px 0 0 0;
+    background-color: alpha(@base, 0.7);
+    padding: 0 12px;
+    border: 1px solid;
+    border-color: @mauve;
 }
+
 .modules-left {
-    background-color: @base;
-    margin: 2px 0 0 5px;
+    background-color: alpha(@base, 0.7);
+    padding: 0 12px;
+    border: 1px solid;
+    border-color: @mauve;
 }
-/*-----modules indv----*/
+
 #workspaces button {
     padding: 1px 5px;
     background-color: transparent;
 }
-#workspaces button:hover {
-    box-shadow: inherit;
+
+#workspaces button.empty {
+    color: @overlay0;
 }
 
-#workspaces button.focused {
+#workspaces button.visible {
+    color: @text;
 }
+
+#workspaces button.urgent {
+    color: @text;
+    background-color: @red;
+    border-radius: 10px;
+}
+#workspaces button.active {
+    color: @mauve;
+    text-decoration: underline;
+}
+
 
 #clock,
 #battery,
@@ -52,34 +78,36 @@ window#waybar {
 #custom-power,
 #custom-menu,
 #idle_inhibitor {
-    padding: 0 10px;
+    padding: 0 20px;
 }
-#mode {
-    color: @red;
-    font-weight: bold;
-}
+
 #custom-power {
     background-color: @surface1;
     border-radius: 100px;
     margin: 5px 5px;
     padding: 1px 1px 1px 6px;
 }
-/*-----Indicators----*/
+
 #idle_inhibitor.activated {
     color: @green;
 }
+
 #pulseaudio.muted {
-    color: @red;
+    color: @overlay0;
 }
+
 #battery.charging {
     color: @green;
 }
+
 #battery.warning:not(.charging) {
 	color: @yellow;
 }
+
 #battery.critical:not(.charging) {
     color: @red;
 }
+
 #temperature.critical {
     color: @red;
 }
