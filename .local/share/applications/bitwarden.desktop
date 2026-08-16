@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Bitwarden
+GenericName=Web Browser
+Exec=google-chrome --app=chrome-extension://nngceckbapebfimnlniiiahkandclblb/popup/index.html
+StartupNotify=true
+Terminal=false
+Icon=google-chrome
+Type=Application
+Categories=Security
+
