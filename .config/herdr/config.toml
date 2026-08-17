@@ -94,7 +94,7 @@ width = "80%"
 height = "80%"
 
 [[keys.command]]
-key = "alt+f"
+key = "alt+s"
 type = "popup"
 command = "herdr-stint.sh"
 description  ="Stint"
