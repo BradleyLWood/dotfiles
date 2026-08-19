@@ -34,6 +34,7 @@ local menu = "wofi --normal-window --show drun"
 --
 hl.on("hyprland.start", function()
 	hl.exec_cmd("wpaperd -d")
+	hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-mauve-compact'")
 end)
 
 -------------------------------
@@ -238,6 +239,10 @@ end, { description = "Toggle touchpad tap-to-click" })
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen" }))
 hl.bind(mainMod .. " + ALT + F", hl.dsp.window.fullscreen_state({ internal = 2, client = -1 })) -- TODO fix this so it will do a windowed fullscreen toggle for videos
+
+hl.bind("Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | swappy -f -'))
+hl.bind("SUPER + Print", hl.dsp.exec_cmd("grim ~/Pictures/$(date +%Y%m%d_%H%M%S).png"))
+hl.bind("CTRL + Print", hl.dsp.exec_cmd('grim -g "$(slurp -d)" - | wl-copy'))
 
 -- Smart focus will do a cycle_next if fullscreen and a focus direction if not
 local function smart_focus(direction)
