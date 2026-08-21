@@ -56,6 +56,8 @@ alias llt="ls -lT"
 alias lla="la -l"
 alias llat="la -lT"
 
+alias weather="curl wttr.in"
+
 # Completion
 zstyle :compinstall filename '/home/bradley/.zshrc'
 autoload -Uz compinit
@@ -91,10 +93,10 @@ _config() {
     local -a words_orig
     words_orig=("${words[@]}")
 
-    # Check if -ex is present as the first arg after the command name
+    # Check if -x or --exclusive is present as the first arg
     if [[ ${words[2]} == "-x" || ${words[2]} == "--exclusive"  ]]; then
+        # set the git dir to the exclusive worktree
         GIT_DIR=$HOME/.dotfiles/worktrees/exclusive
-
         # Remove it from the words array
         words[2]=()
         # Shift CURRENT back by one since we removed an element
@@ -114,7 +116,7 @@ eval "$(starship init zsh)"
 # Initialize fzf completion
 source <(fzf --zsh)
 
-# TODO get to work with herdr tabs
+# TODO redo this to work with herdr and zellij
 function precmd() {
     if command -v herdr >/dev/null 2>&1; then
         # Parse the active workspace name
