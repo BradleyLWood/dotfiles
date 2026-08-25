@@ -17,6 +17,7 @@ le = ["log", "--config", "template-aliases.\"format_short_signature(signature)\"
 lae = ["log", "-r", "all()", "--config", "template-aliases.\"format_short_signature(signature)\"=\"signature.email()\""]
 log-email = ["log", "--config", "template-aliases.\"format_short_signature(signature)\"=\"signature.email()\""]
 
+init = ["git", "init"]
 fetch = ["git", "fetch"]
 push = ["git", "push", "--allow-new"]
 track = ["bookmark", "track"]
