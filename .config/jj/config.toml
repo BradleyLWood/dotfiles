@@ -13,7 +13,14 @@ st = ["status"]
 l = ["log"]
 d = ["diff"]
 la = ["log", "-r", "all()"]
+le = ["log", "--config", "template-aliases.\"format_short_signature(signature)\"=\"signature.email()\""]
+lae = ["log", "-r", "all()", "--config", "template-aliases.\"format_short_signature(signature)\"=\"signature.email()\""]
+log-email = ["log", "--config", "template-aliases.\"format_short_signature(signature)\"=\"signature.email()\""]
 
 fetch = ["git", "fetch"]
 push = ["git", "push", "--allow-new"]
 track = ["bookmark", "track"]
+
+[template-aliases]
+"format_short_signature(signature)" = "signature.name()"
+
