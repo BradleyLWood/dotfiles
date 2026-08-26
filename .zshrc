@@ -47,7 +47,7 @@ echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
 # Aliases
-alias ls="eza -H --icons --group-directories-first"
+alias ls="eza -H --icons --group-directories-first --no-quotes"
 alias la="ls -a"
 alias lat="ls -aT"
 alias lt="ls -T"
