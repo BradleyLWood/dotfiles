@@ -4,14 +4,14 @@
 
 hl.monitor({
 	output = "DP-1",
-	mode = "2560x1440",
+	mode = "2560x1440@60",
 	position = "0x0",
 	scale = 1,
 })
 
 hl.monitor({
 	output = "DVI-D-1",
-	mode = "1440x900",
+	mode = "1440x900@60",
 	position = "2560x300",
 	scale = 1,
 })
