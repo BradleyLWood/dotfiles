@@ -47,14 +47,14 @@ echo -ne '\e[5 q'
 preexec() { echo -ne '\e[5 q' ;}
 
 # Aliases
-alias ls="eza -H --icons --group-directories-first --no-quotes"
+alias ls="eza -H --icons --group-directories-first --group --no-quotes --time-style='+%F %I:%M:%S %P'"
 alias la="ls -a"
 alias lat="ls -aT"
 alias lt="ls -T"
-alias ll="ls -l --time-style='+%F %I:%M:%S %P'"
-alias llt="ls -lT --time-style='+%F %I:%M:%S %P'"
-alias lla="la -l --time-style='+%F %I:%M:%S %P'"
-alias llat="la -lT --time-style='+%F %I:%M:%S %P'"
+alias ll="ls -l"
+alias llt="ls -lT"
+alias lla="la -l"
+alias llat="la -lT"
 
 alias weather="curl wttr.in"
 
