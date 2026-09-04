@@ -1,0 +1,103 @@
+# --- Identity ---
+set my_user = "`bw get username 'Google Apps'`"
+set my_pass = "`bw get password 'Google Apps'`"
+
+set realname = "Bradley Wood"
+set from = $my_user
+
+set smtp_url = "smtps://$my_user@smtp.gmail.com:465/"
+set smtp_pass = $my_pass
+
+set ssl_force_tls = yes
+set ssl_starttls = yes
+
+set use_envelope_from = yes
+
+macro index,pager y "<sync-mailbox>!mbsync gmail<enter>" "sync mail"
+
+# --- Directories & Paths ---
+set mbox_type = Maildir
+set folder = "~/Mail/gmail"
+set spoolfile = +Inbox
+set record = +"[Gmail]/Sent Mail"
+set postponed = +"[Gmail]/Drafts"
+set trash = +"[Gmail]/Trash"
+
+mailboxes +Inbox \
+          +"[Gmail]/Sent Mail" \
+          +"[Gmail]/Drafts" \
+          +"[Gmail]/All Mail" \
+          +"[Gmail]/Trash"
+
+# --- Basic Options ---
+set sort = "threads"                   # Sort inbox by newest messages first
+set sort_aux = "reverse-date-received" # Sort inbox by newest messages first
+set mail_check = 120                   # Check for new mail every 60 seconds
+set timeout = 15                       # Idle time before returning from a prompt
+set beep = no                          # Turn off annoying system beeps
+set markers = no                       # Don't put '+' markers on wrapped lines
+set smart_wrap = yes                   # Wrap lines at word boundaries
+set auto_tag = yes                     # Apply operations to all tagged messages
+
+# --- Sidebar Configuration (NeoMutt specific) ---
+set sidebar_visible = yes
+set sidebar_width = 25
+set sidebar_short_path = yes
+set sidebar_folder_indent = yes
+set mail_check_stats
+
+bind index,pager d noop
+macro index,pager d "<save-message>=\"[Gmail]/All Mail\"<enter><enter>" "archive message (move to All Mail)"
+bind index,pager B sidebar-toggle-visible
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+# --- Pager (Email Reader) View ---
+set pager_index_lines = 10             # Show index header while reading a mail
+set pager_context = 3                  # Scroll 3 lines of context when paging
+set pager_stop = yes                   # Do not jump to next message at end of email
+ignore *                               # Hide all headers by default...
+unignore from: to: cc: date: subject   # ...then show only these useful ones
+hdr_order From: To: Cc: Date: Subject  # Set order of displayed headers
+
+# --- Composition ---
+set editor = "nvim"                    # Your preferred text editor for writing emails
+set include = yes                      # Include quoted message in replies
+set forward_format = "Fwd: %s"         # Subject line format when forwarding
+
+# --- Catppuccin Theme ---
+color normal        default default         # Text is "Text"
+color index         color2 default ~N       # New Messages are Green
+color index         color1 default ~F       # Flagged messages are Red
+color index         color13 default ~T      # Tagged Messages are Red
+color index         color1 default ~D       # Messages to delete are Red
+color attachment    color5 default          # Attachments are Pink
+color signature     color8 default          # Signatures are Surface 2
+color search        color4 default          # Highlighted results are Blue
+
+color indicator     default color8          # currently highlighted message Surface 2=Background Text=Foreground
+color error         color1 default          # error messages are Red
+color status        color15 default         # status line "Subtext 0"
+color tree          color15 default         # thread tree arrows Subtext 0
+color tilde         color15 default         # blank line padding Subtext 0
+
+color hdrdefault    color13 default         # default headers Pink
+color header        color13 default "^From:"
+color header        color13 default "^Subject:"
+
+color quoted        color15 default         # Subtext 0
+color quoted1       color7 default          # Subtext 1
+color quoted2       color8 default          # Surface 2
+color quoted3       color0 default          # Surface 1
+color quoted4       color0 default
+color quoted5       color0 default
+
+color body          color2 default      [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses Green
+color body          color2 default      (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs Green
+color body          color4 default      (^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text Blue
+color body          color4 default      (^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text Blue
+color body          color4 default      (^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text Blue
+
+color sidebar_flagged   color1 default    # Mailboxes with flagged mails are Red
+color sidebar_new       color10 default   # Mailboxes with new mail are Green

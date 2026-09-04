@@ -1,0 +1,40 @@
+# ----- IMAP ACCOUNT -----
+IMAPAccount gmail
+Host imap.gmail.com
+UserCmd "bw get username 'Google Apps'"
+PassCmd "bw get password 'Google Apps'"
+TLSType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+# ----- REMOTE STORE -----
+IMAPStore gmail-remote
+Account gmail
+
+# ----- LOCAL STORE -----
+MaildirStore gmail-local
+Path ~/Mail/gmail/
+Inbox ~/Mail/gmail/Inbox
+SubFolders Verbatim
+
+# ----- CHANNEL CONFIGURATION -----
+Channel gmail-inbox
+Far :gmail-remote:"INBOX"
+Near :gmail-local:"INBOX"
+Patterns * !"[Gmail]/Important" !"[Gmail]/Starred"
+Create Both
+Expunge Both
+SyncState *
+
+# Seperate channel for all mail so I can limit the messages
+Channel gmail-allmail
+Far :gmail-remote:"[Gmail]/All Mail"
+Near :gmail-local:"[Gmail]/All Mail"
+Create Both
+Expunge Both
+SyncState *
+MaxMessages 5000
+ExpireUnread no
+
+Group gmail
+Channel gmail-inbox
+Channel gmail-allmail
