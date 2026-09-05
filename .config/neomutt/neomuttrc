@@ -39,6 +39,21 @@ set markers = no                       # Don't put '+' markers on wrapped lines
 set smart_wrap = yes                   # Wrap lines at word boundaries
 set auto_tag = yes                     # Apply operations to all tagged messages
 
+auto_view text/html                    # HTML view
+alternative_order text/plain text/html # Prefer plain text if available
+
+# --- Basic Binds ---
+bind index,pager d noop
+macro index,pager d "<save-message>=\"[Gmail]/All Mail\"<enter><enter>" "archive message (move to All Mail)"
+macro index,pager D "<delete-message>" "actually delete"
+bind index,pager j next-entry
+bind index,pager k previous-entry
+bind index,pager g noop
+bind index gg first-entry
+bind index G last-entry
+macro index,pager \cb "<pipe-message>urlscan<Enter>" "Open URLs with urlscan"
+bind editor <Tab> complete-query
+
 # --- Sidebar Configuration (NeoMutt specific) ---
 set sidebar_visible = yes
 set sidebar_width = 25
@@ -46,20 +61,27 @@ set sidebar_short_path = yes
 set sidebar_folder_indent = yes
 set mail_check_stats
 
-bind index,pager d noop
-macro index,pager d "<save-message>=\"[Gmail]/All Mail\"<enter><enter>" "archive message (move to All Mail)"
 bind index,pager B sidebar-toggle-visible
 bind index,pager \CP sidebar-prev
 bind index,pager \CN sidebar-next
 bind index,pager \CO sidebar-open
 
 # --- Pager (Email Reader) View ---
-set pager_index_lines = 10             # Show index header while reading a mail
+set pager_index_lines = 5              # Show index header while reading a mail
 set pager_context = 3                  # Scroll 3 lines of context when paging
 set pager_stop = yes                   # Do not jump to next message at end of email
 ignore *                               # Hide all headers by default...
 unignore from: to: cc: date: subject   # ...then show only these useful ones
 hdr_order From: To: Cc: Date: Subject  # Set order of displayed headers
+
+bind pager \004 half-down # Ctrl-d
+bind pager \025 half-up   # Ctrl-u
+bind pager J next-line
+bind pager K previous-line
+
+# --- Index ---
+set menu_scroll = yes
+set menu_context = 5
 
 # --- Composition ---
 set editor = "nvim"                    # Your preferred text editor for writing emails

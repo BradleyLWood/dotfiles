@@ -5,6 +5,7 @@ UserCmd "bw get username 'Google Apps'"
 PassCmd "bw get password 'Google Apps'"
 TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
+PipelineDepth 1
 
 # ----- REMOTE STORE -----
 IMAPStore gmail-remote
@@ -20,7 +21,7 @@ SubFolders Verbatim
 Channel gmail-inbox
 Far :gmail-remote:"INBOX"
 Near :gmail-local:"INBOX"
-Patterns * !"[Gmail]/Important" !"[Gmail]/Starred"
+Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred"
 Create Both
 Expunge Both
 SyncState *
@@ -32,7 +33,7 @@ Near :gmail-local:"[Gmail]/All Mail"
 Create Both
 Expunge Both
 SyncState *
-MaxMessages 5000
+MaxMessages 2000
 ExpireUnread no
 
 Group gmail
