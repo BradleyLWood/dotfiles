@@ -21,6 +21,7 @@ local colors = require("themes.catppuccin-mocha")
 local terminal = "kitty"
 local fileManager = "kitty --title=yazi-floating -e yazi"
 local menu = "wofi --normal-window --show drun"
+local dmenu = "ls ~/.local/bin | wofi --normal-window --show dmenu | xargs -I {} bash ~/.local/bin{}"
 --local menu = "kitty --class otter-launcher -e otter-launcher"
 
 -------------------
@@ -33,6 +34,7 @@ local menu = "wofi --normal-window --show drun"
 -- Or execute your favorite apps at launch like this:
 --
 hl.on("hyprland.start", function()
+	hl.exec_cmd("waybar")
 	hl.exec_cmd("wpaperd -d")
 	hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-mauve-compact'")
 end)
@@ -152,8 +154,8 @@ hl.config({
 
 hl.config({
 	misc = {
-		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
+		force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
+		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
 		exit_window_retains_fullscreen = true, -- If true, closing a fullscreen window makes the next focused window fullscreen
 		on_focus_under_fullscreen = 1,
 	},
@@ -221,6 +223,7 @@ hl.bind(
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. "+ SHIFT + O", hl.dsp.exec_cmd(dmenu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 
 hl.bind(mainMod .. " + SHIFT + T", function()
