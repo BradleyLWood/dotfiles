@@ -1,8 +1,9 @@
-# ----- IMAP ACCOUNT -----
+# ----- GMAIL ACCOUNT ---------------------------------------------------------
 IMAPAccount gmail
 Host imap.gmail.com
-UserCmd "bw get username 'Google Apps'"
-PassCmd "bw get password 'Google Apps'"
+Port 993
+UserCmd "bw get username 'Gmail Apps' --session $BW_SESSION"
+PassCmd "bw get password 'Gmail Apps' --session $BW_SESSION"
 TLSType IMAPS
 CertificateFile /etc/ssl/certs/ca-certificates.crt
 PipelineDepth 1
@@ -18,24 +19,44 @@ Inbox ~/Mail/gmail/Inbox
 SubFolders Verbatim
 
 # ----- CHANNEL CONFIGURATION -----
-Channel gmail-inbox
-Far :gmail-remote:"INBOX"
-Near :gmail-local:"INBOX"
-Patterns * !"[Gmail]/All Mail" !"[Gmail]/Important" !"[Gmail]/Starred"
+Channel gmail
+Far :gmail-remote:
+Near :gmail-local:
+Patterns *
 Create Both
 Expunge Both
 SyncState *
-
-# Seperate channel for all mail so I can limit the messages
-Channel gmail-allmail
-Far :gmail-remote:"[Gmail]/All Mail"
-Near :gmail-local:"[Gmail]/All Mail"
-Create Both
-Expunge Both
-SyncState *
-MaxMessages 2000
 ExpireUnread no
+MaxMessages 2000
 
-Group gmail
-Channel gmail-inbox
-Channel gmail-allmail
+# ---- SPAM ACCOUNT -----------------------------------------------------------
+IMAPAccount spam
+Host imap.gmail.com
+Port 993
+UserCmd "bw get username 'Spam Apps' --session $BW_SESSION"
+PassCmd "bw get password 'Spam Apps' --session $BW_SESSION"
+TLSType IMAPS 
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+PipelineDepth 1
+
+# ----- REMOTE STORE -----
+IMAPStore spam-remote
+Account spam
+
+# ----- LOCAL STORE -----
+MaildirStore spam-local
+Path ~/Mail/spam/
+Inbox ~/Mail/spam/Inbox
+SubFolders Verbatim
+
+# ----- CHANNEL CONFIGURATION -----
+Channel spam
+Far :spam-remote:
+Near :spam-local:
+Patterns *
+Create Both
+Expunge Both
+SyncState *
+ExpireUnread no
+MaxMessages 2000
+

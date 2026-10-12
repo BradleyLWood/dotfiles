@@ -1,33 +1,20 @@
-# --- Identity ---
-set my_user = "`bw get username 'Google Apps'`"
-set my_pass = "`bw get password 'Google Apps'`"
-
-set realname = "Bradley Wood"
-set from = $my_user
-
-set smtp_url = "smtps://$my_user@smtp.gmail.com:465/"
-set smtp_pass = $my_pass
-
-set ssl_force_tls = yes
-set ssl_starttls = yes
-
-set use_envelope_from = yes
-
-macro index,pager y "<sync-mailbox>!mbsync gmail<enter>" "sync mail"
-
 # --- Directories & Paths ---
 set mbox_type = Maildir
-set folder = "~/Mail/gmail"
-set spoolfile = +Inbox
-set record = +"[Gmail]/Sent Mail"
-set postponed = +"[Gmail]/Drafts"
-set trash = +"[Gmail]/Trash"
+set folder = "~/Mail"
+folder-hook '+gmail/*' 'source ~/.config/neomutt/accounts/gmail.muttrc'
+folder-hook '+spam/*' 'source  ~/.config/neomutt/accounts/spam.muttrc'
 
-mailboxes +Inbox \
-          +"[Gmail]/Sent Mail" \
-          +"[Gmail]/Drafts" \
-          +"[Gmail]/All Mail" \
-          +"[Gmail]/Trash"
+set spoolfile = +"gmail/Inbox"
+
+
+named-mailboxes "Gmail - Inbox" +gmail/Inbox
+named-mailboxes "      Sent" +"gmail/[Gmail]/Sent Mail"
+named-mailboxes "      All Mail" +"gmail/[Gmail]/All Mail"
+named-mailboxes "      Trash" +"gmail/[Gmail]/Trash"
+named-mailboxes "Spam - Inbox" +spam/Inbox
+named-mailboxes "     Sent" +"spam/[Gmail]/Sent Mail"
+named-mailboxes "     All Mail" +"spam/[Gmail]/All Mail"
+named-mailboxes "     Trash" +"spam/[Gmail]/Trash"
 
 # --- Basic Options ---
 set sort = "threads"                   # Sort inbox by newest messages first
@@ -38,13 +25,12 @@ set beep = no                          # Turn off annoying system beeps
 set markers = no                       # Don't put '+' markers on wrapped lines
 set smart_wrap = yes                   # Wrap lines at word boundaries
 set auto_tag = yes                     # Apply operations to all tagged messages
-
 auto_view text/html                    # HTML view
 alternative_order text/plain text/html # Prefer plain text if available
 
 # --- Basic Binds ---
-bind index,pager d noop
-macro index,pager d "<save-message>=\"[Gmail]/All Mail\"<enter><enter>" "archive message (move to All Mail)"
+macro index,pager y "<sync-mailbox>!mbsync -aV<enter>" "sync mail"
+
 macro index,pager D "<delete-message>" "actually delete"
 bind index,pager j next-entry
 bind index,pager k previous-entry
@@ -110,7 +96,7 @@ color header        color13 default "^Subject:"
 
 color quoted        color15 default         # Subtext 0
 color quoted1       color7 default          # Subtext 1
-color quoted2       color8 default          # Surface 2
+color quoted3       color8 default          # Surface 2
 color quoted3       color0 default          # Surface 1
 color quoted4       color0 default
 color quoted5       color0 default
